@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AssociadoController;
+use App\Http\Controllers\DependenteController;
+use App\Http\Controllers\ConveniadoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
 });
+
+#Rotas Associado 
+Route::resource('/associados', AssociadoController::class);
+
+#Rotas Dependente
+Route::resource('/dependentes', DependenteController::class);
+
+#Rotas Conveniado
+Route::resource('/conveniados', ConveniadoController::class);
