@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AssociadoController;
 use App\Http\Controllers\DependenteController;
 use App\Http\Controllers\ConveniadoController;
+use App\Http\Controllers\VendaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,6 @@ Route::resource('/dependentes', DependenteController::class);
 
 #Rotas Conveniado
 Route::resource('/conveniados', ConveniadoController::class);
+
+#Rotas Vendas
+Route::resource('/vendas', VendaController::class);
