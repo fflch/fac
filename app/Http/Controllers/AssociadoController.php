@@ -11,7 +11,6 @@ class AssociadoController extends Controller
 {
     public function index() 
     {
-
         $associados = Associado::paginate(10);
         return view ('associados.index',[
             'associados' => $associados
@@ -27,6 +26,7 @@ class AssociadoController extends Controller
 
     public function store(AssociadoRequest $request) 
     {
+
         $validated = $request->validated();
         $validated['data_nascimento'] = implode('-',array_reverse(explode('/',$request->data_nascimento)));
         $associado = Associado::create($validated);

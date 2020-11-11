@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             AssociadoSeeder::class,
             ConveniadoSeeder::class,
             DependenteSeeder::class,
+            VendaSeeder::class,
         ]);   
         // User::factory(10)->create();
     }
