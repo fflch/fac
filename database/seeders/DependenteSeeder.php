@@ -15,7 +15,7 @@ class DependenteSeeder extends Seeder
     public function run()
     {
         $dependente = [
-            'associado' => 'Ana Paula Martins',
+            'associado_id' => 1,
             'name' => 'Sofia Martins',
             'parentesco' => 'Filha',
             'endereco' => 'Rua do Girassol',

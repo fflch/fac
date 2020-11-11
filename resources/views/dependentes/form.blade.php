@@ -2,8 +2,14 @@
   <div class="card-body">
     <h4>Dados Principais</h4>
 
-    <label for="associado">Associado:</label>
-    <input type="text" name="associado" value="{{ $dependente->associado }}" id="associado"><br>
+    <div class="form-group">
+    <label >Associado</label>
+      <select class="form-control" name="associado_id">
+        @foreach(\App\Models\Associado::all() as $associado)
+          <option value="{{ $associado->id }}">{{ $associado->name }}</option>
+        @endforeach
+      </select>
+    </div>
 
     <label for="name">Nome:</label>
     <input type="text" name="name" value="{{ $dependente->name }}" id="name"><br>

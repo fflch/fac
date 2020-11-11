@@ -16,13 +16,16 @@ class CreateVendasTable extends Migration
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('id_conveniado');
-            $table->string('id_associado');  
+ 
             $table->date('data_venda');
             $table->integer('quantidade_parcelas');
             $table->float('valor');
             $table->string('descricao');
             $table->string('status');
+
+            # corrigir
+            $table->string('id_conveniado');
+            $table->string('id_associado'); 
         });
     }
 

@@ -17,7 +17,6 @@ class CreateDependentesTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->string('associado');
             $table->string('name');  
             $table->string('parentesco');
             $table->string('endereco');
@@ -33,6 +32,8 @@ class CreateDependentesTable extends Migration
             $table->string('residencial');
             $table->string('celular');
             $table->string('e_mail');
+            
+            $table->foreignId('associado_id')->constrained();
         });
     }
 

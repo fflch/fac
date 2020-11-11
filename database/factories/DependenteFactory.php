@@ -25,7 +25,7 @@ class DependenteFactory extends Factory
     public function definition(){
         //Podemos colocar mais graus de parentesco depois 
         return [
-            'associado' => Associado::factory()->create()->name,
+            'associado_id' => Associado::factory()->create()->id,
             'name' => $this->faker->name,
             'parentesco' => $this->faker->randomElement($array = array ('Filha/o','Esposa/o','Tia/o')),
             'endereco' => $this->faker->streetAddress,

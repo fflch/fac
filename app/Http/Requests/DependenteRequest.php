@@ -24,7 +24,7 @@ class DependenteRequest extends FormRequest
     public function rules()
     {
         return [
-            'associado' => 'required',
+            'associado_id' => 'required',
             'name' => 'required',
             'parentesco' => 'required',
             'endereco' => 'required',
