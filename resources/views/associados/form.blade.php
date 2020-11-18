@@ -1,68 +1,187 @@
 <div class="card">
-  <div class="card-body">
-    <h4>Dados Principais</h4>
+<div class="card-header"><h4><b>Cadastro de Associado</b></h4></div>
+<hr>
+  <div class="card-header"><b>Dados Principais</b></div>
+    <div class="card-body">
 
-    <label for="unidade">Unidade:</label>
-    <input  type="text" name="unidade" value="{{ $associado->unidade }}" id="unidade"><br>
+        <div class="row">
+            <div class="col-sm form-group col-sm-8">
+                <div class="form-group">
+                    <label for="name" class="required"><b>Nome: </b></label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{old('name',$associado->name)}}">
+                </div>
+            </div>
 
-    <label for="numero_usp">Número USP:</label>
-    <input type="text" name="numero_usp" value="{{ $associado->numero_usp }}" id="numero_usp"><br>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="unidade" class="required"><b>Unidade: </b></label>
+                    <input type="text" class="form-control" id="unidade" name="unidade" value="{{old('unidade',$associado->unidade)}}">
+                </div>
+            </div>
 
-    <label for="name">Nome:</label>
-    <input type="text" name="name" value="{{ $associado->name }}" id="name"><br>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="numero_usp" class="required"><b>Número USP: </b></label>
+                    <input type="text" class="form-control" id="numero_usp" name="numero_usp" value="{{old('numero_usp',$associado->numero_usp)}}">
+                </div>
+            </div>           
+        </div>
 
-    <label for="endereco">Endereço:</label>
-    <input type="text" name="endereco" value="{{ $associado->endereco }}" id="endereco" ><br>
+          <div class="row">
 
-    <label for="complemento">Complemento:</label>
-    <input type="text" name="complemento" value="{{ $associado->complemento }}" id="complemento"><br>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="data_nascimento" class="required"><b>Data de nascimento: </b></label>
+                    <input type="text" class="form-control datepicker data" id="data_nascimento" name="data_nascimento" value="{{old('data_nascimento',$associado->data_nascimento)}}">
+                </div>
+            </div>  
 
-    <label for="cidade">Cidade:</label>
-    <input type="text" name="cidade" value="{{ $associado->cidade }}" id="cidade"><br>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="cpf" class="required"><b>CPF: </b></label>
+                    <input type="text" class="form-control" id="cpf" name="cpf" value="{{old('cpf',$associado->cpf)}}">
+                </div>
+            </div>
 
-    <label for="estado">Estado:</label>
-    <input type="text" name="estado" value="{{ $associado->estado }}" id="estado"><br>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="rg" class="required"><b>RG: </b></label>
+                    <input type="text" class="form-control" id="rg" name="rg" value="{{old('rg',$associado->rg)}}">
+                </div>
+            </div>
+          </div>
 
-    <label for="cep">Cep:</label>
-    <input type="text" name="cep" value="{{ $associado->cep }}" id="cep"><br>
+    </div>
+</div>
 
-    <label for="rg">RG:</label>
-    <input type="text" name="rg" value="{{ $associado->rg }}" id="rg"><br>
+<hr>
 
-    <label for="cpf">CPF:</label>
-    <input type="text" name="cpf" value="{{ $associado->cpf }}" id="cpf"><br>
+<div class="card">
+    <div class="card-header"><b>Endereço</b></div>
+    <div class="card-body">
 
-    <label for="data_nascimento">Data de Nascimento:</label>
-    <input type="text" class="datepicker" name="data_nascimento" value="{{ $associado->data_nascimento }}" id="data_nascimento"><br>
-    
-    <br>
-    <h4>Contatos</h4>
+        <div class="row">
 
-    <label for="comercial">Comercial:</label>
-    <input type="text" name="comercial" value="{{ $associado->comercial }}" id="comercial"><br>
+            <div class="col-sm form-group col-sm-8">
+                <div class="form-group">
+                    <label for="endereco" class="required"><b>Endereço: </b></label>
+                    <input type="text" class="form-control" id="endereco" name="endereco" value="{{old('endereco',$associado->endereco)}}">
+                </div>
+            </div>
 
-    <label for="residencial">Residencial:</label>
-    <input type="text" name="residencial" value="{{ $associado->residencial }}" id="residencial"><br>
+            <div class="col-sm form-group col-sm-4">
+                <div class="form-group">
+                    <label for="complemento" class="required"><b>Complemento: </b></label>
+                    <input type="text" class="form-control" id="complemento" name="complemento" value="{{old('complemento',$associado->complemento)}}">
+                </div>
+            </div>
 
-    <label for="celular">Celular:</label>
-    <input type="text" name="celular" value="{{ $associado->celular }}" id="celular"><br>
+        </div>
 
-    <label for="e_mail">Email:</label>
-    <input type="text" name="e_mail" value="{{ $associado->e_mail }}" id="e_mail"><br>
+        <div class="row">
 
-    <br>
-    <h4>Conta Bancária</h4>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="cidade" class="required"><b>Cidade: </b></label>
+                    <input type="text" class="form-control" id="cidade" name="cidade" value="{{old('cidade',$associado->cidade)}}">
+                </div>
+            </div>
 
-    <label for="banco">Banco:</label>
-    <input type="text" name="banco" value="{{ $associado->banco }}" id="banco"><br>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="cep" class="required"><b>CEP: </b></label>
+                    <input type="text" class="form-control" id="cep" name="cep" value="{{old('cep',$associado->cep)}}">
+                </div>
+            </div>
 
-    <label for="agencia">Agencia:</label>
-    <input type="text" name="agencia" value="{{ $associado->agencia }}" id="agencia"><br>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="estado" class="required"><b>Estado: </b></label>
+                    <input type="text" class="form-control" id="estado" name="estado" value="{{old('estado',$associado->estado)}}">
+                </div>
+            </div>
 
-    <label for="conta_corrente">Conta Corrente:</label>
-    <input type="text" name="conta_corrente" value="{{ $associado->conta_corrente }}" id="conta_corrente"><br>
+        </div>
+        
+    </div>
+</div>
 
-    <br>
-    <button type="submit" class="btn btn-success">Enviar</button> 
-  </div>
+<hr>
+
+<div class="card">
+    <div class="card-header"><b>Contato</b></div>
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="comercial" class="required"><b>Comercial: </b></label>
+                    <input type="text" class="form-control" id="comercial" name="comercial" value="{{old('comercial',$associado->comercial)}}">
+                </div>
+            </div>
+
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="residencial" class="required"><b>Residencial: </b></label>
+                    <input type="text" class="form-control" id="residencial" name="residencial" value="{{old('residencial',$associado->residencial)}}">
+                </div>
+            </div>
+
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="celular" class="required"><b>Celular: </b></label>
+                    <input type="text" class="form-control" id="celular" name="celular" value="{{old('celular',$associado->celular)}}">
+                </div>
+            </div>
+
+            <div class="col-sm form-group col-sm-6">
+                <div class="form-group">
+                    <label for="e_mail" class="required"><b>E-mail: </b></label>
+                    <input type="text" class="form-control" id="e_mail" name="e_mail" value="{{old('e_mail',$associado->e_mail)}}">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="card">
+    <div class="card-header"><b> Informações Financeiras </b></div>
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="banco" class="required"><b>Banco: </b></label>
+                    <input type="text" class="form-control" id="banco" name="banco" value="{{old('banco',$associado->banco)}}">
+                </div>
+            </div>
+
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="agencia" class="required"><b>Agência: </b></label>
+                    <input type="text" class="form-control" id="agencia" name="agencia" value="{{old('agencia',$associado->agencia)}}">
+                </div>
+            </div>
+
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="conta_corrente" class="required"><b>Conta Corrente: </b></label>
+                    <input type="text" class="form-control" id="conta_corrente" name="conta_corrente" value="{{old('conta_corrente',$associado->conta_corrente)}}">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="form-group">
+    <button type="submit" class="btn btn-success">Enviar</button>
 </div>

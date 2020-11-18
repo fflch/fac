@@ -18,7 +18,7 @@
             <div class="col-sm"> 
                 <h4>Dados Principais</h4>
 
-                Associado: {{ $dependente->associado }}<br>
+                Associado: {{ $dependente->associado_id }}<br>
                 Nome: {{ $dependente->name }}<br>
                 Parentesco: {{ $dependente->parentesco }}<br>
                 Endereço: {{ $dependente->endereco }}<br>

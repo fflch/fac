@@ -1,62 +1,156 @@
 <div class="card">
-  <div class="card-body">
-    <h4>Dados Principais</h4>
+<div class="card-header"><h4><b>Cadastro de Dependente</b></h4></div>
+<hr>
+  <div class="card-header"><b>Dados Principais</b></div>
+    <div class="card-body">
 
-    <div class="form-group">
-    <label >Associado</label>
-      <select class="form-control" name="associado_id">
-        @foreach(\App\Models\Associado::all() as $associado)
-          <option value="{{ $associado->id }}">{{ $associado->name }}</option>
-        @endforeach
-      </select>
+          <div class="row">
+
+            <div class="col-sm form-group col-sm-6">
+              <div class="form-group">
+                <label><b>Associado</b></label>
+                  <select class="form-control" name="associado_id">
+                    @foreach(\App\Models\Associado::all() as $associado)
+                      <option value="{{ $associado->id }}">{{ $associado->name }}</option>
+                    @endforeach
+                  </select>
+              </div>
+            </div>  
+
+            <div class="col-sm form-group col-sm-6">
+                <div class="form-group">
+                    <label for="name" class="required"><b>Nome: </b></label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{old('name',$dependente->name)}}">
+                </div>
+            </div>     
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="parentesco" class="required"><b>Parentesco: </b></label>
+                    <input type="text" class="form-control" id="parentesco" name="parentesco" value="{{old('parentesco',$dependente->parentesco)}}">
+                </div>
+            </div>    
+
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="data_nascimento" class="required"><b>Data de nascimento: </b></label>
+                    <input type="text" class="form-control datepicker data" id="data_nascimento" name="data_nascimento" value="{{old('data_nascimento',$dependente->data_nascimento)}}">
+                </div>
+            </div>  
+
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="cpf" class="required"><b>CPF: </b></label>
+                    <input type="text" class="form-control" id="cpf" name="cpf" value="{{old('cpf',$dependente->cpf)}}">
+                </div>
+            </div>
+
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="rg" class="required"><b>RG: </b></label>
+                    <input type="text" class="form-control" id="rg" name="rg" value="{{old('rg',$dependente->rg)}}">
+                </div>
+            </div>
+          </div>
     </div>
+</div>
 
-    <label for="name">Nome:</label>
-    <input type="text" name="name" value="{{ $dependente->name }}" id="name"><br>
+<hr>
 
-    <label for="parentesco">Parentesco:</label>
-    <input type="text" name="parentesco" value="{{ $dependente->parentesco }}" id="parentesco"><br>
+<div class="card">
+    <div class="card-header"><b>Endereço</b></div>
+    <div class="card-body">
 
-    <label for="endereco">Endereço:</label>
-    <input type="text" name="endereco" value="{{ $dependente->endereco }}" id="endereco" ><br>
+        <div class="row">
 
-    <label for="complemento">Complemento:</label>
-    <input type="text" name="complemento" value="{{ $dependente->complemento }}" id="complemento"><br>
+            <div class="col-sm form-group col-sm-8">
+                <div class="form-group">
+                    <label for="endereco" class="required"><b>Endereço: </b></label>
+                    <input type="text" class="form-control" id="endereco" name="endereco" value="{{old('endereco',$dependente->endereco)}}">
+                </div>
+            </div>
 
-    <label for="cidade">Cidade:</label>
-    <input type="text" name="cidade" value="{{ $dependente->cidade }}" id="cidade"><br>
+            <div class="col-sm form-group col-sm-4">
+                <div class="form-group">
+                    <label for="complemento" class="required"><b>Complemento: </b></label>
+                    <input type="text" class="form-control" id="complemento" name="complemento" value="{{old('complemento',$dependente->complemento)}}">
+                </div>
+            </div>
 
-    <label for="estado">Estado:</label>
-    <input type="text" name="estado" value="{{ $dependente->estado }}" id="estado"><br>
+        </div>
 
-    <label for="cep">Cep:</label>
-    <input type="text" name="cep" value="{{ $dependente->cep }}" id="cep"><br>
+        <div class="row">
 
-    <label for="rg">RG:</label>
-    <input type="text" name="rg" value="{{ $dependente->rg }}" id="rg"><br>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="cidade" class="required"><b>Cidade: </b></label>
+                    <input type="text" class="form-control" id="cidade" name="cidade" value="{{old('cidade',$dependente->cidade)}}">
+                </div>
+            </div>
 
-    <label for="cpf">CPF:</label>
-    <input type="text" name="cpf" value="{{ $dependente->cpf }}" id="cpf"><br>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="cep" class="required"><b>CEP: </b></label>
+                    <input type="text" class="form-control" id="cep" name="cep" value="{{old('cep',$dependente->cep)}}">
+                </div>
+            </div>
 
-    <label for="data_nascimento">Data de Nascimento:</label>
-    <input type="text" class="datepicker" name="data_nascimento" value="{{ $dependente->data_nascimento }}" id="data_nascimento"><br>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="estado" class="required"><b>Estado: </b></label>
+                    <input type="text" class="form-control" id="estado" name="estado" value="{{old('estado',$dependente->estado)}}">
+                </div>
+            </div>
+        </div>     
+    </div>
+</div>
 
-    <br>
-    <h4>Contatos</h4>
+<hr>
 
-    <label for="comercial">Comercial:</label>
-    <input type="text" name="comercial" value="{{ $dependente->comercial }}" id="comercial"><br>
+<div class="card">
+    <div class="card-header"><b>Contato</b></div>
+    <div class="card-body">
 
-    <label for="residencial">Residencial:</label>
-    <input type="text" name="residencial" value="{{ $dependente->residencial }}" id="residencial"><br>
+        <div class="row">
 
-    <label for="celular">Celular:</label>
-    <input type="text" name="celular" value="{{ $dependente->celular }}" id="celular"><br>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="comercial" class="required"><b>Comercial: </b></label>
+                    <input type="text" class="form-control" id="comercial" name="comercial" value="{{old('comercial',$dependente->comercial)}}">
+                </div>
+            </div>
 
-    <label for="e_mail">Email:</label>
-    <input type="text" name="e_mail" value="{{ $dependente->e_mail }}" id="e_mail"><br>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="residencial" class="required"><b>Residencial: </b></label>
+                    <input type="text" class="form-control" id="residencial" name="residencial" value="{{old('residencial',$dependente->residencial)}}">
+                </div>
+            </div>
 
-    <br>
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="celular" class="required"><b>Celular: </b></label>
+                    <input type="text" class="form-control" id="celular" name="celular" value="{{old('celular',$dependente->celular)}}">
+                </div>
+            </div>
+
+            <div class="col-sm form-group col-sm-6">
+                <div class="form-group">
+                    <label for="e_mail" class="required"><b>E-mail: </b></label>
+                    <input type="text" class="form-control" id="e_mail" name="e_mail" value="{{old('e_mail',$dependente->e_mail)}}">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="form-group">
     <button type="submit" class="btn btn-success">Enviar</button>
-  </div>
 </div>

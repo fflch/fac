@@ -33,6 +33,18 @@ $associados =  [
         'url'  => '/associados/create',
     ],
 ];
+
+$vendas =  [
+    [
+        'text' => 'Listar',
+        'url'  => '/vendas',
+    ],
+    [
+        'text' => 'Cadastrar',
+        'url'  => '/vendas/create',
+    ],
+];
+
 return [
     'title' => 'Filosofia Atlético Clube',
     'dashboard_url' => config('app.url'),
@@ -51,6 +63,11 @@ return [
         [
             'text'    => 'Dependentes',
             'submenu' => $dependentes,
+        ],
+
+        [
+            'text'    => 'Vendas',
+            'submenu' => $vendas,
         ],
 
     ]

@@ -32,3 +32,9 @@ Route::resource('/conveniados', ConveniadoController::class);
 
 #Rotas Vendas
 Route::resource('/vendas', VendaController::class);
+
+#Rotas parcelasvendas
+Route::resource('/parcelasvendas', VendaController::class);
+
+#Rotas lancamentos
+Route::resource('/lancamentos', VendaController::class); 
