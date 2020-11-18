@@ -28,14 +28,14 @@
                 CPF: {{ $associado->cpf }}<br>
                 Data de Nascimento: {{ $associado->data_nascimento }}<br><br>
 
-                <h4>Contatos</h4>    
+                <h4>Contato</h4>    
 
                 Comercial: {{ $associado->comercial }}<br>
                 Residencial: {{ $associado->residencial }}<br>
                 Celular: {{ $associado->celular }}<br>
                 Email: {{ $associado->e_mail }}<br><br>
 
-                <h4>Conta Bancária</h4>
+                <h4>Informações Financeiras</h4>
 
                 Banco: {{ $associado->banco }}<br>
                 Agencia: {{ $associado->agencia }}<br>

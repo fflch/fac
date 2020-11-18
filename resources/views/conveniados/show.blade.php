@@ -11,6 +11,7 @@
     </div>
 
     <div class="card-body">
+        <div class="row">
             <div class="col-sm">            
                 <h4>Dados Principais</h4>
 
@@ -31,7 +32,7 @@
                 Celular: {{ $conveniado->celular }}<br>
                 Email: {{ $conveniado->e_mail }}<br><br>
 
-                <h4>Conta Bancária</h4>
+                <h4>Informações Financeiras</h4>
 
                 Banco: {{ $conveniado->banco }}<br>
                 Agencia: {{ $conveniado->agencia }}<br>

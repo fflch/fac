@@ -15,8 +15,8 @@ class VendaSeeder extends Seeder
     public function run()
     {
         $venda = [
-            'id_conveniado' => 'Ana Paula Martins',
-            'id_associado' => 'Ana Paula Martins',
+            'conveniado_id' => 1,
+            'associado_id' => 1,
             'data_venda' => '2020-11-03',
             'quantidade_parcelas' => 2,
             'valor' => 250,

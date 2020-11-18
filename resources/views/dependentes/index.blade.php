@@ -10,7 +10,7 @@
       <thead>
         <tr> 
           <th><h3>Dependentes</h3></th>
-          <th><h3>Associado a</h3></th>
+          <!--a<th><h3>Associado a</h3></th>-->
           <th><h3>Ações</h3></th>
         </tr>
       </thead>
@@ -19,7 +19,7 @@
       @foreach ($dependentes as $dependente)
           <tr>
             <td><a href="/dependentes/{{$dependente->id}}">{{ $dependente->name }}</a></td>
-            <td>{{ $dependente->associado }}</td>
+            <!--a<td>{{ $dependente->associado_id }}</td>-->
 
             <td>
               
