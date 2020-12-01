@@ -162,6 +162,23 @@
                     <input type="text" class="form-control" id="max_parcelas" name="max_parcelas" value="{{old('max_parcelas',$conveniado->max_parcelas)}}">
                 </div>
             </div>
+        
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="comissao" class="required"><b>Comissão: </b></label>
+                    <input type="text" class="form-control" id="comissao" name="comissao" value="{{old('comissao',$conveniado->comissao)}}">
+                </div>
+            </div>
+
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="tipo_comissao" class="required"><b>Tipo de Comissão: </b></label><br>
+                    <input type="radio" id="percentual" name="tipo_comissao" value="Percentual" @if($conveniado->tipo_comissao == "Percentual")checked @endif>
+                    <label for="percentual">Percentual</label><br>
+                    <input type="radio" id="real" name="tipo_comissao" value="Real" @if($conveniado->tipo_comissao == "Real")checked @endif>
+                    <label for="real">Real</label><br>
+                </div>
+            </div>
         </div>
     </div>
 </div>

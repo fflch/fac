@@ -35,8 +35,8 @@ class CreateConveniadosTable extends Migration
             $table->string('banco');
             $table->string('agencia');
             $table->string('conta_corrente');
-            //$table->string('tipo_comissao');
-            //$table->string('comissao');
+            $table->string('tipo_comissao');
+            $table->string('comissao');
             $table->string('max_parcelas');
         });
     }

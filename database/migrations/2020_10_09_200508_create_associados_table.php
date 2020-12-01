@@ -37,6 +37,8 @@ class CreateAssociadosTable extends Migration
             $table->string('banco');
             $table->string('agencia');
             $table->string('conta_corrente');
+
+            $table->string('saldo');
         });
     }
 

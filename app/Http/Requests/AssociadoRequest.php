@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Validator;
 
 class AssociadoRequest extends FormRequest
 {
@@ -43,6 +42,7 @@ class AssociadoRequest extends FormRequest
             'banco' => 'required',
             'agencia' => 'required',
             'conta_corrente' => 'required',
+            'saldo' => 'required',
         ];
     }
 }

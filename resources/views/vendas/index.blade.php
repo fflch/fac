@@ -7,7 +7,7 @@
   <table class="table table-striped">
       <thead>
         <tr> 
-          <th><h3>Status da Venda</h3></th>
+          <th><h3>Venda por Associado</h3></th>
           <th><h3>Ações</h3></th>
         </tr>
       </thead>
@@ -15,7 +15,7 @@
       <tbody>
       @foreach ($vendas as $venda)
           <tr>
-            <td><a href="/vendas/{{$venda->id}}">{{ $venda->status }}</a></td>
+            <td><a href="/vendas/{{$venda->id}}">{{ $venda->associado->name }}</a></td>
             <td>
               
               <form method="POST" action="/vendas/{{ $venda->id }}">

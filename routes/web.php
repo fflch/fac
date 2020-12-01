@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AssociadoController;
-use App\Http\Controllers\DependenteController;
 use App\Http\Controllers\ConveniadoController;
 use App\Http\Controllers\VendaController;
+use App\Http\Controllers\ParcelaVendaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,17 +25,11 @@ Route::get('/', function () {
 #Rotas Associado 
 Route::resource('/associados', AssociadoController::class);
 
-#Rotas Dependente
-Route::resource('/dependentes', DependenteController::class);
-
 #Rotas Conveniado
 Route::resource('/conveniados', ConveniadoController::class);
 
 #Rotas Vendas
 Route::resource('/vendas', VendaController::class);
 
-#Rotas parcelasvendas
-Route::resource('/parcelasvendas', VendaController::class);
-
-#Rotas lancamentos
-Route::resource('/lancamentos', VendaController::class); 
+#Rotas Parcelas Venda
+Route::resource('/parcelas', ParcelaVendaController::class);

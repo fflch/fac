@@ -7,7 +7,6 @@
     <div class="card-header">
         <a href="/conveniados"><i class="fas fa-chevron-circle-left"></a></i>
         <a href="/conveniados/{{$conveniado->id}}/edit"><i class="far fa-edit"></a></i>
-        <!--<h4>Dados Cadastrados<h4>-->
     </div>
 
     <div class="card-body">
@@ -37,7 +36,9 @@
                 Banco: {{ $conveniado->banco }}<br>
                 Agencia: {{ $conveniado->agencia }}<br>
                 Conta Corrente: {{ $conveniado->conta_corrente }}<br>
-                Máximo de Parcelas: {{ $conveniado->max_parcelas }}<br><br>
+                Máximo de Parcelas: {{ $conveniado->max_parcelas }}<br>
+                Comissão: {{ $conveniado->comissao }}<br>
+                Tipo de Comissão: {{ $conveniado->tipo_comissao }}<br>
             </div>
         </div>
     </div>

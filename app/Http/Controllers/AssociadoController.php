@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Associado;
 use App\Http\Requests\AssociadoRequest;
 
-
 class AssociadoController extends Controller
 {
     public function index() 
@@ -26,7 +25,6 @@ class AssociadoController extends Controller
 
     public function store(AssociadoRequest $request) 
     {
-
         $validated = $request->validated();
         $validated['data_nascimento'] = implode('-',array_reverse(explode('/',$request->data_nascimento)));
         $associado = Associado::create($validated);

@@ -4,10 +4,10 @@
 
 @include('alerts')
 
-<form method="POST" action="/dependentes/{{ $dependente->id }}"> 
+<form method="POST" action="/parcelas/{{ $parcela->id }}"> 
 @csrf
 @method('patch')
-@include('dependentes.form')
+@include('parcelas.form')
 </form>  
 
 @endsection
