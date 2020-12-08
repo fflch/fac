@@ -14,7 +14,7 @@ class AssociadoSeeder extends Seeder
      */
     public function run()
     {
-        
+
         $associado = [
             'unidade' => 'FFLCH',
             'numero_usp' => 9848815,
@@ -36,6 +36,8 @@ class AssociadoSeeder extends Seeder
             'banco' => 'Banco do Brasil',
             'agencia' => 35599,
             'conta_corrente' => 577751,
+
+            'saldo' => 200,
         ];
         Associado::create($associado);
         Associado::factory(100)->create();

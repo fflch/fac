@@ -1,3 +1,5 @@
+@inject('replicado','App\Utils\ReplicadoUtils')
+
 <div class="card">
 <div class="card-header"><h4><b>Cadastro de Associado</b></h4></div>
 <hr>
@@ -11,12 +13,14 @@
                     <input type="text" class="form-control" id="name" name="name" value="{{old('name',$associado->name)}}">
                 </div>
             </div>
-
+            
             <div class="col-sm form-group">
-                <div class="form-group">
-                    <label for="unidade" class="required"><b>Unidade: </b></label>
-                    <input type="text" class="form-control" id="unidade" name="unidade" value="{{old('unidade',$associado->unidade)}}">
-                </div>
+                <label><b>Unidade: </b></label>
+                    <select class="form-control" name="unidade">
+                        @foreach($replicado::unidades() as $unidade)
+                          <option value="{$replicado->codund}">{{$unidade}}</option>
+                        @endforeach
+                    </select>
             </div>
 
             <div class="col-sm form-group">
@@ -50,7 +54,6 @@
                 </div>
             </div>
           </div>
-
     </div>
 </div>
 
@@ -102,7 +105,6 @@
             </div>
 
         </div>
-        
     </div>
 </div>
 
@@ -174,9 +176,22 @@
                     <input type="text" class="form-control" id="conta_corrente" name="conta_corrente" value="{{old('conta_corrente',$associado->conta_corrente)}}">
                 </div>
             </div>
-
         </div>
+    </div>
+</div>
 
+<div class="card">
+    <div class="card-header"><b> Crédito FAC </b></div>
+    <div class="card-body">
+        <div class="row">
+
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="banco" class="required"><b>Saldo: </b></label>
+                    <input type="text" class="form-control" id="saldo" name="saldo" value="{{old('saldo',$associado->saldo)}}">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

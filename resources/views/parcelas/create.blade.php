@@ -4,9 +4,9 @@
 
 @include('alerts')
 
-<form method="POST" action="/dependentes"> 
+<form method="POST" action="/parcelas"> 
 @csrf
-@include('dependentes.form')
+@include('parcelas.form')
 </form>  
 
 @endsection

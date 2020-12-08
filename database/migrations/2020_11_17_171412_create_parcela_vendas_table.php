@@ -16,15 +16,11 @@ class CreateParcelaVendasTable extends Migration
         Schema::create('parcela_vendas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
             $table->foreignId('venda_id')->constrained();
             $table->integer('numero');
             $table->date('datavencto');
             $table->float('valor');
             $table->string('status');
-            //usuario aqui
-            $table->date('inclusao');
-            $table->date('modificacao');
         });
     }
 

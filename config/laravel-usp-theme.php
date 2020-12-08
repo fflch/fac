@@ -12,17 +12,6 @@ $conveniados =  [
     ],
 ];
 
-$dependentes =  [
-    [
-        'text' => 'Listar',
-        'url'  => '/dependentes',
-    ],
-    [
-        'text' => 'Cadastrar',
-        'url'  => '/dependentes/create'
-    ],
-];
-
 $associados =  [
     [
         'text' => 'Listar',
@@ -45,6 +34,17 @@ $vendas =  [
     ],
 ];
 
+$parcelas =  [
+    [
+        'text' => 'Listar',
+        'url'  => '/parcelas',
+    ],
+    [
+        'text' => 'Cadastrar',
+        'url'  => '/parcelas/create',
+    ],
+];
+
 return [
     'title' => 'Filosofia Atlético Clube',
     'dashboard_url' => config('app.url'),
@@ -61,14 +61,12 @@ return [
             'submenu' => $conveniados,
         ],
         [
-            'text'    => 'Dependentes',
-            'submenu' => $dependentes,
-        ],
-
-        [
             'text'    => 'Vendas',
             'submenu' => $vendas,
         ],
-
+        [
+            'text'    => 'Parcelas',
+            'submenu' => $parcelas,
+        ],
     ]
 ];

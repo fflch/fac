@@ -40,6 +40,10 @@
                 Banco: {{ $associado->banco }}<br>
                 Agencia: {{ $associado->agencia }}<br>
                 Conta Corrente: {{ $associado->conta_corrente }}<br><br>
+
+                <h4>Crédito FAC</h4>
+                
+                Saldo: {{ $associado->saldo }}<br>
             </div>
         </div>
     </div>

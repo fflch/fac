@@ -47,7 +47,7 @@ class ConveniadoController extends Controller
     }
 
     public function show(Conveniado $conveniado) 
-    {
+    {  
         return view ('conveniados.show',[
             'conveniado' => $conveniado
         ]);

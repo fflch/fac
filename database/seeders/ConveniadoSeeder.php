@@ -33,8 +33,8 @@ class ConveniadoSeeder extends Seeder
             'banco' => 'Banco do Brasil',
             'agencia' => 35599,
             'conta_corrente' => 577752,
-            //'tipo_comissao' => ' ', não entendi o que é esse campo
-            //'comissao' => ' ', esse tbm
+            'tipo_comissao' => 'Percentual',
+            'comissao' => '10', 
             'max_parcelas' => 3,
         ];
         Conveniado::create($conveniado);

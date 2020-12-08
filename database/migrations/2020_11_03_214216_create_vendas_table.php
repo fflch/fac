@@ -17,14 +17,13 @@ class CreateVendasTable extends Migration
             $table->id();
             $table->timestamps();
  
+            $table->foreignId('associado_id')->constrained();
+            $table->foreignId('conveniado_id')->constrained();
             $table->date('data_venda');
             $table->integer('quantidade_parcelas');
             $table->float('valor');
             $table->string('descricao');
             $table->string('status');
-
-            $table->foreignId('associado_id')->constrained();
-            $table->foreignId('conveniado_id')->constrained();
         });
     }
 

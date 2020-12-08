@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AssociadoSeeder::class,
             ConveniadoSeeder::class,
-            DependenteSeeder::class,
             VendaSeeder::class,
+            ParcelaVendaSeeder::class,
         ]);   
         // User::factory(10)->create();
     }

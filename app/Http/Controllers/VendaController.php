@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Venda;
+use App\Http\Requests\VendaRequest;
 
 class VendaController extends Controller
 {
@@ -22,25 +23,21 @@ class VendaController extends Controller
         ]);
     }
 
-    public function store(Request $request) 
+    public function store(VendaRequest $request) 
     {
-        $venda = new Venda;
-
-        $venda->id_conveniado = $request->id_conveniado;
-        $venda->id_associado = $request->id_associado;
-        $venda->data_venda = implode('-',array_reverse(explode('/',$request->data_venda)));
-        $venda->quantidade_parcelas = $request->quantidade_parcelas;
-        $venda->valor = $request->valor;
-        $venda->descricao = $request->descricao;
-        $venda->status = $request->status;
-
-        $venda->save();
+        $validated = $request->validated();
+        $validated['data_venda'] = implode('-',array_reverse(explode('/',$request->data_venda)));
+        $venda = Venda::create($validated);
 
         return redirect("/vendas/$venda->id");   
     }
 
     public function show(Venda $venda) 
     {
+        /*Relacionamento entre o Conveniado e o Associado*/
+        $conveniado = $venda->conveniado()->first();
+        $associado = $venda->associado()->first();
+
         $venda->data_venda = implode('/',array_reverse(explode('-',$venda->data_venda)));
         return view ('vendas.show',[
             'venda' => $venda
@@ -55,17 +52,11 @@ class VendaController extends Controller
         ]);
     }
 
-    public function update(Request $request, Venda $venda) 
+    public function update(VendaRequest $request, Venda $venda) 
     {
-        $venda->id_conveniado = $request->id_conveniado;
-        $venda->id_associado = $request->id_associado;
-        $venda->data_venda = implode('-',array_reverse(explode('/',$request->data_venda)));
-        $venda->quantidade_parcelas = $request->quantidade_parcelas;
-        $venda->valor = $request->valor;
-        $venda->descricao = $request->descricao;
-        $venda->status = $request->status;
-
-        $venda->save();
+        $validated = $request->validated();
+        $validated['data_venda'] = implode('-',array_reverse(explode('/',$request->data_venda)));
+        $venda->update($validated);
 
         return redirect("/vendas/$venda->id");  
     }

@@ -40,6 +40,8 @@ class ConveniadoRequest extends FormRequest
             'banco' => 'required',
             'agencia' => 'required',
             'conta_corrente' => 'required',
+            'tipo_comissao' => 'required',
+            'comissao' => 'required', 
             'max_parcelas' => 'required',
         ];
     }

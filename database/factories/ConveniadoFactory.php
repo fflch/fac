@@ -42,8 +42,8 @@ class ConveniadoFactory extends Factory
             'banco' => $this->faker->company,
             'agencia' => $this->faker->numberBetween(1000000, 9999999),
             'conta_corrente' => $this->faker->unique()->numberBetween(1000000, 9999999),
-            //'tipo_comissao' => ' ', não entendi o que é esse campo
-            //'comissao' => ' ', esse tbm
+            'tipo_comissao' => $this->faker->randomElement($array = array ('Percentual','Real')),
+            'comissao' => $this->faker->numberBetween(0, 10),
             'max_parcelas' => $this->faker->randomDigit,
         ];
     }
