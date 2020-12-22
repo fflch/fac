@@ -17,28 +17,28 @@ class CreateAssociadosTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->string('unidade');
+            $table->string('unidade')->nullable();
             $table->string('numero_usp');  // codpes
             $table->string('name');
-            $table->string('endereco');
-            $table->string('complemento');
+            $table->string('endereco')->nullable();
+            $table->string('complemento')->nullable();
             $table->string('cidade');
             $table->string('estado');
-            $table->string('cep');
-            $table->string('rg');
-            $table->string('cpf');
+            $table->string('cep')->nullable();
+            $table->string('rg')->nullable();
+            $table->string('cpf')->nullable();
             $table->date('data_nascimento');
 
-            $table->string('comercial');
-            $table->string('residencial');
-            $table->string('celular');
+            $table->string('comercial')->nullable();
+            $table->string('residencial')->nullable();
+            $table->string('celular')->nullable();
             $table->string('e_mail');
 
             $table->string('banco');
             $table->string('agencia');
             $table->string('conta_corrente');
 
-            $table->string('saldo');
+            $table->string('saldo')->nullable();
         });
     }
 
