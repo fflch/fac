@@ -19,17 +19,18 @@ class CreateConveniadosTable extends Migration
 
             $table->string('razao_social');
             $table->string('nome_fantasia');
-            $table->string('endereco');
-            $table->string('complemento');
+            $table->string('endereco')->nullable();
+            $table->string('complemento')->nullable();
             $table->string('cidade');
             $table->string('estado');
-            $table->string('cep');
-            $table->string('ie');
-            $table->string('responsavel'); 
+            $table->string('cep')->nullable();
+            $table->string('ie')->nullable();
+            $table->string('cnpj')->nullable();
+            $table->string('responsavel')->nullable();
 
-            $table->string('comercial');
-            $table->string('recado');
-            $table->string('celular');
+            $table->string('comercial')->nullable();
+            $table->string('recado')->nullable();
+            $table->string('celular')->nullable();
             $table->string('e_mail');
 
             $table->string('banco');
