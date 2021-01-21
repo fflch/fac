@@ -22,6 +22,7 @@
                 Estado: {{ $conveniado->estado }}<br>
                 Cep: {{ $conveniado->cep }}<br>
                 IE: {{ $conveniado->ie }}<br>
+                CNPJ: {{ $conveniado->cnpj }}
                 Responsável: {{ $conveniado->responsavel }}<br><br>
 
                 <h4>Contatos</h4>    
@@ -38,7 +39,15 @@
                 Conta Corrente: {{ $conveniado->conta_corrente }}<br>
                 Máximo de Parcelas: {{ $conveniado->max_parcelas }}<br>
                 Comissão: {{ $conveniado->comissao }}<br>
-                Tipo de Comissão: {{ $conveniado->tipo_comissao }}<br>
+                Tipo de Comissão: {{ $conveniado->tipo_comissao }}<br><br>
+
+                <!-- Relacionamento entre Venda e Conveniados. Lista o número da venda (id).
+                Clicando você vai para o id da venda -->
+
+                <h4>Vendas realizadas</h4>
+                @foreach ($conveniado->vendas as $venda)
+                    Número da Venda: <a href="/vendas/{{$venda->id}}">{{$venda->id}}</a><br>
+                @endforeach
             </div>
         </div>
     </div>

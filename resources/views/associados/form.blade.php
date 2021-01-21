@@ -25,8 +25,8 @@
 
             <div class="col-sm form-group">
                 <div class="form-group">
-                    <label for="numero_usp" class="required"><b>Número USP: </b></label>
-                    <input type="text" class="form-control" id="numero_usp" name="numero_usp" value="{{old('numero_usp',$associado->numero_usp)}}">
+                    <label for="codpes" class="required"><b>Número USP: </b></label>
+                    <input type="text" class="form-control" id="codpes" name="codpes" value="{{old('codpes',$associado->codpes)}}">
                 </div>
             </div>           
         </div>

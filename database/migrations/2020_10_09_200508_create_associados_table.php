@@ -18,7 +18,7 @@ class CreateAssociadosTable extends Migration
             $table->timestamps();
 
             $table->string('unidade')->nullable();
-            $table->string('numero_usp');  // codpes
+            $table->integer('codpes');
             $table->string('name');
             $table->string('endereco')->nullable();
             $table->string('complemento')->nullable();
