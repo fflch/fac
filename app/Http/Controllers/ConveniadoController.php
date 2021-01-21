@@ -8,9 +8,15 @@ use App\Http\Requests\ConveniadoRequest;
 
 class ConveniadoController extends Controller
 {
-    public function index() 
+    public function index(Request $request) 
     {
-        $conveniados = Conveniado::paginate(10);
+        if(isset(request()->search)){
+            $conveniados = Conveniado::where('nome_fantasia','LIKE',"%{$request->search}%")
+                         ->orWhere('razao_social','LIKE',"%{$request->search}%")
+                         ->orWhere('cnpj','LIKE',"%{$request->search}%")->paginate(5);
+        }else{
+            $conveniados = Conveniado::paginate(10);
+        }
         return view ('conveniados.index', [
             'conveniados' => $conveniados
         ]);

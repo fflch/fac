@@ -15,9 +15,8 @@
 
             <div class="col-sm">
                 <h4>Dados Principais</h4>
-
                 Unidade: {{ $associado->unidade }}<br>
-                Número USP: {{ $associado->numero_usp }}<br>
+                Número USP: {{ $associado->codpes }}<br>
                 Nome: {{ $associado->name }}<br>
                 Endereço: {{ $associado->endereco }}<br>
                 Complemento: {{ $associado->complemento }}<br>
@@ -43,7 +42,15 @@
 
                 <h4>Crédito FAC</h4>
                 
-                Saldo: {{ $associado->saldo }}<br>
+                Saldo: {{ $associado->saldo }}<br><br>
+
+                <!-- Relacionamento entre Venda e Associado. Lista as empresas que o associado fez compra.
+                Clicando você vai para o id da venda -->
+
+                <h4>Compras Feitas</h4>
+                @foreach ($associado->vendas as $venda)
+                    <a href="/vendas/{{$venda->id}}">{{$venda->conveniado->nome_fantasia}}</a> - {{$venda->status}}<br>
+                @endforeach
             </div>
         </div>
     </div>

@@ -32,6 +32,7 @@ class ConveniadoRequest extends FormRequest
             'estado' => 'required',
             'cep' => 'required',
             'ie' => 'required',
+            'cnpj'=>'required', 
             'responsavel' => 'required',
             'comercial' => 'required',
             'recado' => 'required',

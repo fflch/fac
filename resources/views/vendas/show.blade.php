@@ -21,10 +21,11 @@
                 Conveniado: {{ $venda->conveniado->nome_fantasia }} <br>
                 Associado: {{ $venda->associado->name }}<br>
                 Data da Venda: {{ $venda->data_venda }}<br>
-                Quantidade de Parcelas: {{ $venda->quantidade_parcelas }}<br>
+                Quantidade de Parcelas: {{ $venda->parcelas->numero }}<br>
                 Valor: {{ $venda->valor }}<br>
                 Descrição: {{ $venda->descricao }}<br>
                 Status: {{ $venda->status }}<br><br>
+                
             </div>
         </div>
     </div>

@@ -23,6 +23,7 @@ class ConveniadoSeeder extends Seeder
             'estado' => 'São Paulo',
             'cep' => '0686687',
             'ie' => 111650234119,
+            'cnpj'=> 93839398472782,
             'responsavel' => 'Ana Paula Martins',
 
             'comercial' => 30914737,
