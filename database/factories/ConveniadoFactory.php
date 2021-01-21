@@ -32,6 +32,7 @@ class ConveniadoFactory extends Factory
             'estado' => $this->faker->sentence($nbWords = 1, $variableNbWords = true),
             'cep' => $this->faker->numberBetween(1000000, 9999999),
             'ie' => $this->faker->numberBetween(100000000000, 999999999999),
+            'cnpj' => $this->faker->numberBetween(10000000000000, 99999999999900),
             'responsavel' => Associado::factory()->create()->name,
 
             'comercial' => $this->faker->numberBetween(10000000, 99999999),

@@ -15,7 +15,14 @@
             <div class="col-sm form-group">
                 <div class="form-group">
                     <label for="ie" class="required"><b>IE: </b></label>
-                    <input type="text" class="form-control datepicker data" id="ie" name="ie" value="{{old('ie',$conveniado->ie)}}">
+                    <input type="text" class="form-control" id="ie" name="ie" value="{{old('ie',$conveniado->ie)}}">
+                </div>
+            </div> 
+
+            <div class="col-sm form-group">
+                <div class="form-group">
+                    <label for="cnpj" class="required"><b>CNPJ: </b></label>
+                    <input type="text" class="form-control cnpj" id="cnpj" name="cnpj" value="{{old('cnpj',$conveniado->cnpj)}}">
                 </div>
             </div> 
         </div>

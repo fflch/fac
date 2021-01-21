@@ -25,7 +25,7 @@ class AssociadoRequest extends FormRequest
     {
         return [
             'unidade' => 'required',
-            'numero_usp' => 'required',
+            'codpes' => 'required',
             'name' => 'required',
             'endereco' => 'required',
             'complemento' => 'required',

@@ -19,4 +19,9 @@ class Venda extends Model
     public function associado(){
         return $this->belongsTo(Associado::class,'associado_id','id');
     }
+
+    /*Relacionamento com Parcela Venda*/
+    public function parcelas(){
+        return $this->hasOne(ParcelaVenda::class,'venda_id','id');
+    }
 }

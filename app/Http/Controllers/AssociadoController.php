@@ -8,9 +8,14 @@ use App\Http\Requests\AssociadoRequest;
 
 class AssociadoController extends Controller
 {
-    public function index() 
+    public function index(Request $request) 
     {
-        $associados = Associado::paginate(10);
+        if(isset(request()->search)){
+            $associados = Associado::where('name','LIKE',"%{$request->search}%")
+                         ->orWhere('codpes','LIKE',"%{$request->search}%")->paginate(5);
+        }else {
+            $associados = Associado::paginate(10);
+        }
         return view ('associados.index',[
             'associados' => $associados
         ]);
