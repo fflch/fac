@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Venda extends Model
 {
@@ -22,6 +23,18 @@ class Venda extends Model
 
     /*Relacionamento com Parcela Venda*/
     public function parcelas(){
-        return $this->hasOne(ParcelaVenda::class,'venda_id','id');
+        return $this->hasMany(ParcelaVenda::class,'venda_id','id');
+    }
+
+    public function getCreatedAtAttribute($value){
+        if($value){
+            return  Carbon::parse($this->attributes['created_at'])->format('d/m/Y H:i');
+        }
+    }
+
+    public function getValorAttribute($value){
+        if($value){
+            return number_format($value, 2, ',', '');
+        }
     }
 }

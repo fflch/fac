@@ -21,13 +21,19 @@
                 Conveniado: {{ $venda->conveniado->nome_fantasia }} <br>
                 Associado: {{ $venda->associado->name }}<br>
                 Data da Venda: {{ $venda->data_venda }}<br>
-                Quantidade de Parcelas: {{ $venda->parcelas->numero }}<br>
+                Quantidade de Parcelas: {{ $venda->quantidade_parcelas }}<br>
                 Valor: {{ $venda->valor }}<br>
                 Descrição: {{ $venda->descricao }}<br>
                 Status: {{ $venda->status }}<br><br>
                 
             </div>
         </div>
+
+        <ul>
+        @foreach($venda->parcelas as $parcela)
+            <li>R$ {{ $parcela->valor }} - {{ $parcela->datavencto }} - {{ $parcela->status }}</li>
+        @endforeach
+        </ul>
     </div>
 </div>
 

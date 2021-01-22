@@ -61,7 +61,14 @@ class ConveniadoController extends Controller
 
     public function destroy(Conveniado $conveniado) 
     {
-        $conveniado->delete();
+        if($conveniado->vendas->isEmpty()) {
+            $conveniado->delete();
+        } else {
+            request()->session()->flash('alert-danger',
+            $conveniado->nome_fantasia . ' não pode ser deletada pois 
+            há vendas cadastradas para essa empresa');
+        }
+        
         return redirect ('/conveniados');
     }
 }

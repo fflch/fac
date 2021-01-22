@@ -62,8 +62,7 @@
             <div class="col-sm form-group">
                 <div class="form-group">
                     <label for="descricao" class="required"><b>Descrição: </b></label>
-                    <textarea id="descricao" class="form-control" name="descricao" >{{ old('descricao') }}  @if(isset($venda)){{ $venda->descricao }}
-                    @endif</textarea><br>
+                    <textarea id="descricao" class="form-control" name="descricao" >{{old('descricao', $venda->descricao)}}</textarea><br>
                 </div>
             </div>
 

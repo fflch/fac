@@ -34,14 +34,10 @@ $vendas =  [
     ],
 ];
 
-$parcelas =  [
+$relatorios =  [
     [
-        'text' => 'Listar',
-        'url'  => '/parcelas',
-    ],
-    [
-        'text' => 'Cadastrar',
-        'url'  => '/parcelas/create',
+        'text' => 'Conveniados',
+        'url'  => '/relatorios/conveniados',
     ],
 ];
 
@@ -65,8 +61,8 @@ return [
             'submenu' => $vendas,
         ],
         [
-            'text'    => 'Parcelas',
-            'submenu' => $parcelas,
+            'text'    => 'Relatórios',
+            'submenu' => $relatorios,
         ],
     ]
 ];

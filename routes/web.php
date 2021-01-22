@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AssociadoController;
 use App\Http\Controllers\ConveniadoController;
 use App\Http\Controllers\VendaController;
-use App\Http\Controllers\ParcelaVendaController;
+use App\Http\Controllers\RelatorioController;
 
 
 /*
@@ -31,5 +31,5 @@ Route::resource('/conveniados', ConveniadoController::class);
 #Rotas Vendas
 Route::resource('/vendas', VendaController::class);
 
-#Rotas Parcelas Venda
-Route::resource('/parcelas', ParcelaVendaController::class);
+#Relatórios
+Route::get('/relatorios/conveniados/{conveniado}', [RelatorioController::class, 'conveniados']);

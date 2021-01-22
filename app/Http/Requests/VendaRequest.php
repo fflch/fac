@@ -27,10 +27,18 @@ class VendaRequest extends FormRequest
             'conveniado_id' => 'required',
             'associado_id' => 'required',
             'data_venda' => 'required',
-            'quantidade_parcelas' => 'required',
-            'valor' => 'required',
-            'descricao' => 'required',
+            'quantidade_parcelas' => 'required|integer',
+            'valor' => 'required|numeric|min:0',
+            'descricao' => 'nullable',
             'status' => 'required',
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'valor' => str_replace(',','.',$this->valor)
+        ]);
+    }
+
 }

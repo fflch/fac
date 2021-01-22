@@ -14,6 +14,8 @@
             <div class="col-sm">            
                 <h4>Dados Principais</h4>
 
+                <a href="/relatorios/conveniados/{{ $conveniado->id }}">Gerar Relatório </a> 
+                <br>
                 Razão Social: {{ $conveniado->razao_social }}<br>
                 Nome Fantasia: {{ $conveniado->nome_fantasia }}<br>
                 Endereço: {{ $conveniado->endereco }}<br>
@@ -45,9 +47,15 @@
                 Clicando você vai para o id da venda -->
 
                 <h4>Vendas realizadas</h4>
-                @foreach ($conveniado->vendas as $venda)
-                    Número da Venda: <a href="/vendas/{{$venda->id}}">{{$venda->id}}</a><br>
+                <ul>
+                @foreach ($conveniado->vendas->sortDesc() as $venda)
+                    <li>
+                        <a href="/vendas/{{$venda->id}}">{{$venda->id}}</a> -
+                        {{ $venda->associado->name }} -
+                        {{ $venda->created_at }}
+                    </li>
                 @endforeach
+                </ul>
             </div>
         </div>
     </div>
