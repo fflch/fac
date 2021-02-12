@@ -26,9 +26,10 @@ class Venda extends Model
         return $this->hasMany(ParcelaVenda::class,'venda_id','id');
     }
 
+    #Edita a formatação da data de criação na relação Venda Conveniado e Associado
     public function getCreatedAtAttribute($value){
         if($value){
-            return  Carbon::parse($this->attributes['created_at'])->format('d/m/Y H:i');
+            return Carbon::parse($this->attributes['created_at'])->format('d/m/Y - H:i');
         }
     }
 

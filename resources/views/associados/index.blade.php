@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('alerts')
+
 <form method="get" action="/associados">
 <div class="row">
     <div class=" col-sm input-group">
@@ -32,8 +34,8 @@
         @foreach ($associados as $associado)
           <tr>
             <td><a href="/associados/{{$associado->id}}">{{$associado->name}}</a></td>
-            <td><a href="/associados/{{$associado->id}}">{{$associado->codpes}}</a></td>
-            <td><a href="/associados/{{$associado->id}}">{{$associado->unidade}}</a></td>
+            <td>{{$associado->numero_usp}}</td>
+            <td>{{$associado->unidade}}</td>
             <td>
 
               <form method="POST" action="/associados/{{ $associado->id }}">

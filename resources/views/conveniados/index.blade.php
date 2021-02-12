@@ -38,13 +38,13 @@
       @foreach ($conveniados as $conveniado)
         <tr>
           <td><a href="/conveniados/{{$conveniado->id}}">{{$conveniado->nome_fantasia}}</a></td>
-          <td><a href="/conveniados/{{$conveniado->id}}">{{$conveniado->razao_social}}</a></td>
-          <td><a href="/conveniados/{{$conveniado->id}}">{{$conveniado->cnpj}}</a></td>
+          <td>{{$conveniado->razao_social}}</td>
+          <td>{{$conveniado->cnpj}}</td>
           <td>
-            <a href="/conveniados/{{$conveniado->id}}">{{$conveniado->comercial}}</a><br>
-            <a href="/conveniados/{{$conveniado->id}}">{{$conveniado->recado}}</a><br>
-            <a href="/conveniados/{{$conveniado->id}}">{{$conveniado->celular}}</a><br>
-            <a href="/conveniados/{{$conveniado->id}}">{{$conveniado->e_mail}}</a><br>
+            Comercial : {{$conveniado->comercial}}<br>
+            Recado : {{$conveniado->recado}}<br>
+            Celular : {{$conveniado->celular}}<br>
+            E-mail : {{$conveniado->e_mail}}<br>
           </td>
           <td>
               

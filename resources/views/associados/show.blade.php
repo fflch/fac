@@ -6,7 +6,6 @@
     <div class="card-header">
         <a href="/associados"><i class="fas fa-chevron-circle-left"></a></i>
         <a href="/associados/{{$associado->id}}/edit"><i class="far fa-edit"></a></i>
-        <!--<h4>Dados Cadastrados<h4>-->
     </div>
 
     <div class="card-body">
@@ -15,8 +14,12 @@
 
             <div class="col-sm">
                 <h4>Dados Principais</h4>
+
+                <a href="/relatorios/associados/{{ $associado->id }}">Gerar Relatório </a> 
+                <br>
+                <br>
                 Unidade: {{ $associado->unidade }}<br>
-                Número USP: {{ $associado->codpes }}<br>
+                Número USP: {{ $associado->numero_usp }}<br>
                 Nome: {{ $associado->name }}<br>
                 Endereço: {{ $associado->endereco }}<br>
                 Complemento: {{ $associado->complemento }}<br>
@@ -48,9 +51,15 @@
                 Clicando você vai para o id da venda -->
 
                 <h4>Compras Feitas</h4>
+                <ul>
                 @foreach ($associado->vendas as $venda)
-                    <a href="/vendas/{{$venda->id}}">{{$venda->conveniado->nome_fantasia}}</a> - {{$venda->status}}<br>
+                    <li>
+                        <a href="/vendas/{{$venda->id}}">{{$venda->conveniado->nome_fantasia}}</a> - 
+                        
+                        {{$venda->created_at}}
+                    </li>
                 @endforeach
+                <ul>
             </div>
         </div>
     </div>

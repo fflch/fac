@@ -15,18 +15,22 @@
             </div>
             
             <div class="col-sm form-group">
-                <label><b>Unidade: </b></label>
-                    <select class="form-control" name="unidade">
+                <label for="unidade" class="required"><b>Unidade: </b></label>
+                    <input type="text" class="form-control" id="unidade" name="unidade" value="{{old('unidade',$associado->unidade)}}">
+                    <!-- 
+                        Teste de como pegar o replicado
+                        <select class="form-control" name="unidade">
                         @foreach($replicado::unidades() as $unidade)
                           <option value="{$replicado->codund}">{{$unidade}}</option>
                         @endforeach
                     </select>
+                    -->
             </div>
 
             <div class="col-sm form-group">
                 <div class="form-group">
-                    <label for="codpes" class="required"><b>Número USP: </b></label>
-                    <input type="text" class="form-control" id="codpes" name="codpes" value="{{old('codpes',$associado->codpes)}}">
+                    <label for="numero_usp" class="required"><b>Número USP: </b></label>
+                    <input type="text" class="form-control" id="numero_usp" name="numero_usp" value="{{old('numero_usp',$associado->numero_usp)}}">
                 </div>
             </div>           
         </div>

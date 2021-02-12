@@ -16,6 +16,7 @@
 
                 <a href="/relatorios/conveniados/{{ $conveniado->id }}">Gerar Relatório </a> 
                 <br>
+                <br>
                 Razão Social: {{ $conveniado->razao_social }}<br>
                 Nome Fantasia: {{ $conveniado->nome_fantasia }}<br>
                 Endereço: {{ $conveniado->endereco }}<br>
@@ -24,7 +25,7 @@
                 Estado: {{ $conveniado->estado }}<br>
                 Cep: {{ $conveniado->cep }}<br>
                 IE: {{ $conveniado->ie }}<br>
-                CNPJ: {{ $conveniado->cnpj }}
+                CNPJ: {{ $conveniado->cnpj }}<br>
                 Responsável: {{ $conveniado->responsavel }}<br><br>
 
                 <h4>Contatos</h4>    

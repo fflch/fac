@@ -31,7 +31,7 @@
             <div class="col-sm form-group">
                 <div class="form-group">
                     <label for="responsavel" class="required"><b>Responsável: </b></label>
-                    <input type="text" class="form-control datepicker data" id="responsavel" name="responsavel" value="{{old('responsavel',$conveniado->responsavel)}}">
+                    <input type="text" class="form-control" id="responsavel" name="responsavel" value="{{old('responsavel',$conveniado->responsavel)}}">
                 </div>
             </div>
 
@@ -180,9 +180,9 @@
             <div class="col-sm form-group">
                 <div class="form-group">
                     <label for="tipo_comissao" class="required"><b>Tipo de Comissão: </b></label><br>
-                    <input type="radio" id="percentual" name="tipo_comissao" value="Percentual" @if($conveniado->tipo_comissao == "Percentual")checked @endif>
+                    <input type="radio" id="percentual" name="tipo_comissao" value="Percentual"  @if($conveniado->tipo_comissao == "Percentual")checked @else {{ old('tipo_comissao') == 'Percentual' ? 'checked' : ''}}@endif>
                     <label for="percentual">Percentual</label><br>
-                    <input type="radio" id="real" name="tipo_comissao" value="Real" @if($conveniado->tipo_comissao == "Real")checked @endif>
+                    <input type="radio" id="real" name="tipo_comissao" value="Real"  @if($conveniado->tipo_comissao == "Real")checked @else {{ old('tipo_comissao') == 'Real' ? 'checked' : ''}}@endif>
                     <label for="real">Real</label><br>
                 </div>
             </div>

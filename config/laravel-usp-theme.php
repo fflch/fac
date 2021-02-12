@@ -39,6 +39,11 @@ $relatorios =  [
         'text' => 'Conveniados',
         'url'  => '/relatorios/conveniados',
     ],
+
+    [
+        'text' => 'Associados',
+        'url'  => '/relatorios/associados',
+    ],
 ];
 
 return [

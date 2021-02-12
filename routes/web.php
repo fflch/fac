@@ -33,3 +33,4 @@ Route::resource('/vendas', VendaController::class);
 
 #Relatórios
 Route::get('/relatorios/conveniados/{conveniado}', [RelatorioController::class, 'conveniados']);
+Route::get('/relatorios/associados/{associado}', [RelatorioController::class, 'associados']);
