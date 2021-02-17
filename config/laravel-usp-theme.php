@@ -37,12 +37,12 @@ $vendas =  [
 $relatorios =  [
     [
         'text' => 'Conveniados',
-        'url'  => '/relatorios/conveniados',
+        'url'  => '/',
     ],
 
     [
         'text' => 'Associados',
-        'url'  => '/relatorios/associados',
+        'url'  => '/',
     ],
 ];
 
@@ -56,18 +56,22 @@ return [
         [
             'text'    => 'Associados',
             'submenu' => $associados,
+            'can'     => 'admin'
         ],
         [
             'text'    => 'Conveniados',
             'submenu' => $conveniados,
+            'can'     => 'admin'
         ],
         [
             'text'    => 'Vendas',
             'submenu' => $vendas,
+            'can'     => 'admin'
         ],
         [
             'text'    => 'Relatórios',
             'submenu' => $relatorios,
+            'can'     => 'admin'
         ],
     ]
 ];

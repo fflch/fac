@@ -12,6 +12,7 @@ class VendaController extends Controller
 {
     public function index()
     {
+        $this->authorize('admin');
         $vendas = Venda::paginate(10);
         return view ('vendas.index',[
             'vendas' => $vendas
@@ -20,6 +21,7 @@ class VendaController extends Controller
 
     public function create() 
     {
+        $this->authorize('admin');
         return view ('vendas.create',[
             'venda' => new Venda
         ]);
@@ -27,6 +29,7 @@ class VendaController extends Controller
 
     public function store(VendaRequest $request) 
     {
+        $this->authorize('admin');
         $validated = $request->validated();
         $validated['data_venda'] = implode('-',array_reverse(explode('/',$request->data_venda)));
         $valor = $validated['valor'];
@@ -51,6 +54,7 @@ class VendaController extends Controller
 
     public function show(Venda $venda) 
     {
+        $this->authorize('admin');
         /*Relacionamento entre o Conveniado e o Associado*/
         $conveniado = $venda->conveniado()->first();
         $associado = $venda->associado()->first();
@@ -63,6 +67,7 @@ class VendaController extends Controller
 
     public function edit(Venda $venda) 
     {
+        $this->authorize('admin');
         $venda->data_venda = implode('/',array_reverse(explode('-',$venda->data_venda)));
         return view ('vendas.edit',[
             'venda' => $venda
@@ -71,6 +76,7 @@ class VendaController extends Controller
 
     public function update(VendaRequest $request, Venda $venda) 
     {
+        $this->authorize('admin');
         $validated = $request->validated();
         $validated['data_venda'] = implode('-',array_reverse(explode('/',$request->data_venda)));
         $venda->update($validated);
@@ -80,6 +86,7 @@ class VendaController extends Controller
     
     public function destroy(Venda $venda) 
     {
+        $this->authorize('admin');
         $venda->delete();
         return redirect ('/vendas');
     }

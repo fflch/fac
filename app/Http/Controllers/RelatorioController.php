@@ -12,10 +12,9 @@ use PDF;
 
 class RelatorioController extends Controller
 {
-
     public function conveniados(Conveniado $conveniado)
     {
-
+        $this->authorize('admin');
         $pdf = PDF::loadView('relatorios.conveniados', [
             'conveniado' => $conveniado
         ]);
@@ -23,10 +22,9 @@ class RelatorioController extends Controller
         return $pdf->download('convenidos.pdf');
     }
 
-    public function associados(Venda $venda, Associado $associado)
+    public function associados(Associado $associado)
     {
-        #$venda->data_venda = implode('-',array_reverse(explode('/',$venda->data_venda)));
-
+        $this->authorize('admin');
         $pdf = PDF::loadView('relatorios.associados', [
             'associado' => $associado
         ]);

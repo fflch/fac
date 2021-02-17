@@ -25,6 +25,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        # admin 
+        Gate::define('admin', function ($user) {
+            $admins = explode(',', trim(config('fac.admins')));
+            return ( in_array($user->codpes, $admins) and $user->codpes );
+        });
     }
 }

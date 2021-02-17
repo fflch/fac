@@ -10,6 +10,7 @@ class ConveniadoController extends Controller
 {
     public function index(Request $request) 
     {   
+        $this->authorize('admin');
         #Campo de busca
         if(isset(request()->search)){
             $conveniados = Conveniado::where('nome_fantasia','LIKE',"%{$request->search}%")
@@ -24,6 +25,7 @@ class ConveniadoController extends Controller
     }
     public function create() 
     {
+        $this->authorize('admin');
         return view ('conveniados.create',[
             'conveniado' => new Conveniado
         ]);
@@ -31,6 +33,7 @@ class ConveniadoController extends Controller
     
     public function store(ConveniadoRequest $request) 
     {
+        $this->authorize('admin');
         $validated = $request->validated();
         $conveniado = Conveniado::create($validated);
 
@@ -39,6 +42,7 @@ class ConveniadoController extends Controller
 
     public function edit(Conveniado $conveniado) 
     {
+        $this->authorize('admin');
         return view ('conveniados.edit',[
             'conveniado' => $conveniado
         ]);
@@ -46,7 +50,7 @@ class ConveniadoController extends Controller
 
     public function update(ConveniadoRequest $request, Conveniado $conveniado)
     {
-    
+        $this->authorize('admin');
         $validated = $request->validated();
         $conveniado->update($validated);
 
@@ -55,6 +59,7 @@ class ConveniadoController extends Controller
 
     public function show(Conveniado $conveniado) 
     {  
+        $this->authorize('admin');
         return view ('conveniados.show',[
             'conveniado' => $conveniado
         ]);
@@ -62,6 +67,7 @@ class ConveniadoController extends Controller
 
     public function destroy(Conveniado $conveniado) 
     {   
+        $this->authorize('admin');
         #Verifica se o conveniado tem uma venda, se tiver não deleta se tiver deixa
         if($conveniado->vendas->isEmpty()) {
             $conveniado->delete();
