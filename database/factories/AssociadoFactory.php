@@ -24,7 +24,7 @@ class AssociadoFactory extends Factory
     {
         return [
             'unidade' => $this->faker->randomElement($array = array ('FFLCH','IFUSP','FAU')),
-            'codpes' => $this->faker->unique()->numberBetween(1000000, 9999999),
+            'numero_usp' => $this->faker->unique()->numberBetween(1000000, 9999999),
             'name' => $this->faker->name,
             'endereco' => $this->faker->streetAddress,
             'complemento' => $this->faker->sentence($nbWords = 2, $variableNbWords = true),

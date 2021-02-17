@@ -10,6 +10,7 @@ class AssociadoController extends Controller
 {
     public function index(Request $request) 
     {
+        #Campo de busca
         if(isset(request()->search)){
             $associados = Associado::where('name','LIKE',"%{$request->search}%")
                          ->orWhere('codpes','LIKE',"%{$request->search}%")->paginate(5);
@@ -63,7 +64,15 @@ class AssociadoController extends Controller
 
     public function destroy(Associado $associado) 
     {
-        $associado->delete();
+        #Verifica se o conveniado tem uma venda, se tiver não deleta se tiver deixa
+        if($associado->vendas->isEmpty()) {
+            $associado->delete();
+        } else {
+            request()->session()->flash('alert-danger',
+            'Ação não permitida, pois 
+            há vendas cadastradas para esse associado.');
+        }
+
         return redirect ('/associados');
     }
 }

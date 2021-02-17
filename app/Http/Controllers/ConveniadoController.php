@@ -9,7 +9,8 @@ use App\Http\Requests\ConveniadoRequest;
 class ConveniadoController extends Controller
 {
     public function index(Request $request) 
-    {
+    {   
+        #Campo de busca
         if(isset(request()->search)){
             $conveniados = Conveniado::where('nome_fantasia','LIKE',"%{$request->search}%")
                          ->orWhere('razao_social','LIKE',"%{$request->search}%")
@@ -60,13 +61,14 @@ class ConveniadoController extends Controller
     }
 
     public function destroy(Conveniado $conveniado) 
-    {
+    {   
+        #Verifica se o conveniado tem uma venda, se tiver não deleta se tiver deixa
         if($conveniado->vendas->isEmpty()) {
             $conveniado->delete();
         } else {
             request()->session()->flash('alert-danger',
-            $conveniado->nome_fantasia . ' não pode ser deletada pois 
-            há vendas cadastradas para essa empresa');
+            $conveniado->nome_fantasia . ' não pode ser deletado, pois 
+            há vendas cadastradas para essa empresa.');
         }
         
         return redirect ('/conveniados');

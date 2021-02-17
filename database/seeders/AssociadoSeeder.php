@@ -17,7 +17,7 @@ class AssociadoSeeder extends Seeder
 
         $associado = [
             'unidade' => 'FFLCH',
-            'codpes' => 9848815,
+            'numero_usp' => 9848815,
             'name' => 'Ana Paula Martins',
             'endereco' => 'Rua do Girassol',
             'complemento' => 'Apartamento 56 - Bloco A',
