@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Conveniado;
+use App\Models\User;
 use App\Http\Requests\ConveniadoRequest;
 
 class ConveniadoController extends Controller
@@ -20,14 +21,15 @@ class ConveniadoController extends Controller
             $conveniados = Conveniado::paginate(10);
         }
         return view ('conveniados.index', [
-            'conveniados' => $conveniados
+            'conveniados' => $conveniados,
         ]);
     }
     public function create() 
     {
         $this->authorize('admin');
         return view ('conveniados.create',[
-            'conveniado' => new Conveniado
+            'conveniado' => new Conveniado,
+            /* 'user' => new User, */
         ]);
     }
     
@@ -35,7 +37,16 @@ class ConveniadoController extends Controller
     {
         $this->authorize('admin');
         $validated = $request->validated();
+
+        $user = new User;
+        $user->email = $request->e_mail;
+        $user->name = $request->razao_social;
+        $user->password = $request->razao_social;
+        $user->save();
+
+        $conveniado = $validated;
         $conveniado = Conveniado::create($validated);
+        /* $conveniado->user_id = $user->id; */     
 
         return redirect("/conveniados/$conveniado->id");
     }

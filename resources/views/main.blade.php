@@ -1,7 +1,10 @@
 @extends('laravel-usp-theme::master')
 
-@section('title') FAC @endsection
+@section('styles')
+    <link rel='stylesheet' href="{{ asset('assets/css/app.css') }}">
+@endsection
 
+@section('title') FAC @endsection
 
 @section('content')
 

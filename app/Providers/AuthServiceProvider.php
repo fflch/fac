@@ -30,5 +30,10 @@ class AuthServiceProvider extends ServiceProvider
             $admins = explode(',', trim(config('fac.admins')));
             return ( in_array($user->codpes, $admins) and $user->codpes );
         });
+
+        # conveniado
+        Gate::define('conveniado', function ($user) {
+        });
+
     }
 }

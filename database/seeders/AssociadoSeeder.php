@@ -40,6 +40,6 @@ class AssociadoSeeder extends Seeder
             'saldo' => 200,
         ];
         Associado::create($associado);
-        Associado::factory(100)->create();
+        Associado::factory(20)->create();
     }
 }

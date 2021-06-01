@@ -12,9 +12,12 @@ Route::get('/', function () {
 });
 
 # login
-Route::get('login', [LoginController::class, 'redirectToProvider']);
-Route::post('logout', [LoginController::class, 'logout']);
+Route::get('loginType', [LoginController::class, 'loginType']);
+Route::get('redirectToProvider', [LoginController::class, 'redirectToProvider']);
+Route::get('login', [LoginController::class, 'handleProviderCallback']);
 Route::get('callback', [LoginController::class, 'handleProviderCallback']);
+Route::get('localLogin', [LoginController::class, 'localLogin']);
+Route::post('logout', [LoginController::class, 'logout']);
 
 #Rotas Associado 
 Route::resource('/associados', AssociadoController::class);

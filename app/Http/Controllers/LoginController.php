@@ -5,20 +5,28 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 
 use Socialite;
-use App\Models\User;
 use Auth;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function redirectToProvider()
+    public function loginType()
     {
-        return Socialite::driver('senhaunica')->redirect();
+        return view('auth.ModoDeLogin');
+    }
+
+    public function redirectToProvider(Request $request)
+    {
+        if($request->loginType == "senhaUnica"){
+            return Socialite::driver('senhaunica')->redirect();
+        };
+        return view('auth.loginForm');
     }
 
     public function handleProviderCallback()
     {
-        $userSenhaUnica = Socialite::driver('senhaunica')->user();
+        $userSenhaUnica  = Socialite::driver('senhaunica')->user();
         $user = User::where('codpes',$userSenhaUnica->codpes)->first();
 
         if (is_null($user)) $user = new User;
@@ -29,6 +37,14 @@ class LoginController extends Controller
         $user->name = $userSenhaUnica->nompes;
         $user->save();
         Auth::login($user, true);
+        return redirect('/');
+    }
+
+    public function localLogin(Request $request){
+        $user = User::where('email',$request->email)->first();
+        
+        if (!empty($user)) Auth::login($user, true);
+        else dd('Usuário não cadastrado.'); /* request()->session()->flash('alert-danger','Usuário não cadastrado.'); */
         return redirect('/');
     }
 

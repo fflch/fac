@@ -39,6 +39,8 @@ class CreateConveniadosTable extends Migration
             $table->string('tipo_comissao');
             $table->string('comissao');
             $table->string('max_parcelas');
+
+            /* $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->nullable(); */
         });
     }
 

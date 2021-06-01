@@ -46,6 +46,8 @@ class ConveniadoFactory extends Factory
             'tipo_comissao' => $this->faker->randomElement($array = array ('Percentual','Real')),
             'comissao' => $this->faker->numberBetween(0, 10),
             'max_parcelas' => $this->faker->randomDigit,
+            /* 'user_id'=> NULL, */
+
         ];
     }
 }

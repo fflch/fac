@@ -44,6 +44,8 @@ class ConveniadoRequest extends FormRequest
             'tipo_comissao' => 'required',
             'comissao' => 'required', 
             'max_parcelas' => 'required',
+            'password' => 'required',
+            'user_id'  => 'nullable',
         ];
     }
 }
