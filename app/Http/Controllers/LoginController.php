@@ -8,6 +8,7 @@ use Socialite;
 use Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -42,10 +43,17 @@ class LoginController extends Controller
 
     public function localLogin(Request $request){
         $user = User::where('email',$request->email)->first();
-        
-        if (!empty($user)) Auth::login($user, true);
-        else dd('Usuário não cadastrado.'); /* request()->session()->flash('alert-danger','Usuário não cadastrado.'); */
-        return redirect('/');
+
+        if ($user) {
+            if (Hash::check($request->password, $user->password)) {
+                Auth::login($user, true);
+                return redirect('/');
+            }
+        }
+
+        request()->session()->flash('alert-danger','Usuário ou senha inválido.');
+        return redirect('/redirectToProvider');
+
     }
 
     public function logout()

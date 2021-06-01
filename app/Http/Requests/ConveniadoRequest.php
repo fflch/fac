@@ -32,7 +32,7 @@ class ConveniadoRequest extends FormRequest
             'estado' => 'required',
             'cep' => 'required',
             'ie' => 'required',
-            'cnpj'=>'required', 
+            'cnpj'=>'required',
             'responsavel' => 'required',
             'comercial' => 'required',
             'recado' => 'required',
@@ -42,10 +42,9 @@ class ConveniadoRequest extends FormRequest
             'agencia' => 'required',
             'conta_corrente' => 'required',
             'tipo_comissao' => 'required',
-            'comissao' => 'required', 
+            'comissao' => 'required',
             'max_parcelas' => 'required',
             'password' => 'required',
-            'user_id'  => 'nullable',
         ];
     }
 }
