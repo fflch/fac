@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Models\Conveniado;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,14 +26,26 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        # admin 
+        // admin 
         Gate::define('admin', function ($user) {
+
             $admins = explode(',', trim(config('fac.admins')));
             return ( in_array($user->codpes, $admins) and $user->codpes );
+
         });
 
-        # conveniado
+        // conveniado
         Gate::define('conveniado', function ($user) {
+
+            if(Gate::allows('admin')) return true;
+            
+            // o $user está relacionado a uma categoria?
+            /* dd($user->conveniados()->first()); */
+            if ($user->conveniados()->first()) {
+                return true;
+            }
+            return false;
+
         });
 
     }

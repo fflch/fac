@@ -46,6 +46,7 @@ $relatorios =  [
     ],
 ];
 
+
 return [
     'title' => 'Filosofia Atlético Clube',
     'dashboard_url' => config('app.url'),
@@ -61,7 +62,7 @@ return [
         [
             'text'    => 'Conveniados',
             'submenu' => $conveniados,
-            'can'     => 'admin'
+            'can'     => 'admin',
         ],
         [
             'text'    => 'Vendas',
@@ -72,6 +73,11 @@ return [
             'text'    => 'Relatórios',
             'submenu' => $relatorios,
             'can'     => 'admin'
+        ],
+        [
+            'text'    => 'Cadastrar Venda',
+            'url' => config('app.url') . '/vendas/create',
+            'can'     => 'conveniado'
         ],
     ]
 ];

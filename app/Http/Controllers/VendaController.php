@@ -7,6 +7,7 @@ use App\Models\Venda;
 use App\Models\ParcelaVenda;
 use App\Http\Requests\VendaRequest;
 use Carbon\Carbon;
+use Auth;
 
 class VendaController extends Controller
 {
@@ -21,15 +22,23 @@ class VendaController extends Controller
 
     public function create() 
     {
-        $this->authorize('admin');
+        $this->authorize('conveniado');
+
+        // verifica se o usuário é um conveniado
+        $conveniado = Auth::user()->conveniados()->first();
+
+        if ($conveniado) $objeto = $conveniado;
+        else $objeto = FALSE;
+
         return view ('vendas.create',[
-            'venda' => new Venda
+            'venda' => new Venda,
+            'objeto'  => $objeto,
         ]);
     }
 
     public function store(VendaRequest $request) 
     {
-        $this->authorize('admin');
+        $this->authorize('conveniado');
         $validated = $request->validated();
         $validated['data_venda'] = implode('-',array_reverse(explode('/',$request->data_venda)));
         $valor = $validated['valor'];
@@ -54,7 +63,7 @@ class VendaController extends Controller
 
     public function show(Venda $venda) 
     {
-        $this->authorize('admin');
+        $this->authorize('conveniado');
         /*Relacionamento entre o Conveniado e o Associado*/
         $conveniado = $venda->conveniado()->first();
         $associado = $venda->associado()->first();
@@ -69,8 +78,10 @@ class VendaController extends Controller
     {
         $this->authorize('admin');
         $venda->data_venda = implode('/',array_reverse(explode('-',$venda->data_venda)));
+        $objeto = FALSE;
         return view ('vendas.edit',[
-            'venda' => $venda
+            'venda' => $venda,
+            'objeto' => $objeto,
         ]);
     }
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Conveniado extends Model
 {
@@ -14,5 +15,10 @@ class Conveniado extends Model
     public function vendas()
     {
         return $this->hasMany(Venda::class,'conveniado_id','id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

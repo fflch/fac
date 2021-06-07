@@ -6,7 +6,7 @@
 
 <form method="POST" action="/vendas"> 
 @csrf
-@include('vendas.form')
+    @include('vendas.form')
 </form>  
 
 @endsection

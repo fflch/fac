@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            UserSeeder::class,
             AssociadoSeeder::class,
             ConveniadoSeeder::class,
             VendaSeeder::class,
         ]);   
-        // User::factory(10)->create();
     }
 }

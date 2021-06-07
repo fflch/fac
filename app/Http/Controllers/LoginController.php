@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
+use Session;
 use Socialite;
 use Auth;
 use App\Models\User;
@@ -50,7 +51,6 @@ class LoginController extends Controller
                 return redirect('/');
             }
         }
-
         request()->session()->flash('alert-danger','Usuário ou senha inválido.');
         return redirect('/redirectToProvider');
 
