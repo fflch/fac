@@ -24,6 +24,6 @@ class VendaSeeder extends Seeder
             'status' => 'A Vencer',
         ];
         Venda::create($venda);
-        Venda::factory(100)->create();
+        Venda::factory(20)->create();
     }
 }
