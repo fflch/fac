@@ -5,11 +5,14 @@
 @inject('replicado','App\Utils\ReplicadoUtils')
 
 <div class="card">
+    
     <div class="card-header">
-        <a href="/vendas"><i class="fas fa-chevron-circle-left"></a></i>
-        <a href="/vendas/{{$venda->id}}/edit"><i class="far fa-edit"></a></i>
+        @can('admin')
+            <a href="/vendas"><i class="fas fa-chevron-circle-left"></a></i>
+            <a href="/vendas/{{$venda->id}}/edit"><i class="far fa-edit"></a></i>
+        @endcan
     </div>
-
+    
     <div class="card-body">
 
 

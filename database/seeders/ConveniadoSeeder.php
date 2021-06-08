@@ -37,8 +37,7 @@ class ConveniadoSeeder extends Seeder
             'tipo_comissao' => 'Percentual',
             'comissao' => '10', 
             'max_parcelas' => 3,
-
-            /* 'user_id' => NULL, */
+            'user_id' => 1,
         ];
         Conveniado::create($conveniado);
         Conveniado::factory(20)->create();

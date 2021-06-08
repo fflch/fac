@@ -5,7 +5,3 @@
 @endsection
 
 @section('title') FAC @endsection
-
-@section('content')
-
-@endsection
