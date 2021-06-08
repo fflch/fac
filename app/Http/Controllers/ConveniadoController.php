@@ -43,12 +43,15 @@ class ConveniadoController extends Controller
 
         // Inicia o Database Transaction
         DB::transaction(function () use ($request, &$conveniado) {
-            $user = User::create([
-                'email'     => $request->e_mail,
-                'name'      => $request->razao_social,
-                'password'  => bcrypt($request->password)
+ 
+            $user = User::where('email',$request->e_mail)->first();
 
-            ]);
+            if(!$user) $user = new User;
+
+            $user->email = $request->e_mail;
+            $user->name = $request->nome_fantasia;
+            $user->password = bcrypt($request->password);
+            $user->save();
 
             $validated = $request->validated();
             $validated['user_id'] = $user->id;
@@ -71,15 +74,21 @@ class ConveniadoController extends Controller
     public function update(ConveniadoRequest $request, Conveniado $conveniado)
     {
         $this->authorize('admin');
-
-        DB::transaction(function () use ($request, $conveniado) {
+        
+        DB::transaction(function () use ($request, &$conveniado) {
+            
             $user = User::where('id',$conveniado->user_id)->first();
-            $user->email = $request->e_mail;
-            $user->name = $request->razao_social;
-            $user->password = bcrypt($request->password);
-            $user->update();
 
-            $conveniado->update($request->validated());
+            if(!$user) $user = new User;
+
+            $user->email = $request->e_mail;
+            $user->name = $request->nome_fantasia;
+            $user->password = bcrypt($request->password);
+            $user->save();
+
+            $validated = $request->validated();
+            $validated['user_id'] = $user->id;
+            $conveniado->update($validated);
 
         });
 
