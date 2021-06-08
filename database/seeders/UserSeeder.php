@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'name'     => "Unimed do Estado de Sao Paulo",
             'email'    => "contato@usp.br",
             'password' => bcrypt("teste"),
+            
         ];
         User::create($user);
     }

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Conveniado;
 use App\Models\Associado;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -46,7 +47,7 @@ class ConveniadoFactory extends Factory
             'tipo_comissao' => $this->faker->randomElement($array = array ('Percentual','Real')),
             'comissao' => $this->faker->numberBetween(0, 10),
             'max_parcelas' => $this->faker->randomDigit,
-            /* 'user_id'=> NULL, */
+            'user_id'=> User::factory()->create()->id,
 
         ];
     }
