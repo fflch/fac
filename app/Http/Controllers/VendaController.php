@@ -20,23 +20,20 @@ class VendaController extends Controller
         ]);
     }
 
-    public function create() 
+    public function create()
     {
         $this->authorize('conveniado');
 
         // verifica se o usuário é um conveniado
         $conveniado = Auth::user()->conveniados()->first();
 
-        if ($conveniado) $objeto = $conveniado;
-        else $objeto = FALSE;
-
         return view ('vendas.create',[
             'venda' => new Venda,
-            'objeto'  => $objeto,
+            'objeto'  => isset($conveniado) ? $conveniado : FALSE,
         ]);
     }
 
-    public function store(VendaRequest $request) 
+    public function store(VendaRequest $request)
     {
         $this->authorize('conveniado');
         $validated = $request->validated();
@@ -58,10 +55,10 @@ class VendaController extends Controller
             $parcela_venda->save();
         }
 
-        return redirect("/vendas/$venda->id");   
+        return redirect("/vendas/$venda->id");
     }
 
-    public function show(Venda $venda) 
+    public function show(Venda $venda)
     {
         $this->authorize('conveniado');
         /*Relacionamento entre o Conveniado e o Associado*/
@@ -72,30 +69,29 @@ class VendaController extends Controller
         return view ('vendas.show',[
             'venda' => $venda
         ]);
-    }      
+    }
 
-    public function edit(Venda $venda) 
+    public function edit(Venda $venda)
     {
         $this->authorize('admin');
         $venda->data_venda = implode('/',array_reverse(explode('-',$venda->data_venda)));
-        $objeto = FALSE;
         return view ('vendas.edit',[
             'venda' => $venda,
-            'objeto' => $objeto,
+            'objeto' => FALSE,
         ]);
     }
 
-    public function update(VendaRequest $request, Venda $venda) 
+    public function update(VendaRequest $request, Venda $venda)
     {
         $this->authorize('admin');
         $validated = $request->validated();
         $validated['data_venda'] = implode('-',array_reverse(explode('/',$request->data_venda)));
         $venda->update($validated);
 
-        return redirect("/vendas/$venda->id");  
+        return redirect("/vendas/$venda->id");
     }
-    
-    public function destroy(Venda $venda) 
+
+    public function destroy(Venda $venda)
     {
         $this->authorize('admin');
         $venda->delete();

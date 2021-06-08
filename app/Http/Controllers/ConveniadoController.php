@@ -26,7 +26,7 @@ class ConveniadoController extends Controller
             'conveniados' => $conveniados,
         ]);
     }
-    
+
     public function create()
     {
         $this->authorize('admin');
@@ -39,30 +39,24 @@ class ConveniadoController extends Controller
     public function store(ConveniadoRequest $request)
     {
         $this->authorize('admin');
+        $conveniado = new Conveniado();
 
         // Inicia o Database Transaction
-        DB::beginTransaction();
-        
-        $user = User::create([
-            'email'     => $request->e_mail,
-            'name'      => $request->razao_social,
-            'password'  => bcrypt($request->password)
+        DB::transaction(function () use ($request, &$conveniado) {
+            $user = User::create([
+                'email'     => $request->e_mail,
+                'name'      => $request->razao_social,
+                'password'  => bcrypt($request->password)
 
-        ]);
-        
-        $validated = $request->validated();
-        $validated['user_id'] = $user->id;
-        $conveniado = Conveniado::create($validated);
+            ]);
 
-        if( $conveniado && $user ) {
-            // Sucesso!
-            DB::commit();
-        } else {
-            // Fail, desfaz as alterações no banco de dados
-            DB::rollBack();
-        }
+            $validated = $request->validated();
+            $validated['user_id'] = $user->id;
+            $conveniado = Conveniado::create($validated);
+        });
 
         return redirect("/conveniados/$conveniado->id");
+
     }
 
     public function edit(Conveniado $conveniado)
@@ -78,25 +72,16 @@ class ConveniadoController extends Controller
     {
         $this->authorize('admin');
 
-        try {
-
-            DB::beginTransaction();
-
+        DB::transaction(function () use ($request, $conveniado) {
             $user = User::where('id',$conveniado->user_id)->first();
             $user->email = $request->e_mail;
             $user->name = $request->razao_social;
             $user->password = bcrypt($request->password);
             $user->update();
-    
+
             $conveniado->update($request->validated());
-            
-            DB::commit();
 
-        }catch(Exception $e){
-
-            dd("Exceção capturada: ",  $e->getMessage());
-            DB::rollback();
-        };
+        });
 
         return redirect("/conveniados/$conveniado->id");
     }
@@ -105,7 +90,7 @@ class ConveniadoController extends Controller
     {
 
         $this->authorize('admin');
-        
+
         return view ('conveniados.show',[
             'conveniado' => $conveniado
         ]);
@@ -117,13 +102,11 @@ class ConveniadoController extends Controller
 
         // Verifica se o conveniado tem uma venda, se tiver não deleta se tiver deixa
         if($conveniado->vendas->isEmpty()) {
-
-            // deveria ter uma transaction aqui
-
-            $conveniado->delete();
-            $user = User::where('id',$conveniado->user_id)->first();
-            $user->delete();
-
+            DB::transaction(function () use ($conveniado) {
+                $conveniado->delete();
+                $user = User::where('id',$conveniado->user_id)->first();
+                $user->delete();
+            });
         } else {
             request()->session()->flash('alert-danger',
             $conveniado->nome_fantasia . ' não pode ser deletado, pois

@@ -10,22 +10,18 @@ class IndexController extends Controller
 {
     public function index()
     {
-        
-        $user = Auth::user();
 
-        if ($user) {
-            $conveniado = $user->conveniados()->first();
-            
+        if (Auth::user()) {
+
+            $conveniado = Auth::user()->conveniados()->first();
+
             if ($conveniado) {
                 $vendas = $conveniado->vendas()->get();
-                return view ('index', [
-                    'conveniado' => $conveniado,
-                    'vendas'     => $vendas,
-                ]);
             }
 
             return view ('index', [
                 'conveniado' => $conveniado,
+                'vendas'     => isset($vendas) ? $vendas : null,
             ]);
         }
 
