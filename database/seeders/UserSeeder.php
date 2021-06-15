@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         $user = [
             
-            'name'     => "Unimed do Estado de Sao Paulo",
+            'name'     => "Unimed Fesp",
             'email'    => "contato@usp.br",
             'password' => bcrypt("teste"),
             

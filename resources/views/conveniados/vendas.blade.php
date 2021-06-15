@@ -3,7 +3,7 @@
   <table class="table table-striped">
     <thead>
         <tr>
-          <th><h3>Vendas de {{ $conveniado->razao_social }}</h3></th>
+          <th><h3>Vendas de {{ $conveniado->nome_fantasia }}</h3></th>
         </tr>
         <tr> 
           <th><h4>Nome</h4></th>
@@ -19,7 +19,7 @@
         @foreach ($vendas as $venda)
         <tr>
           <td><a href="/vendas/{{$venda->id}}">{{$venda->associado->name}}</a></td>
-          <td>{{$venda->data_venda}}</td>
+          <td>{{ $venda->data_venda = implode('/',array_reverse(explode('-',$venda->data_venda))) }}</td>
           <td>{{$venda->quantidade_parcelas}}</td>
           <td>{{$venda->valor}}</td>
           <td>{{$venda->descricao}}</td>

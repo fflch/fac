@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Auth;
 
 class VendaRequest extends FormRequest
 {
@@ -23,14 +24,17 @@ class VendaRequest extends FormRequest
      */
     public function rules()
     {
+
+        // verifica se o usuário é um conveniado
+        $conveniado = Auth::user()->conveniados()->first();
+
         return [
-            'conveniado_id' => 'required',
+            'conveniado_id' => isset($conveniado) ? 'nullable' : 'required',
             'associado_id' => 'required',
             'data_venda' => 'required',
             'quantidade_parcelas' => 'required|integer',
             'valor' => 'required|numeric|min:0',
             'descricao' => 'nullable',
-            'status' => 'required',
         ];
     }
 

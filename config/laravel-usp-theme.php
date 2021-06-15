@@ -28,10 +28,10 @@ $vendas =  [
         'text' => 'Listar',
         'url'  => '/vendas',
     ],
-    [
+    /* [
         'text' => 'Cadastrar',
         'url'  => '/vendas/create',
-    ],
+    ], */
 ];
 
 $relatorios =  [

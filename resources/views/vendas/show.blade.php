@@ -27,14 +27,20 @@
                 Quantidade de Parcelas: {{ $venda->quantidade_parcelas }}<br>
                 Valor: {{ $venda->valor }}<br>
                 Descrição: {{ $venda->descricao }}<br>
-                Status: {{ $venda->status }}<br><br>
                 
             </div>
         </div>
 
         <ul>
         @foreach($venda->parcelas as $parcela)
-            <li>R$ {{ $parcela->valor }} - {{ $parcela->datavencto }} - {{ $parcela->status }}</li>
+            <li>
+                R$ {{ $parcela->valor }} - {{ $parcela->datavencto }} - {{ $parcela->status }} 
+                <form method="POST" action="/parcelaVenda/{{ $parcela->id }}">
+                    @csrf
+                    @method('patch')
+                    <button>Baixar parcela</button>                
+                </form>
+            </li>
         @endforeach
         </ul>
     </div>
