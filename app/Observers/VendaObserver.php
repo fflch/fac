@@ -17,18 +17,12 @@ class VendaObserver
     public function creating(Venda $venda)
     {
 
-        // verifica se é um cenário de factory ou não 
-        try {
+        // verifica se o usuário é um conveniado
+        $conveniado = Auth::user()->conveniados()->first();
 
-            // verifica se o usuário é um conveniado
-            $conveniado = Auth::user()->conveniados()->first();
-
-            if (!empty($conveniado)) {
-                $venda->conveniado_id = $conveniado->id;
-            }
+        if (!empty($conveniado)) {
+            $venda->conveniado_id = $conveniado->id;
         }
-        finally {return;}
-
 
     }
      

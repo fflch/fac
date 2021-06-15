@@ -19,7 +19,7 @@
         @foreach ($vendas as $venda)
         <tr>
           <td><a href="/vendas/{{$venda->id}}">{{$venda->associado->name}}</a></td>
-          <td>{{$venda->data_venda}}</td>
+          <td>{{ $venda->data_venda = implode('/',array_reverse(explode('-',$venda->data_venda))) }}</td>
           <td>{{$venda->quantidade_parcelas}}</td>
           <td>{{$venda->valor}}</td>
           <td>{{$venda->descricao}}</td>

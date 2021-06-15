@@ -14,6 +14,7 @@ class VendaSeeder extends Seeder
      */
     public function run()
     {
+        
         $venda = [
             'conveniado_id' => 1,
             'associado_id' => 1,
@@ -22,7 +23,15 @@ class VendaSeeder extends Seeder
             'valor' => 250,
             'descricao' => 'Compra de uma camiseta',
         ];
-        Venda::create($venda);
-        Venda::factory(20)->create();
+
+        // mutar o VendaObserver
+        Venda::withoutEvents(function () use ($venda) {
+
+            Venda::create($venda);
+            Venda::factory(20)->create();
+
+        });
+
+
     }
 }

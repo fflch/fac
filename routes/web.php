@@ -29,7 +29,7 @@ Route::resource('/conveniados', ConveniadoController::class);
 // Rotas Vendas
 Route::resource('/vendas', VendaController::class);
 // Atualização do status da parcela
-Route::resource('/parcelaVenda', ParcelaVendaController::class);
+Route::patch('parcelaVenda/{parcelaVenda}', [ParcelaVendaController::class, 'update']);
 
 // Relatórios
 Route::get('/relatorios/conveniados/{conveniado}', [RelatorioController::class, 'conveniados']);

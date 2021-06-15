@@ -34,7 +34,12 @@
         <ul>
         @foreach($venda->parcelas as $parcela)
             <li>
-                R$ {{ $parcela->valor }} - {{ $parcela->datavencto }} - <a href="/parcelaVenda/{{$parcela->id}}/edit">{{ $parcela->status }}</a>
+                R$ {{ $parcela->valor }} - {{ $parcela->datavencto }} - {{ $parcela->status }} 
+                <form method="POST" action="/parcelaVenda/{{ $parcela->id }}">
+                    @csrf
+                    @method('patch')
+                    <button>Baixar parcela</button>                
+                </form>
             </li>
         @endforeach
         </ul>

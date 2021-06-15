@@ -23,12 +23,12 @@ class VendaController extends Controller
             $vendas = $vendas->where(function( $query ) use ( $request ){
 
                 // Model: Associado  campo: name
-                $query->where('associados', function (Builder $query) use ($request){
+                $query->orWhereHas('associado', function (Builder $query) use ($request){
                     $query->where('name','LIKE',"%{$request->search}%");
                 })
                 
                 // Model: Conveniado  campos: razao_social, nome_fantasia
-                ->orWhereHas('conveniados', function (Builder $query) use ($request){
+                ->orWhereHas('conveniado', function (Builder $query) use ($request){
                     $query->where('nome_fantasia','LIKE',"%{$request->search}%")
                         ->orWhere('razao_social','LIKE',"%{$request->search}%");
                 }); 
