@@ -31,7 +31,6 @@ class VendaFactory extends Factory
             'quantidade_parcelas' => $this->faker->randomDigit,
             'valor' => $this->faker->numberBetween(0, 1000),
             'descricao' => $this->faker->text,
-            'status' => $this->faker->randomElement($array = array ('A Vencer','Baixado','Vencido')),
         ];
     }
 }

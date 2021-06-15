@@ -21,7 +21,6 @@ class VendaSeeder extends Seeder
             'quantidade_parcelas' => 2,
             'valor' => 250,
             'descricao' => 'Compra de uma camiseta',
-            'status' => 'A Vencer',
         ];
         Venda::create($venda);
         Venda::factory(20)->create();

@@ -5,25 +5,21 @@
     <div class="card-body">
 
         <div class="row">
-            <div class="col-sm form-group col-sm-6">
-              <div class="form-group">
-                <label><b>Conveniado: </b></label>
-                    <select class="form-control" name="conveniado_id">
-                      @if($objeto)
-                        <option value="{{ $objeto->id }}" selected>
-                              {{ $objeto->nome_fantasia }}
-                        </option>
-                      @else
-                        @foreach(\App\Models\Conveniado::all() as $conveniado)
-                          <option value="{{ $conveniado->id }}" @if(old('conveniado_id')== $conveniado->id) {{'selected'}} 
-                              @else {{($venda->conveniado_id === $conveniado->id ) ? 'selected' : ''}} @endif>
-                                {{ $conveniado->nome_fantasia }}
-                          </option>
-                        @endforeach
-                      @endif
-                    </select>
-              </div>
-            </div> 
+          @if(!$objeto)
+              <div class="col-sm form-group col-sm-6">
+                <div class="form-group">
+                  <label><b>Conveniado: </b></label>
+                      <select class="form-control" name="conveniado_id">
+                          @foreach(\App\Models\Conveniado::all() as $conveniado)
+                            <option value="{{ $conveniado->id }}" @if(old('conveniado_id')== $conveniado->id) {{'selected'}} 
+                                @else {{($venda->conveniado_id === $conveniado->id ) ? 'selected' : ''}} @endif>
+                                  {{ $conveniado->nome_fantasia }}
+                            </option>
+                          @endforeach
+                      </select>
+                </div>
+              </div> 
+            @endif
 
             <div class="col-sm form-group col-sm-6">
               <div class="form-group">
@@ -72,22 +68,6 @@
                 </div>
             </div>
 
-            <div class="col-sm form-group col-sm-4">
-                <div class="form-group">
-                  <label for="status"><b>Status: </b></label><br>
-                  @if($objeto)
-                    <input type="radio" id="a_vencer" name="status" value="A Vencer" checked>
-                    <label for="a_vencer">A Vencer</label><br>
-                  @else
-                  <input type="radio" id="a_vencer" name="status" value="A Vencer" @if($venda->status == "A Vencer")checked @else {{ old('status') == 'A Vencer' ? 'checked' : ''}}@endif>
-                  <label for="a_vencer">A Vencer</label><br>
-                  <input type="radio" id="baixado" name="status" value="Baixado"  @if($venda->status == "Baixado")checked @else {{ old('status') == 'Baixado' ? 'checked' : ''}}@endif>
-                  <label for="baixado">Baixado</label><br>
-                  <input type="radio" id="vencido" name="status" value="Vencido" @if($venda->status == "Vencido")checked @else {{ old('status') == 'Vencido' ? 'checked' : ''}}@endif>
-                  <label for="vencido">Vencido</label><br>
-                  @endif
-                </div>
-            </div>
         </div> 
     </div>
 </div>

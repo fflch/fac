@@ -11,7 +11,7 @@ class AssociadoController extends Controller
     public function index(Request $request) 
     {
         $this->authorize('admin');
-        #Campo de busca
+        // Campo de busca
         if(isset(request()->search)){
             $associados = Associado::where('name','LIKE',"%{$request->search}%")
                          ->orWhere('numero_usp','LIKE',"%{$request->search}%")->paginate(5);

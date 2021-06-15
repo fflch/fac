@@ -2,12 +2,20 @@
 
 @section('content')
 
+<form method="get" action="/vendas">
+  @include('vendas.partials.search')
+</form>
+
+<br>
+
 <div class="card">
 
   <table class="table table-striped">
       <thead>
         <tr> 
           <th><h3>Venda por Associado</h3></th>
+          <th><h3>Data da venda</h3></th>
+          <th><h3>Conveniado</h3></th>
           <th><h3>Ações</h3></th>
         </tr>
       </thead>
@@ -16,6 +24,8 @@
       @foreach ($vendas as $venda)
           <tr>
             <td><a href="/vendas/{{$venda->id}}">{{ $venda->associado->name }}</a></td>
+            <td>{{ $venda->data_venda = implode('/',array_reverse(explode('-',$venda->data_venda))) }}</td>
+            <td>{{ $venda->conveniado->nome_fantasia }}</td>
             <td>
               
               <form method="POST" action="/vendas/{{ $venda->id }}">

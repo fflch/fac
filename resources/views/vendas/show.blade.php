@@ -27,14 +27,15 @@
                 Quantidade de Parcelas: {{ $venda->quantidade_parcelas }}<br>
                 Valor: {{ $venda->valor }}<br>
                 Descrição: {{ $venda->descricao }}<br>
-                Status: {{ $venda->status }}<br><br>
                 
             </div>
         </div>
 
         <ul>
         @foreach($venda->parcelas as $parcela)
-            <li>R$ {{ $parcela->valor }} - {{ $parcela->datavencto }} - {{ $parcela->status }}</li>
+            <li>
+                R$ {{ $parcela->valor }} - {{ $parcela->datavencto }} - <a href="/parcelaVenda/{{$parcela->id}}/edit">{{ $parcela->status }}</a>
+            </li>
         @endforeach
         </ul>
     </div>

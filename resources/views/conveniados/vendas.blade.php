@@ -3,7 +3,7 @@
   <table class="table table-striped">
     <thead>
         <tr>
-          <th><h3>Vendas de {{ $conveniado->razao_social }}</h3></th>
+          <th><h3>Vendas de {{ $conveniado->nome_fantasia }}</h3></th>
         </tr>
         <tr> 
           <th><h4>Nome</h4></th>

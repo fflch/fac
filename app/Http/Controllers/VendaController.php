@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Venda;
 use App\Models\ParcelaVenda;
 use App\Http\Requests\VendaRequest;
@@ -11,10 +12,31 @@ use Auth;
 
 class VendaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('admin');
-        $vendas = Venda::paginate(10);
+
+        $vendas = new Venda;
+
+        // Campo de busca
+        if($request->search) {
+            $vendas = $vendas->where(function( $query ) use ( $request ){
+
+                // Model: Associado  campo: name
+                $query->where('associados', function (Builder $query) use ($request){
+                    $query->where('name','LIKE',"%{$request->search}%");
+                })
+                
+                // Model: Conveniado  campos: razao_social, nome_fantasia
+                ->orWhereHas('conveniados', function (Builder $query) use ($request){
+                    $query->where('nome_fantasia','LIKE',"%{$request->search}%")
+                        ->orWhere('razao_social','LIKE',"%{$request->search}%");
+                }); 
+            });
+        }
+
+        $vendas = $vendas->paginate(10);
+
         return view ('vendas.index',[
             'vendas' => $vendas
         ]);
@@ -67,7 +89,7 @@ class VendaController extends Controller
 
         $venda->data_venda = implode('/',array_reverse(explode('-',$venda->data_venda)));
         return view ('vendas.show',[
-            'venda' => $venda
+            'venda'         => $venda,
         ]);
     }
 
