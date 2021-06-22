@@ -14,28 +14,31 @@ class VendaController extends Controller
 {
     public function index(Request $request)
     {
-        $this->authorize('admin');
+        $this->authorize('conveniado');
+
+        $conveniado = Auth::user()->conveniados()->first();
 
         $vendas = new Venda;
 
         // Campo de busca
         if($request->search) {
+
             $vendas = $vendas->where(function( $query ) use ( $request ){
 
                 // Model: Associado  campo: name
                 $query->orWhereHas('associado', function (Builder $query) use ($request){
                     $query->where('name','LIKE',"%{$request->search}%");
                 })
-                
+
                 // Model: Conveniado  campos: razao_social, nome_fantasia
                 ->orWhereHas('conveniado', function (Builder $query) use ($request){
                     $query->where('nome_fantasia','LIKE',"%{$request->search}%")
                         ->orWhere('razao_social','LIKE',"%{$request->search}%");
-                }); 
+                });
             });
         }
-
-        $vendas = $vendas->paginate(10);
+        if ($conveniado) $vendas = $vendas->where('conveniado_id', $conveniado->id)->paginate(10);
+        else $vendas = $vendas->paginate(10);
 
         return view ('vendas.index',[
             'vendas' => $vendas

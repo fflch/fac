@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Models\Venda;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Models\Conveniado;
 
 class IndexController extends Controller
 {
-    public function index()
+
+    public function index(Request $request)
     {
 
         if (Auth::user()) {
@@ -16,7 +19,7 @@ class IndexController extends Controller
             $conveniado = Auth::user()->conveniados()->first();
 
             if ($conveniado) {
-                $vendas = $conveniado->vendas()->get();
+                $vendas = $conveniado->vendas()->paginate(10);
             }
 
             return view ('index', [
