@@ -16,7 +16,7 @@ class VendaController extends Controller
     {
         $this->authorize('conveniado');
 
-        $conveniado = Auth::user()->conveniados()->first();
+        $conveniado = Auth::user()->conveniado();
 
         $vendas = new Venda;
 
@@ -50,7 +50,7 @@ class VendaController extends Controller
         $this->authorize('conveniado');
 
         // verifica se o usuário é um conveniado
-        $conveniado = Auth::user()->conveniados()->first();
+        $conveniado = Auth::user()->conveniado();
 
         return view ('vendas.create',[
             'venda' => new Venda,
@@ -85,7 +85,8 @@ class VendaController extends Controller
 
     public function show(Venda $venda)
     {
-        $this->authorize('conveniado');
+        $this->authorize('conveniado',$venda);
+
         /*Relacionamento entre o Conveniado e o Associado*/
         $conveniado = $venda->conveniado()->first();
         $associado = $venda->associado()->first();

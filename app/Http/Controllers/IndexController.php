@@ -15,8 +15,8 @@ class IndexController extends Controller
     {
 
         if (Auth::user()) {
-
-            $conveniado = Auth::user()->conveniados()->first();
+           
+            $conveniado = Auth::user()->conveniado();
 
             if ($conveniado) {
                 $vendas = $conveniado->vendas()->paginate(10);

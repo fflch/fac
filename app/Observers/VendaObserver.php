@@ -18,7 +18,7 @@ class VendaObserver
     {
 
         // verifica se o usuário é um conveniado
-        $conveniado = Auth::user()->conveniados()->first();
+        $conveniado = Auth::user()->conveniado();
 
         if (!empty($conveniado)) {
             $venda->conveniado_id = $conveniado->id;

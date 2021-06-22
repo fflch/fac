@@ -39,8 +39,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function conveniados()
-    {
-        return $this->hasMany(Conveniado::class);
+    public function conveniado()
+    {   
+        return Conveniado::where('user_id',$this->id)->first();
     }
 }

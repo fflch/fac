@@ -35,17 +35,19 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         // conveniado
-        Gate::define('conveniado', function ($user) {
+        Gate::define('conveniado', function ($user, $venda = null) {
 
             if(Gate::allows('admin')) return true;
             
-            // o $user está relacionado a uma categoria?
-            /* dd($user->conveniados()->first()); */
-            if ($user->conveniados()->first()) {
-                return true;
+            if($venda == null){
+                if($user->conveniado()) return true;
+            } else {
+                $conveniado = $user->conveniado();
+                if($conveniado) {
+                    if($venda->conveniado_id == $conveniado->id) return true;
+                }
             }
             return false;
-
         });
 
     }

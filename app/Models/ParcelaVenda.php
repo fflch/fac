@@ -29,12 +29,24 @@ class ParcelaVenda extends Model
     }
     
     public function getValorAttribute($value){
-        return number_format($value, 2, ',', '');
+        if($value){
+            return number_format($value, 2, ',', '');
+        }
     }
 
     public function getDatavenctoAttribute($value){
         if($value){
             return  Carbon::parse($this->attributes['datavencto'])->format('d/m/Y');
+        }
+    }
+
+    public function getStatusAttribute($value){
+        if($value){
+            $data_vencimento = Carbon::parse($this->attributes['datavencto']);
+            $hoje = Carbon::now();
+            if($hoje->gt($data_vencimento) && $value == "A Vencer") {
+                return 'Vencido';
+            } else return $value;
         }
     }
     

@@ -26,7 +26,7 @@ class VendaRequest extends FormRequest
     {
 
         // verifica se o usuário é um conveniado
-        $conveniado = Auth::user()->conveniados()->first();
+        $conveniado = Auth::user()->conveniado();
 
         return [
             'conveniado_id' => isset($conveniado) ? 'nullable' : 'required',
