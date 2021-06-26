@@ -49,10 +49,14 @@ $relatorios =  [
 
 return [
     'title' => 'Filosofia Atlético Clube',
-    'dashboard_url' => config('app.url'),
+    'dashboard_url' => config('app.url'), # deprecado
+    'skin' => env('USP_THEME_SKIN', 'uspdev'),
+    'session_key' => 'laravel-usp-theme',
+
     'logout_method' => 'POST',
     'logout_url' => config('app.url') . '/logout',
     'login_url' => config('app.url') . '/loginType',
+
     'menu' => [
         [
             'text'    => 'Associados',
