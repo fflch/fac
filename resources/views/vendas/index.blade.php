@@ -12,7 +12,7 @@
 
   <table class="table table-striped">
       <thead>
-        <tr> 
+        <tr>
           <th><h3>Venda por Associado</h3></th>
           <th><h3>Data da venda</h3></th>
           <th><h3>Conveniado</h3></th>
@@ -24,10 +24,10 @@
       @foreach ($vendas as $venda)
           <tr>
             <td><a href="/vendas/{{$venda->id}}">{{ $venda->associado->name }}</a></td>
-            <td>{{ $venda->data_venda = implode('/',array_reverse(explode('-',$venda->data_venda))) }}</td>
+            <td>{{ $venda->data_venda }}</td>
             <td>{{ $venda->conveniado->nome_fantasia }}</td>
             <td>
-              
+
               <form method="POST" action="/vendas/{{ $venda->id }}">
                   @csrf
                   @method('delete')
@@ -36,7 +36,7 @@
               </form>
 
             </td>
-          </tr>  
+          </tr>
         @endforeach
       </tbody>
   </table>

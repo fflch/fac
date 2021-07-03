@@ -17,14 +17,14 @@
                     <label for="ie" class="required"><b>IE: </b></label>
                     <input type="text" class="form-control" id="ie" name="ie" value="{{old('ie',$conveniado->ie)}}">
                 </div>
-            </div> 
+            </div>
 
             <div class="col-sm form-group">
                 <div class="form-group">
                     <label for="cnpj" class="required"><b>CNPJ: </b></label>
                     <input type="text" class="form-control cnpj" id="cnpj" name="cnpj" value="{{old('cnpj',$conveniado->cnpj)}}">
                 </div>
-            </div> 
+            </div>
         </div>
 
         <div class="row">
@@ -40,8 +40,8 @@
                     <label for="nome_fantasia" class="required"><b>Nome Fantasia: </b></label>
                     <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" value="{{old('nome_fantasia',$conveniado->nome_fantasia)}}">
                 </div>
-            </div>  
-        </div>  
+            </div>
+        </div>
     </div>
 </div>
 
@@ -91,7 +91,7 @@
                     <input type="text" class="form-control" id="estado" name="estado" value="{{old('estado',$conveniado->estado)}}">
                 </div>
             </div>
-        </div>      
+        </div>
     </div>
 </div>
 
@@ -169,20 +169,20 @@
                     <input type="text" class="form-control" id="max_parcelas" name="max_parcelas" value="{{old('max_parcelas',$conveniado->max_parcelas)}}">
                 </div>
             </div>
-        
+
             <div class="col-sm form-group">
                 <div class="form-group">
                     <label for="comissao" class="required"><b>Comissão: </b></label>
-                    <input type="text" class="form-control" id="comissao" name="comissao" value="{{old('comissao',$conveniado->comissao)}}">
+                    <input type="text" class="form-control" id="comissao" name="comissao" value="{{ $conveniado->comissao ? (old('comissao') ? old('comissao') : $conveniado->comissao) : '200' }}">
                 </div>
             </div>
 
             <div class="col-sm form-group">
                 <div class="form-group">
                     <label for="tipo_comissao" class="required"><b>Tipo de Comissão: </b></label><br>
-                    <input type="radio" id="percentual" name="tipo_comissao" value="Percentual"  @if($conveniado->tipo_comissao == "Percentual")checked @else {{ old('tipo_comissao') == 'Percentual' ? 'checked' : ''}}@endif>
+                    <input type="radio" id="percentual" name="tipo_comissao" value="Percentual" {{ $conveniado->tipo_comissao == 'Percentual' ? 'checked' : (old('tipo_comissao') == 'Percentual' ? 'checked' : '') }}>
                     <label for="percentual">Percentual</label><br>
-                    <input type="radio" id="real" name="tipo_comissao" value="Real"  @if($conveniado->tipo_comissao == "Real")checked @else {{ old('tipo_comissao') == 'Real' ? 'checked' : ''}}@endif>
+                    <input type="radio" id="real" name="tipo_comissao" value="Real" {{ $conveniado->tipo_comissao == 'Real' ? 'checked' : (old('tipo_comissao') == 'Real' ? 'checked' : '') }}>
                     <label for="real">Real</label><br>
                 </div>
             </div>
@@ -198,7 +198,9 @@
         <div class="col-sm form-group">
             <div class="form-group">
                 <label for="password" class="required"><b>Senha: </b></label>
-                <input type="text" class="form-control" id="password" name="password">
+                <br>
+                <small>Deixe este campo em branco para não mudar a senha.</small>
+                <input type="password" class="form-control" id="password" name="password">
             </div>
         </div>
     </div>

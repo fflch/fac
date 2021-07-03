@@ -36,7 +36,9 @@ class VendaController extends Controller
                         ->orWhere('razao_social','LIKE',"%{$request->search}%");
                 });
             });
+            
         }
+
         if ($conveniado) $vendas = $vendas->where('conveniado_id', $conveniado->id)->paginate(10);
         else $vendas = $vendas->paginate(10);
 
@@ -61,8 +63,8 @@ class VendaController extends Controller
     public function store(VendaRequest $request)
     {
         $this->authorize('conveniado');
+
         $validated = $request->validated();
-        $validated['data_venda'] = implode('-',array_reverse(explode('/',$request->data_venda)));
         $valor = $validated['valor'];
 
         $venda = Venda::create($validated);
@@ -91,7 +93,7 @@ class VendaController extends Controller
         $conveniado = $venda->conveniado()->first();
         $associado = $venda->associado()->first();
 
-        $venda->data_venda = implode('/',array_reverse(explode('-',$venda->data_venda)));
+        $venda->data_venda = $venda->data_venda;
         return view ('vendas.show',[
             'venda'         => $venda,
         ]);
@@ -100,7 +102,6 @@ class VendaController extends Controller
     public function edit(Venda $venda)
     {
         $this->authorize('admin');
-        $venda->data_venda = implode('/',array_reverse(explode('-',$venda->data_venda)));
         return view ('vendas.edit',[
             'venda' => $venda,
             'objeto' => FALSE,
@@ -111,7 +112,6 @@ class VendaController extends Controller
     {
         $this->authorize('admin');
         $validated = $request->validated();
-        $validated['data_venda'] = implode('-',array_reverse(explode('/',$request->data_venda)));
         $venda->update($validated);
 
         return redirect("/vendas/$venda->id");

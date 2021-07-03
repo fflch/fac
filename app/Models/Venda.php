@@ -38,4 +38,22 @@ class Venda extends Model
             return number_format($value, 2, ',', '');
         }
     }
+
+    public function getDataVendaAttribute($value){
+        if($value){
+            return implode('/',array_reverse(explode('-',$value)));
+        }
+    }
+    public function setDataVendaAttribute($value){
+        if($value){
+            $this->attributes['data_venda'] = implode('-',array_reverse(explode('/',$value)));
+        }
+    }
+
+    public function getComissaoAttribute($value){
+        if($value){
+            return number_format($value, 2, ',', '');
+        }
+    }
+
 }

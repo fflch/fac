@@ -24,54 +24,18 @@ class VendaObserver
             $venda->conveniado_id = $conveniado->id;
         }
 
-    }
-     
-    public function created(Venda $venda)
-    {
-        //
-    }
+        // armazena a comissão do conveniado
+        if ($venda->conveniado->tipo_comissao == 'Percentual') {
 
-    /**
-     * Handle the Venda "updated" event.
-     *
-     * @param  \App\Models\Venda  $venda
-     * @return void
-     */
-    public function updated(Venda $venda)
-    {
-        //
-    }
+          // isso poderia ficar melhor com a implementação correta dos tipos dos campos
+          $comissao = ((int)$venda->conveniado->comissao/100)*(int)$venda->valor;
 
-    /**
-     * Handle the Venda "deleted" event.
-     *
-     * @param  \App\Models\Venda  $venda
-     * @return void
-     */
-    public function deleted(Venda $venda)
-    {
-        //
-    }
+        } elseif ($venda->conveniado->tipo_comissao == 'Real') {
 
-    /**
-     * Handle the Venda "restored" event.
-     *
-     * @param  \App\Models\Venda  $venda
-     * @return void
-     */
-    public function restored(Venda $venda)
-    {
-        //
-    }
+          $comissao = $venda->conveniado->comissao;
+        }
 
-    /**
-     * Handle the Venda "force deleted" event.
-     *
-     * @param  \App\Models\Venda  $venda
-     * @return void
-     */
-    public function forceDeleted(Venda $venda)
-    {
-        //
+        $venda->comissao = $comissao;
+
     }
 }

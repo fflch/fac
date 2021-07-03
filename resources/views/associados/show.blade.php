@@ -9,13 +9,13 @@
     </div>
 
     <div class="card-body">
-            
+
         <div class="row">
 
             <div class="col-sm">
                 <h4>Dados Principais</h4>
 
-                <a href="/relatorios/associados/{{ $associado->id }}">Gerar Relatório </a> 
+                <a href="/relatorios/associados/{{ $associado->id }}">Gerar Relatório </a>
                 <br>
                 <br>
                 Unidade: {{ $associado->unidade }}<br>
@@ -30,7 +30,7 @@
                 CPF: {{ $associado->cpf }}<br>
                 Data de Nascimento: {{ $associado->data_nascimento }}<br><br>
 
-                <h4>Contato</h4>    
+                <h4>Contato</h4>
 
                 Comercial: {{ $associado->comercial }}<br>
                 Residencial: {{ $associado->residencial }}<br>
@@ -44,8 +44,8 @@
                 Conta Corrente: {{ $associado->conta_corrente }}<br><br>
 
                 <h4>Crédito FAC</h4>
-                
-                Saldo: {{ $associado->saldo }}<br><br>
+
+                Limite: {{ $associado->limite }}<br><br>
 
                 <!-- Relacionamento entre Venda e Associado. Lista as empresas que o associado fez compra.
                 Clicando você vai para o id da venda -->
@@ -54,8 +54,8 @@
                 <ul>
                 @foreach ($associado->vendas as $venda)
                     <li>
-                        <a href="/vendas/{{$venda->id}}">{{$venda->conveniado->nome_fantasia}}</a> - 
-                        
+                        <a href="/vendas/{{$venda->id}}">{{$venda->conveniado->nome_fantasia}}</a> -
+
                         {{$venda->created_at}}
                     </li>
                 @endforeach
