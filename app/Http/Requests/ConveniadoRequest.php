@@ -23,6 +23,11 @@ class ConveniadoRequest extends FormRequest
      */
     public function rules()
     {
+
+      // validação para senha quando for criar um usuário
+      if ($this->_method) $password_rule = 'nullable';
+      else $password_rule = 'required';
+
         return [
             'razao_social' => 'required',
             'nome_fantasia' => 'required',
@@ -44,7 +49,7 @@ class ConveniadoRequest extends FormRequest
             'tipo_comissao' => 'required',
             'comissao' => 'required|numeric',
             'max_parcelas' => 'required',
-            'password' => 'nullable',
+            'password' => $password_rule,
         ];
     }
 
@@ -72,6 +77,7 @@ class ConveniadoRequest extends FormRequest
             'comissao.required' => 'Comissão não pode ficar em branco.',
             'comissao.numeric' => 'Comissão deve ser um número.',
             'max_parcelas.required' => 'Máximo de Parcelas não pode ficar em branco.',
+            'password.required' => 'Senha não pode ficar em branco.',
           ];
     }
     protected function prepareForValidation()

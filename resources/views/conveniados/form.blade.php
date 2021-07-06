@@ -173,7 +173,7 @@
             <div class="col-sm form-group">
                 <div class="form-group">
                     <label for="comissao" class="required"><b>Comissão: </b></label>
-                    <input type="text" class="form-control" id="comissao" name="comissao" value="{{ $conveniado->comissao ? (old('comissao') ? old('comissao') : $conveniado->comissao) : '200' }}">
+                    <input type="text" class="form-control" id="comissao" name="comissao" value="{{old('comissao',$conveniado->comissao)}}">
                 </div>
             </div>
 

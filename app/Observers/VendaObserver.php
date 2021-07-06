@@ -28,7 +28,7 @@ class VendaObserver
         if ($venda->conveniado->tipo_comissao == 'Percentual') {
 
           // isso poderia ficar melhor com a implementação correta dos tipos dos campos
-          $comissao = ((int)$venda->conveniado->comissao/100)*(int)$venda->valor;
+          $comissao = ((float)$venda->conveniado->comissao/100)*(float)$venda->valor;
 
         } elseif ($venda->conveniado->tipo_comissao == 'Real') {
 

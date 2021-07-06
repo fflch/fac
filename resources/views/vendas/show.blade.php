@@ -27,6 +27,7 @@
                 Data da Venda: {{ $venda->data_venda }}<br>
                 Quantidade de Parcelas: {{ $venda->quantidade_parcelas }}<br>
                 Valor: {{ $venda->valor }}<br>
+                Comissão: {{ $venda->comissao }}<br>
                 Descrição: {{ $venda->descricao }}<br>
                 Parcelas:
 
@@ -38,7 +39,7 @@
             <li class="list-group-item" style="display: flex; justify-content: space-between;">
                 R$ {{ $parcela->valor }} - {{ $parcela->datavencto }} - {{ $parcela->status }}
                 @can('admin')
-                  @if( $parcela->status != "Baixado") 
+                  @if( $parcela->status != "Baixado")
                     <form method="POST" action="/parcelaVenda/{{ $parcela->id }}">
                         @csrf
                         @method('patch')

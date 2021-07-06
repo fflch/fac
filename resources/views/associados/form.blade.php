@@ -192,7 +192,7 @@
             <div class="col-sm form-group">
                 <div class="form-group">
                     <label for="banco" class="required"><b>Limite: </b></label>
-                    <input type="text" class="form-control" id="limite" name="limite" value="{{old('limite',$associado->limite)}}">
+                    <input type="text" class="form-control" id="limite" name="limite" value="{{ $associado->limite ? (old('limite') ? old('limite') : $associado->limite) : '200' }}">
                 </div>
             </div>
         </div>
