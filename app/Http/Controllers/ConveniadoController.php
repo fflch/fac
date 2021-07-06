@@ -43,7 +43,7 @@ class ConveniadoController extends Controller
 
         // Inicia o Database Transaction
         DB::transaction(function () use ($request, &$conveniado) {
- 
+
             $user = User::where('email',$request->e_mail)->first();
 
             if(!$user) $user = new User;
@@ -74,16 +74,16 @@ class ConveniadoController extends Controller
     public function update(ConveniadoRequest $request, Conveniado $conveniado)
     {
         $this->authorize('admin');
-        
+
         DB::transaction(function () use ($request, &$conveniado) {
-            
+
             $user = User::where('id',$conveniado->user_id)->first();
 
             if(!$user) $user = new User;
 
             $user->email = $request->e_mail;
             $user->name = $request->nome_fantasia;
-            $user->password = bcrypt($request->password);
+            if ($request->password) $user->password = bcrypt($request->password);
             $user->save();
 
             $validated = $request->validated();

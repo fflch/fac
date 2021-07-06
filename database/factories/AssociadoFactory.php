@@ -44,7 +44,7 @@ class AssociadoFactory extends Factory
             'agencia' => $this->faker->numberBetween(1000000, 9999999),
             'conta_corrente' => $this->faker->unique()->numberBetween(1000000, 9999999),
 
-            'saldo' => $this->faker->numberBetween(0, 200)
+            'limite' => $this->faker->numberBetween(0, 200)
         ];
     }
 }

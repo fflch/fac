@@ -13,11 +13,11 @@
                     <input type="text" class="form-control" id="name" name="name" value="{{old('name',$associado->name)}}">
                 </div>
             </div>
-            
+
             <div class="col-sm form-group">
                 <label for="unidade" class="required"><b>Unidade: </b></label>
                     <input type="text" class="form-control" id="unidade" name="unidade" value="{{old('unidade',$associado->unidade)}}">
-                    <!-- 
+                    <!--
                         Teste de como pegar o replicado
                         <select class="form-control" name="unidade">
                         @foreach($replicado::unidades() as $unidade)
@@ -32,7 +32,7 @@
                     <label for="numero_usp" class="required"><b>Número USP: </b></label>
                     <input type="text" class="form-control" id="numero_usp" name="numero_usp" value="{{old('numero_usp',$associado->numero_usp)}}">
                 </div>
-            </div>           
+            </div>
         </div>
 
           <div class="row">
@@ -42,7 +42,7 @@
                     <label for="data_nascimento" class="required"><b>Data de nascimento: </b></label>
                     <input type="text" class="form-control datepicker data" id="data_nascimento" name="data_nascimento" value="{{old('data_nascimento',$associado->data_nascimento)}}">
                 </div>
-            </div>  
+            </div>
 
             <div class="col-sm form-group">
                 <div class="form-group">
@@ -191,8 +191,8 @@
 
             <div class="col-sm form-group">
                 <div class="form-group">
-                    <label for="banco" class="required"><b>Saldo: </b></label>
-                    <input type="text" class="form-control" id="saldo" name="saldo" value="{{old('saldo',$associado->saldo)}}">
+                    <label for="banco" class="required"><b>Limite: </b></label>
+                    <input type="text" class="form-control" id="limite" name="limite" value="{{ $associado->limite ? (old('limite') ? old('limite') : $associado->limite) : '200' }}">
                 </div>
             </div>
         </div>

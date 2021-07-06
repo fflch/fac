@@ -27,6 +27,7 @@
                 Data da Venda: {{ $venda->data_venda }}<br>
                 Quantidade de Parcelas: {{ $venda->quantidade_parcelas }}<br>
                 Valor: {{ $venda->valor }}<br>
+                Comissão: {{ $venda->comissao }}<br>
                 Descrição: {{ $venda->descricao }}<br>
                 Parcelas:
 
@@ -38,11 +39,13 @@
             <li class="list-group-item" style="display: flex; justify-content: space-between;">
                 R$ {{ $parcela->valor }} - {{ $parcela->datavencto }} - {{ $parcela->status }}
                 @can('admin')
-                  <form method="POST" action="/parcelaVenda/{{ $parcela->id }}">
-                      @csrf
-                      @method('patch')
-                      <button class="btn btn-primary" onclick="return confirm('Tem certeza que deseja baixar a parcela?');">Baixar parcela</button>
-                  </form>
+                  @if( $parcela->status != "Baixado")
+                    <form method="POST" action="/parcelaVenda/{{ $parcela->id }}">
+                        @csrf
+                        @method('patch')
+                        <button class="btn btn-primary" onclick="return confirm('Tem certeza que deseja baixar a parcela?');">Baixar parcela</button>
+                    </form>
+                  @endif
                 @endcan
             </li>
         @endforeach

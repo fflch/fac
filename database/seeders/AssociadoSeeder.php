@@ -37,7 +37,7 @@ class AssociadoSeeder extends Seeder
             'agencia' => 35599,
             'conta_corrente' => 577751,
 
-            'saldo' => 200,
+            'limite' => 200,
         ];
         Associado::create($associado);
         Associado::factory(20)->create();
