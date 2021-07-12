@@ -46,6 +46,17 @@ $relatorios =  [
     ],
 ];
 
+$right_menu = [
+    [
+        'text' => '<i class="fas fa-hard-hat"></i>',
+        'title' => 'Logs',
+        'target' => '_blank',
+        'url' => config('app.url') . '/logs',
+        'align' => 'right',
+        'can' => 'admin',
+    ],
+];
+
 
 return [
     'title' => 'Filosofia Atlético Clube',
@@ -83,5 +94,7 @@ return [
             'url' => config('app.url') . '/vendas/create',
             'can'     => 'conveniado'
         ],
-    ]
+    ],
+
+    'right_menu' => $right_menu,
 ];
