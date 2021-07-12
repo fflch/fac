@@ -34,3 +34,6 @@ Route::patch('parcelaVenda/{parcelaVenda}', [ParcelaVendaController::class, 'upd
 // Relatórios
 Route::get('/relatorios/conveniados/{conveniado}', [RelatorioController::class, 'conveniados']);
 Route::get('/relatorios/associados/{associado}', [RelatorioController::class, 'associados']);
+
+# Logs  
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('can:admin');
