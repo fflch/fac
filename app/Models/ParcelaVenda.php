@@ -12,7 +12,7 @@ class ParcelaVenda extends Model
     protected $guarded = ['id'];
 
     const STATUS = [
-        'A Vencer',    
+        'A Vencer',
         'Baixado',
         'Vencido'
     ];
@@ -27,7 +27,7 @@ class ParcelaVenda extends Model
             $this->attributes['valor'] = str_replace(',','.',$value);
         }
     }
-    
+
     public function getValorAttribute($value){
         if($value){
             return number_format($value, 2, ',', '');
@@ -49,5 +49,21 @@ class ParcelaVenda extends Model
             } else return $value;
         }
     }
-    
+
+    public static function meses(){
+      return [
+        'Janeiro',
+        'Fevereiro',
+        'Março',
+        'Abril',
+        'Maio',
+        'Junho',
+        'Julho',
+        'Agosto',
+        'Setembro',
+        'Outubro',
+        'Novembro',
+        'Dezembro',
+      ];
+    }
 }
