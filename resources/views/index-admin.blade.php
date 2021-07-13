@@ -35,7 +35,17 @@
             <td>{{ $parcela->valor }}</td>
             <td>{{ $parcela->venda->conveniado->nome_fantasia }}</td>
             <td>{{ $parcela->status }}</td>
-            <td style="display:flex; justify-content:center;"><input class="form-check-input" type="checkbox" value="" @if ($parcela->status == "Baixado") disabled @endif></td>
+            <td>
+              @can('admin')
+                @if( $parcela->status != "Baixado")
+                  <form method="POST" action="/parcelaVenda/{{ $parcela->id }}">
+                      @csrf
+                      @method('patch')
+                      <button class="btn btn-primary" onclick="return confirm('Tem certeza que deseja baixar a parcela?');">Baixar parcela</button>
+                  </form>
+                @endif
+              @endcan
+            </td>
           </tr>
         @empty
           <div class="alert alert-warning" role="alert">
