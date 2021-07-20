@@ -37,12 +37,12 @@ $vendas =  [
 $relatorios =  [
     [
         'text' => 'Conveniados',
-        'url'  => '/',
+        'url'  => '/relatorios/conveniados',
     ],
 
     [
         'text' => 'Associados',
-        'url'  => '/',
+        'url'  => '/relatorios/associados',
     ],
 ];
 

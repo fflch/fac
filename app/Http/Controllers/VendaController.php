@@ -36,7 +36,7 @@ class VendaController extends Controller
                         ->orWhere('razao_social','LIKE',"%{$request->search}%");
                 });
             });
-            
+
         }
 
         if ($conveniado) $vendas = $vendas->where('conveniado_id', $conveniado->id)->paginate(10);
@@ -75,8 +75,9 @@ class VendaController extends Controller
             $parcela_venda->venda_id = $venda->id;
             $parcela_venda->numero = $venda->quantidade_parcelas; # redundante
             $parcela_venda->valor = $valor/$venda->quantidade_parcelas;
+
             # Vamos fixar no dia 10 de cada mês
-            $date = Carbon::now();
+            $date = Carbon::createFromFormat('d/m/Y', $venda->data_venda);
             $parcela_venda->datavencto = $date->day(10)->addMonth($i);;
             $parcela_venda->status = 'A Vencer';
             $parcela_venda->save();
@@ -97,24 +98,6 @@ class VendaController extends Controller
         return view ('vendas.show',[
             'venda'         => $venda,
         ]);
-    }
-
-    public function edit(Venda $venda)
-    {
-        $this->authorize('admin');
-        return view ('vendas.edit',[
-            'venda' => $venda,
-            'objeto' => FALSE,
-        ]);
-    }
-
-    public function update(VendaRequest $request, Venda $venda)
-    {
-        $this->authorize('admin');
-        $validated = $request->validated();
-        $venda->update($validated);
-
-        return redirect("/vendas/$venda->id");
     }
 
     public function destroy(Venda $venda)

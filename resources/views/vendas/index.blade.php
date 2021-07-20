@@ -16,7 +16,7 @@
           <th><h3>Venda por Associado</h3></th>
           <th><h3>Data da venda</h3></th>
           <th><h3>Conveniado</h3></th>
-          <th><h3>Ações</h3></th>
+          <th><h3>Ação</h3></th>
         </tr>
       </thead>
 
@@ -31,7 +31,6 @@
               <form method="POST" action="/vendas/{{ $venda->id }}">
                   @csrf
                   @method('delete')
-                  <a href="/vendas/{{$venda->id}}/edit"><i class="far fa-edit"></a></i>
                   <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?');" style="background-color: transparent;border: none;"><i class="far fa-trash-alt" color="#007bff"></i></button>
               </form>
 

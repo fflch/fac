@@ -31,29 +31,19 @@ class IndexController extends Controller
             }
 
             // índice do admin
-            // recebe uma array com os meses do ano
-            $meses = ParcelaVenda::meses();
 
-            // recebe o mês e ano para query
-            if ($request->mes) {
-              $mes = $request->mes;
-              $ano = $request->ano;
+            if($request->start_date and $request->end_date) {
+              $start_date = Carbon::createFromFormat('d/m/Y', $request->start_date)->format('Y-m-d');
+              $end_date = Carbon::createFromFormat('d/m/Y', $request->end_date)->format('Y-m-d');
             } else {
-              $mes = Carbon::now()->month;
-              $ano = Carbon::now()->year;
+              $start_date = Carbon::now();
+              $end_date = $start_date;
             }
 
-            // realiza a query
-            $parcelas = ParcelaVenda::whereYear('datavencto', $ano)
-              ->whereMonth('datavencto', $mes)
-              ->paginate(10);
+            $parcelas = ParcelaVenda::whereBetween('datavencto', [$start_date, $end_date])->paginate(10);
 
             return view ('index-admin', [
               'parcelas'  => $parcelas,
-              'meses'     => $meses,
-              'mes'       => $mes,
-              'ano'       => $ano,
-
             ]);
         }
         // índice de qualquer user

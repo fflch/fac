@@ -8,9 +8,29 @@ use App\Models\ParcelaVenda;
 class ParcelaVendaController extends Controller
 {
 
+    public function baixarEmLote(Request $request)
+    {
+      $this->authorize('admin');
+
+      if ($request->parcelas_id) {
+        $parcelas_id = $request->parcelas_id;
+        $parcelas = new ParcelaVenda;
+        foreach ($parcelas_id as $id) {
+          $parcelas = ParcelaVenda::where('id', $id);
+        }
+        $parcelas = $parcelas->get();
+
+        foreach ($parcelas as $parcela) {
+          dd($parcela->valor);
+        }
+      }
+    }
+
     public function update(ParcelaVenda $parcelaVenda)
     {
         $this->authorize('admin');
+
+        // Verifica se as parcelas anteriores foram baixadas
         $venda = $parcelaVenda->venda;
         $parcelas = $venda->parcelas;
         foreach ($parcelas as $parcela) {
@@ -19,6 +39,7 @@ class ParcelaVendaController extends Controller
             return redirect("/vendas/$parcelaVenda->venda_id");
           }
         }
+
         $parcelaVenda->status = 'Baixado';
         $parcelaVenda->update();
         request()->session()->flash('alert-success', 'Parcela baixada com sucesso.');

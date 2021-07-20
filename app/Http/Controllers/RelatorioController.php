@@ -12,24 +12,31 @@ use PDF;
 
 class RelatorioController extends Controller
 {
-    public function conveniados(Conveniado $conveniado)
+    public function conveniados(Request $request)
     {
         $this->authorize('admin');
-        $pdf = PDF::loadView('relatorios.conveniados', [
-            'conveniado' => $conveniado
-        ]);
 
-        return $pdf->download('convenidos.pdf');
+        // $pdf = PDF::loadView('relatorios.conveniados', [
+        //     'conveniado' => $conveniado
+        // ]);
+        //
+        // return $pdf->download('convenidos.pdf');
+        
+        return view ('relatorios.conveniados');
+
     }
 
-    public function associados(Associado $associado)
+    public function associados(Request $request)
     {
         $this->authorize('admin');
-        $pdf = PDF::loadView('relatorios.associados', [
-            'associado' => $associado
-        ]);
 
-        return $pdf->download('associados.pdf');
+        // $pdf = PDF::loadView('relatorios.associados', [
+        //     'associado' => $associado
+        // ]);
+        //
+        // return $pdf->download('associados.pdf');
+        return view ('relatorios.associados');
+
     }
 
 }

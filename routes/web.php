@@ -20,7 +20,7 @@ Route::get('callback', [LoginController::class, 'handleProviderCallback']);
 Route::get('localLogin', [LoginController::class, 'localLogin']);
 Route::post('logout', [LoginController::class, 'logout']);
 
-// Rotas Associado 
+// Rotas Associado
 Route::resource('/associados', AssociadoController::class);
 
 // Rotas Conveniado
@@ -28,12 +28,14 @@ Route::resource('/conveniados', ConveniadoController::class);
 
 // Rotas Vendas
 Route::resource('/vendas', VendaController::class);
+
 // Atualização do status da parcela
+Route::get('/parcelaVenda/baixarEmLote', [ParcelaVendaController::class, 'baixarEmLote']);
 Route::patch('parcelaVenda/{parcelaVenda}', [ParcelaVendaController::class, 'update']);
 
 // Relatórios
-Route::get('/relatorios/conveniados/{conveniado}', [RelatorioController::class, 'conveniados']);
-Route::get('/relatorios/associados/{associado}', [RelatorioController::class, 'associados']);
+Route::get('/relatorios/conveniados', [RelatorioController::class, 'conveniados']);
+Route::get('/relatorios/associados', [RelatorioController::class, 'associados']);
 
-# Logs  
+# Logs
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('can:admin');
