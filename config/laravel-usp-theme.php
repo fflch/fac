@@ -85,13 +85,13 @@ return [
             'can'     => 'admin'
         ],
         [
-            'text'    => 'Relatórios',
-            'submenu' => $relatorios,
-            'can'     => 'admin'
+            'text'    => 'Cadastrar Venda',
+            'url'     => config('app.url') . '/vendas/create',
+            'can'     => 'conveniado'
         ],
         [
-            'text'    => 'Cadastrar Venda',
-            'url' => config('app.url') . '/vendas/create',
+            'text'    => 'Ver relatório',
+            'url'     => config('app.url') . '/relatorios/conveniados/',
             'can'     => 'conveniado'
         ],
     ],

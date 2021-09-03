@@ -28,6 +28,13 @@ class ParcelaVenda extends Model
         }
     }
 
+    public function getValorRawAttribute(){
+        if($this->valor){
+            return str_replace(',','.',$this->valor);
+        }
+    }
+
+    // cópia
     public function getValorAttribute($value){
         if($value){
             return number_format($value, 2, ',', '');
