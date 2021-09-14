@@ -34,8 +34,10 @@ Route::get('/parcelaVenda/baixarEmLote', [ParcelaVendaController::class, 'baixar
 Route::patch('parcelaVenda/{parcelaVenda}', [ParcelaVendaController::class, 'update']);
 
 // Relatórios
-Route::get('/relatorios/conveniados', [RelatorioController::class, 'conveniados']);
-Route::get('/relatorios/associados', [RelatorioController::class, 'associados']);
+Route::get('/relatorios/conveniados/{conveniado_id}', [RelatorioController::class, 'conveniados']);
+Route::get('/relatorios/conveniados/pdf/{conveniado_id}', [RelatorioController::class, 'pdf']);
+Route::get('/relatorios/associados', [IndexController::class, 'pdf']);
 
-# Logs
+
+// Logs
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('can:admin');

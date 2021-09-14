@@ -25,7 +25,7 @@
         <tr>
           <th><h3>Conveniados</h3></th>
         </tr>
-        <tr> 
+        <tr>
           <th><h4>Nome Fantasia</h4></th>
           <th><h4>Razão Social</h4></th>
           <th><h4>CNPJ</h4></th>
@@ -47,14 +47,14 @@
             E-mail : {{$conveniado->e_mail}}<br>
           </td>
           <td>
-              
+
             <form method="POST" action="/conveniados/{{ $conveniado->id }}">
                 @csrf
                 @method('delete')
                 <a href="/conveniados/{{$conveniado->id}}/edit"><i class="far fa-edit"></a></i>
                 <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?');" style="background-color: transparent;border: none;"><i class="far fa-trash-alt" color="#007bff"></i></button>
             </form>
-
+            
           </td>
         </tr>
       @endforeach

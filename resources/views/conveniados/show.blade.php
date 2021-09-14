@@ -11,10 +11,13 @@
 
     <div class="card-body">
         <div class="row">
-            <div class="col-sm">            
+            <div class="col-sm">
                 <h4>Dados Principais</h4>
-
-                <a href="/relatorios/conveniados/{{ $conveniado->id }}">Gerar Relatório </a> 
+                <div>
+                <a href="/relatorios/conveniados/{{$conveniado->id}}">
+                   Ver Relatório
+                </a>
+                </div>
                 <br>
                 <br>
                 Razão Social: {{ $conveniado->razao_social }}<br>
@@ -28,7 +31,7 @@
                 CNPJ: {{ $conveniado->cnpj }}<br>
                 Responsável: {{ $conveniado->responsavel }}<br><br>
 
-                <h4>Contatos</h4>    
+                <h4>Contatos</h4>
 
                 Comercial: {{ $conveniado->comercial }}<br>
                 Recado: {{ $conveniado->recado }}<br>

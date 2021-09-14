@@ -73,9 +73,10 @@ class VendaController extends Controller
         for($i = 1 ; $i <= $venda->quantidade_parcelas; $i++){
             $parcela_venda = new ParcelaVenda;
             $parcela_venda->venda_id = $venda->id;
-            $parcela_venda->numero = $venda->quantidade_parcelas; # redundante
+            $parcela_venda->numero = $i;
             $parcela_venda->valor = $valor/$venda->quantidade_parcelas;
-
+            $parcela_venda->comissao = (float)$venda->comissao/$venda->quantidade_parcelas;
+            
             # Vamos fixar no dia 10 de cada mês
             $date = Carbon::createFromFormat('d/m/Y', $venda->data_venda);
             $parcela_venda->datavencto = $date->day(10)->addMonth($i);;

@@ -2,49 +2,83 @@
 
 @section('content')
 
+  <form method="get" action="/relatorios/conveniados/{{ $conveniado->id }}">
   @include('partials.parcelas-search')
+  </form>
 
-  foreach ($conveniados as $conveniado)
-    <div class="card">
+  <div class="card">
 
-      <div class="card-header">
-       <h3>$conveniado->nome_fantasia</h3>
-      </div>
-      <div class="card-body">
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>CNPJ</th>
-                <th>Banco</th>
-                <th>Agência</th>
-                <th>Conta Corrente</th>
-              </tr>
-            </thead>
-            <tbody>
-                <tr>
-                  <td> $conveniado->cnpj </td>
-                  <td> $conveniado->banco </td>
-                  <td> $conveniado->agencia </td>
-                  <td> $conveniado->conta_corrente </td>
-                </tr>
-            </tbody>
-        </table>
-      </div>
-
-      <div class="card-header">
-        <h4>Parcelas a receber</h4>
-      </div>
-      <div class="card-body">
-        <ul class="list-group">
-            foreach ($conveniado->vendas->parcelas as $parcela)
-                <li class="list-group-item">Associado - $parcela->venda->associado</li>
-                <li class="list-group-item">Valor total - $parcela->valor</li>
-                <li class="list-group-item">Valor da comissão - $parcela-></li>
-                <hr>
-            endforeach
-        </ul>
-      </div>
-
+  <div class="card-header">
+   <h3 class="card-title">{{ $conveniado->nome_fantasia }}</h3>
+   <div>
+     <a href="/relatorios/conveniados/pdf/{{$conveniado->id}}?start_date={{ request()->start_date }}
+     &end_date={{ request()->end_date }}">
+     <i class="fas fa-file-pdf"></i> Exportar Relatório em PDF</a>
+   </div>
+   <hr>
+   <table class="table">
+     <thead>
+       <tr class="table-active">
+         <th>CNPJ</th>
+         <th>Banco</th>
+         <th>Agência</th>
+         <th>Conta Corrente</th>
+         <th>Tipo de Comissão</th>
+         <th>Comissão</th>
+       </tr>
+     </thead>
+     <tbody>
+         <tr>
+           <td>{{ $conveniado->cnpj }}</td>
+           <td>{{ $conveniado->banco }}</td>
+           <td>{{ $conveniado->agencia }}</td>
+           <td>{{ $conveniado->conta_corrente }}</td>
+           <td>{{ $conveniado->tipo_comissao }}</td>
+           <td>{{ $conveniado->comissao }}</td>
+         </tr>
+      <tbody>
+   </table>
   </div>
-  endforeach
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Data de vencimento</th>
+          <th>Associado</th>
+          <th>Valor</th>
+          <th>Parcela</th>
+        </tr>
+      </thead>
+      @foreach ($parcelas as $parcela)
+        <tbody>
+            <tr>
+              <td>{{ $parcela->datavencto }}</td>
+              <td>{{ $parcela->venda->associado->name }}</td>
+              <td>R$ {{ $parcela->valor }}</td>
+              <td>{{ $parcela->numero }} de {{ $parcela->venda->quantidade_parcelas }}</td>
+            </tr>
+        </tbody>
+      @endforeach
+      </table>
+    </div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr class="table-active">
+          <th>Total vendido</th>
+          <th>Comissão FAC</th>
+          <th>Total a pagar</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td>R$ {{ str_replace('.',',', $parcelas->sum('valor_raw')) }}</td>
+            <td>R$ {{ str_replace('.',',', $parcelas->sum('comissao')) }}</td>
+            <td>R$ {{ str_replace('.',',', ($parcelas->sum('valor_raw') - $parcelas->sum('comissao'))) }}</td>
+          </tr>
+       <tbody>
+    </table>
+  </div>
+</div>
+
 @endsection
