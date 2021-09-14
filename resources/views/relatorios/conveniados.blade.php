@@ -9,46 +9,50 @@
   <div class="card">
 
     <div class="card-header">
-      <h3 class="card-title">{{ $conveniado->nome_fantasia }}</h3>
-      @if (request()->start_date)
-        <div>
-          <a href="/relatorios/conveniados/pdf/{{$conveniado->id}}?start_date={{ request()->start_date }}
-            &end_date={{ request()->end_date }}">
-            <i class="fas fa-file-pdf"></i> Exportar Relatório em PDF
-          </a>
-        </div>
-      @else
-        <div class="alert alert-warning" role="alert">
-          Selecione um período.
-        </div>
-      @endif
+      
+  	 <h3 class="card-title">{{ $conveniado->nome_fantasia }}</h3>
+  	 @if (request()->start_date)
+             <div>
+  	     <a href="/relatorios/conveniados/pdf/{{$conveniado->id}}?start_date={{ request()->start_date }}
+  	       &end_date={{ request()->end_date }}">
+                 <i class="fas fa-file-pdf"></i> Exportar Relatório em PDF
+  	      </a>
+  	    </div>
+  	  @else
+              <div class="alert alert-warning" role="alert">
+                Selecione um período.
+  	    </div>
+  	  @endif
+
+      <div class="card-body">
+
+        <table class="table">
+          <thead>
+            <tr class="table-active">
+              <th>CNPJ</th>
+              <th>Banco</th>
+              <th>Agência</th>
+              <th>Conta Corrente</th>
+              <th>Tipo de Comissão</th>
+              <th>Comissão</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ $conveniado->cnpj }}</td>
+              <td>{{ $conveniado->banco }}</td>
+              <td>{{ $conveniado->agencia }}</td>
+              <td>{{ $conveniado->conta_corrente }}</td>
+              <td>{{ $conveniado->tipo_comissao }}</td>
+              <td>{{ $conveniado->comissao }}</td>
+            </tr>
+          <tbody>
+        </table>
+
+      </div>
+
     </div>
 
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr class="table-active">
-            <th>CNPJ</th>
-            <th>Banco</th>
-            <th>Agência</th>
-            <th>Conta Corrente</th>
-            <th>Tipo de Comissão</th>
-            <th>Comissão</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ $conveniado->cnpj }}</td>
-            <td>{{ $conveniado->banco }}</td>
-            <td>{{ $conveniado->agencia }}</td>
-            <td>{{ $conveniado->conta_corrente }}</td>
-            <td>{{ $conveniado->tipo_comissao }}</td>
-            <td>{{ $conveniado->comissao }}</td>
-          </tr>
-        <tbody>
-      </table>
-    </div>
-    
     @if ($parcelas)
       <div class="card-body">
         <table class="table table-striped">
