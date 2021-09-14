@@ -16,9 +16,10 @@ class RelatorioController extends Controller
 {
     public function conveniados(Request $request, $conveniado_id)
     {
-        $this->authorize('conveniado');
 
-        $conveniado = Conveniado::where('id',$conveniado_id)->first();
+        $this->authorize('conveniado.owner', $conveniado_id);
+	
+	$conveniado = Conveniado::where('id',$conveniado_id)->first();
 
         $parcelas = self::query($request, $conveniado_id);
 
@@ -32,7 +33,7 @@ class RelatorioController extends Controller
     public function pdf(Request $request, $conveniado_id)
     {
 
-      $this->authorize('conveniado');
+      $this->authorize('conveniado.owner', $conveniado_id);
 
       $conveniado = Conveniado::where('id',$conveniado_id)->first();
 

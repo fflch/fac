@@ -38,32 +38,38 @@ class IndexController extends Controller
 
 	    // query
 	    
-	    if ($array_date) $parcelas = ParcelaVenda::whereBetween('datavencto', $array_date)->paginate(10);
-            else $parcelas = NULL;
+	    if ($array_date) {
+		    $parcelas = ParcelaVenda::whereBetween('datavencto', $array_date)->paginate(10);
+	    } else $parcelas = NULL;
 	 
             return view ('index-admin', [
               'parcelas'  => $parcelas,
             ]);
-        }
+	}
+
         // índice de qualquer user
         return view ('index');
     }
 
     public function pdf(Request $request)
     {
-
+      $this->authorize('admin');
+      
       // data de vencimento
       $array_date = self::datavencto($request);
 
       // query
 
-      if ($array_date) $parcelas = ParcelaVenda::whereBetween('datavencto', $array_date)->get();
-      else $parcelas = NULL;
+      if ($array_date) {
+	      $parcelas = ParcelaVenda::whereBetween('datavencto', $array_date)->get();
+      } else $parcelas = NULL;
 
       $pdf = PDF::loadView('pdf.associados', [
           'parcelas'    => $parcelas,
-      ])->setPaper('a4', 'landscape');
+  ])->setPaper('a4', 'landscape');
+
       return $pdf->download("associados.pdf");
+    
     }
 
     private function datavencto($request)
