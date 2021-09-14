@@ -89,11 +89,6 @@ return [
             'url'     => config('app.url') . '/vendas/create',
             'can'     => 'conveniado'
         ],
-        [
-            'text'    => 'Ver relatório',
-            'url'     => config('app.url') . '/relatorios/conveniados/',
-            'can'     => 'conveniado'
-        ],
     ],
 
     'right_menu' => $right_menu,
