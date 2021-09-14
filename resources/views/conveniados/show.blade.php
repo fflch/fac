@@ -14,9 +14,9 @@
             <div class="col-sm">
                 <h4>Dados Principais</h4>
                 <div>
-                <a href="/relatorios/conveniados/{{$conveniado->id}}">
-                   Ver Relatório
-                </a>
+
+                @include('partials.link-relatorio-conveniado')
+
                 </div>
                 <br>
                 <br>

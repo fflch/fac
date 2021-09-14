@@ -50,5 +50,15 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
+        // conveniado
+        Gate::define('conveniado.owner', function ($user, $conveniado_id) {
+
+            if(Gate::allows('admin')) return true;
+            $conveniado = $user->conveniado();
+            if($conveniado) {
+                if($user->conveniado()->id == $conveniado_id) return true;
+            }           
+            return false;
+        });
     }
 }

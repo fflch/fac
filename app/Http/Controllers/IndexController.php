@@ -30,10 +30,6 @@ class IndexController extends Controller
                     'vendas'     => isset($vendas) ? $vendas : null,
                 ]);
             }
-
-            // índice do admin
-
-            // data de vencimento
             $array_date = self::datavencto($request);
 
             // query
@@ -49,6 +45,7 @@ class IndexController extends Controller
 
     public function pdf(Request $request)
     {
+      $this->authorize('admin');
 
       // data de vencimento
       $array_date = self::datavencto($request);
@@ -58,7 +55,7 @@ class IndexController extends Controller
 
       $pdf = PDF::loadView('pdf.associados', [
           'parcelas'    => $parcelas,
-      ])->setPaper('a4', 'landscape');
+        ])->setPaper('a4', 'landscape');
       return $pdf->download("associados.pdf");
     }
 
@@ -75,4 +72,5 @@ class IndexController extends Controller
 
       return [$start_date, $end_date];
     }
+    
 }

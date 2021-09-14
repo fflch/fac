@@ -14,7 +14,7 @@ class AddComissaoColumnInParcelaVendas extends Migration
     public function up()
     {
         Schema::table('parcela_vendas', function (Blueprint $table) {
-            $table->float('comissao');
+            $table->float('comissao')->nullable();
         });
     }
 
