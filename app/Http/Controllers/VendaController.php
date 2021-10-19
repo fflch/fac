@@ -65,32 +65,7 @@ class VendaController extends Controller
         $this->authorize('conveniado');
 
         $validated = $request->validated();
-        $valor = $validated['valor'];      
-
         $venda = Venda::create($validated);
-    
-        # Lanças as parcelas
-        for($i = 1 ; $i <= $venda->quantidade_parcelas; $i++){
-            $parcela_venda = new ParcelaVenda;
-            $parcela_venda->venda_id = $venda->id;
-            $parcela_venda->numero = $i;
-            $parcela_venda->valor = $valor/$venda->quantidade_parcelas;
-            $parcela_venda->comissao = (float)$venda->comissao/$venda->quantidade_parcelas;
-            
-            # Vamos fixar no dia 10 de cada mês
-            $date = Carbon::createFromFormat('d/m/Y', $venda->data_venda);
-            $parcela_venda->datavencto = $date->day(10)->addMonth($i);;
-            $parcela_venda->status = 'A Vencer';
-            $parcela_venda->save();
-        }
-
-        #dd(gettype($parcela_venda->valor_raw ));
-
-        # somando valores quebrados na última parcela
-        $sobra = $venda->valor_raw - ($parcela_venda->valor_raw * (float)$venda->quantidade_parcelas);
-        $parcela_venda->valor = $parcela_venda->valor_raw + $sobra;
-        $parcela_venda->save();
-
         return redirect("/vendas/$venda->id");
     }
 

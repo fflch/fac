@@ -28,8 +28,8 @@ class VendaFactory extends Factory
             'conveniado_id' => Conveniado::factory()->create()->id,
             'associado_id' => Associado::factory()->create()->id,
             'data_venda' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
-            'quantidade_parcelas' => $this->faker->randomDigit,
-            'valor' => $this->faker->numberBetween(0, 1000),
+            'quantidade_parcelas' => $this->faker->numberBetween(1, 10),
+            'valor' => $this->faker->numberBetween(1, 1000),
             'descricao' => $this->faker->text,
         ];
     }

@@ -24,14 +24,8 @@ class VendaSeeder extends Seeder
             'descricao' => 'Compra de uma camiseta',
         ];
 
-        // mutar o VendaObserver
-        Venda::withoutEvents(function () use ($venda) {
-
-            Venda::create($venda);
-            Venda::factory(20)->create();
-
-        });
-
+        Venda::create($venda);
+        Venda::factory(20)->create();
 
     }
 }
