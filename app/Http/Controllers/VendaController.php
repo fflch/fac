@@ -65,10 +65,10 @@ class VendaController extends Controller
         $this->authorize('conveniado');
 
         $validated = $request->validated();
-        $valor = $validated['valor'];
+        $valor = $validated['valor'];      
 
         $venda = Venda::create($validated);
-
+    
         # Lanças as parcelas
         for($i = 1 ; $i <= $venda->quantidade_parcelas; $i++){
             $parcela_venda = new ParcelaVenda;
@@ -83,6 +83,13 @@ class VendaController extends Controller
             $parcela_venda->status = 'A Vencer';
             $parcela_venda->save();
         }
+
+        #dd(gettype($parcela_venda->valor_raw ));
+
+        # somando valores quebrados na última parcela
+        $sobra = $venda->valor_raw - ($parcela_venda->valor_raw * (float)$venda->quantidade_parcelas);
+        $parcela_venda->valor = $parcela_venda->valor_raw + $sobra;
+        $parcela_venda->save();
 
         return redirect("/vendas/$venda->id");
     }

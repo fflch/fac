@@ -30,7 +30,7 @@ class ParcelaVenda extends Model
 
     public function getValorRawAttribute(){
         if($this->valor){
-            return str_replace(',','.',$this->valor);
+            return (float) str_replace(',','.',$this->valor);
         }
     }
 

@@ -39,6 +39,12 @@ class Venda extends Model
         }
     }
 
+    public function getValorRawAttribute(){
+        if($this->valor){
+            return (float)str_replace(',','.',$this->valor);
+        }
+    }
+
     public function getDataVendaAttribute($value){
         if($value){
             return implode('/',array_reverse(explode('-',$value)));
