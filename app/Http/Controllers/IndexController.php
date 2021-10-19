@@ -30,15 +30,23 @@ class IndexController extends Controller
                     'vendas'     => isset($vendas) ? $vendas : null,
                 ]);
             }
+
+            // índice do admin
+
+            // data de vencimento
             $array_date = self::datavencto($request);
 
-            // query
-            $parcelas = ParcelaVenda::whereBetween('datavencto', $array_date)->paginate(10);
-
+	    // query
+	    
+	    if ($array_date) {
+		    $parcelas = ParcelaVenda::whereBetween('datavencto', $array_date)->paginate(10);
+	    } else $parcelas = NULL;
+	 
             return view ('index-admin', [
               'parcelas'  => $parcelas,
             ]);
-        }
+	}
+
         // índice de qualquer user
         return view ('index');
     }
@@ -46,17 +54,22 @@ class IndexController extends Controller
     public function pdf(Request $request)
     {
       $this->authorize('admin');
-
+      
       // data de vencimento
       $array_date = self::datavencto($request);
 
       // query
-      $parcelas = ParcelaVenda::whereBetween('datavencto', $array_date)->get();
+
+      if ($array_date) {
+	      $parcelas = ParcelaVenda::whereBetween('datavencto', $array_date)->get();
+      } else $parcelas = NULL;
 
       $pdf = PDF::loadView('pdf.associados', [
           'parcelas'    => $parcelas,
-        ])->setPaper('a4', 'landscape');
+  ])->setPaper('a4', 'landscape');
+
       return $pdf->download("associados.pdf");
+    
     }
 
     private function datavencto($request)
@@ -66,11 +79,9 @@ class IndexController extends Controller
         $start_date = Carbon::createFromFormat('d/m/Y', $request->start_date)->format('Y-m-d');
         $end_date = Carbon::createFromFormat('d/m/Y', $request->end_date)->format('Y-m-d');
       } else {
-        $start_date = Carbon::now();
-        $end_date = $start_date;
+            return NULL;	
       }
 
       return [$start_date, $end_date];
     }
-    
 }

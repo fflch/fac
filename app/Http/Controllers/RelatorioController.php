@@ -16,9 +16,10 @@ class RelatorioController extends Controller
 {
     public function conveniados(Request $request, $conveniado_id)
     {
-        $this->authorize('conveniado.owner', $conveniado_id);
 
-        $conveniado = Conveniado::where('id',$conveniado_id)->first();
+        $this->authorize('conveniado.owner', $conveniado_id);
+	
+	$conveniado = Conveniado::where('id',$conveniado_id)->first();
 
         $parcelas = self::query($request, $conveniado_id);
 
@@ -33,8 +34,9 @@ class RelatorioController extends Controller
     {
 
       $this->authorize('conveniado.owner', $conveniado_id);
-      
+
       $conveniado = Conveniado::where('id',$conveniado_id)->first();
+
       $parcelas = self::query($request, $conveniado_id);
 
       $pdf = PDF::loadView('pdf.conveniados', [
@@ -49,23 +51,26 @@ class RelatorioController extends Controller
     {
 
       // data de vencimento
-      if($request->start_date and $request->end_date) {
+      if ($request->start_date and $request->end_date) {
         $start_date = Carbon::createFromFormat('d/m/Y', $request->start_date)->format('Y-m-d');
         $end_date = Carbon::createFromFormat('d/m/Y', $request->end_date)->format('Y-m-d');
-      } else {
-        $start_date = Carbon::now();
-        $end_date = $start_date;
-      }
 
-      // filtro para Conveniado
-      $parcelas = DB::table('parcela_vendas')
-      ->select('parcela_vendas.id')
-      ->join('vendas', 'parcela_vendas.venda_id', '=', 'vendas.id')
-      ->where('conveniado_id', $conveniado_id)
-      ->whereBetween('datavencto', [$start_date, $end_date])->get();
+        // filtro para Conveniado
+        $parcelas = DB::table('parcela_vendas')
+        ->select('parcela_vendas.id')
+        ->join('vendas', 'parcela_vendas.venda_id', '=', 'vendas.id')
+        ->where('conveniado_id', $conveniado_id)
+        ->whereBetween('datavencto', [$start_date, $end_date])->get();
 
-      $parcelas = ParcelaVenda::whereIn('id', $parcelas->pluck('id'))->get();
+        $parcelas = ParcelaVenda::whereIn('id', $parcelas->pluck('id'))->get();
 
-      return $parcelas;
+        
+        } else {
+
+	    $parcelas = NULL;
+	
+	}
+      
+        return $parcelas;
     }
 }
