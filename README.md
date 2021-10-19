@@ -1,6 +1,6 @@
 
 
-## Marisa
+## Features
 
 - Na página do associado mostrar as compras que o associado fez
 - Na página que listas os associados implementar uma busca por nome ou número USP ((um campo de busca que busca nas 2 colunas))
