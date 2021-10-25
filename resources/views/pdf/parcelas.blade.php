@@ -51,6 +51,6 @@
     </tbody>
   </table>
   @section('footer')
-    <h3>Total geral: R$ {{ str_replace('.',',', $parcelas->sum('valor_raw')) }}</h3>
+    <h3>Total geral: R$ {{ number_format($parcelas->sum('valor_raw'), 2, ',', '') }}</h3>
   @endsection
 @endsection

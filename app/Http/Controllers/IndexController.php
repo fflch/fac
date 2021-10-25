@@ -39,11 +39,12 @@ class IndexController extends Controller
 	    // query
 	    
 	    if ($array_date) {
-		    $parcelas = ParcelaVenda::whereBetween('datavencto', $array_date)->paginate(10);
+	   	 $parcelas = ParcelaVenda::whereBetween('datavencto',$array_date)->orderBy('datavencto', 'desc')->paginate(10);
+	
 	    } else $parcelas = NULL;
-	 
-            return view ('index-admin', [
-              'parcelas'  => $parcelas,
+        
+        return view ('index-admin', [
+            'parcelas'  => $parcelas,
             ]);
 	}
 
@@ -51,7 +52,7 @@ class IndexController extends Controller
         return view ('index');
     }
 
-    public function pdf(Request $request)
+    public function parcelasPdf(Request $request)
     {
       $this->authorize('admin');
       
@@ -64,11 +65,11 @@ class IndexController extends Controller
 	      $parcelas = ParcelaVenda::whereBetween('datavencto', $array_date)->get();
       } else $parcelas = NULL;
 
-      $pdf = PDF::loadView('pdf.associados', [
+      $pdf = PDF::loadView('pdf.parcelas', [
           'parcelas'    => $parcelas,
   ])->setPaper('a4', 'landscape');
 
-      return $pdf->download("associados.pdf");
+      return $pdf->download($array_date[0] . "_a_" . $array_date[1] . ".pdf");
     
     }
 

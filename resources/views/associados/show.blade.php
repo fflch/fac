@@ -15,7 +15,7 @@
             <div class="col-sm">
                 <h4>Dados Principais</h4>
 
-                <a href="/relatorios/associados/{{ $associado->id }}">Gerar Relatório </a>
+                <a href="/relatorios/associados/pdf/{{ $associado->id }}">Gerar Relatório </a>
                 <br>
                 <br>
                 Unidade: {{ $associado->unidade }}<br>

@@ -35,8 +35,9 @@ Route::patch('parcelaVenda/{parcelaVenda}', [ParcelaVendaController::class, 'upd
 
 // Relatórios
 Route::get('/relatorios/conveniados/{conveniado_id}', [RelatorioController::class, 'conveniados']);
-Route::get('/relatorios/conveniados/pdf/{conveniado_id}', [RelatorioController::class, 'pdf']);
-Route::get('/relatorios/associados', [IndexController::class, 'pdf']);
+Route::get('/relatorios/conveniados/pdf/{conveniado_id}', [RelatorioController::class, 'conveniadoPdf']);
+Route::get('/relatorios/parcelas/pdf', [IndexController::class, 'parcelasPdf']);
+Route::get('/relatorios/associados/pdf/{associado_id}', [RelatorioController::class, 'associadoPdf']);
 
 
 // Logs

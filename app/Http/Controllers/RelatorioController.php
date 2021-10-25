@@ -30,7 +30,7 @@ class RelatorioController extends Controller
 
     }
 
-    public function pdf(Request $request, $conveniado_id)
+    public function conveniadoPdf(Request $request, $conveniado_id)
     {
 
       $this->authorize('conveniado.owner', $conveniado_id);
@@ -39,11 +39,28 @@ class RelatorioController extends Controller
 
       $parcelas = self::query($request, $conveniado_id);
 
-      $pdf = PDF::loadView('pdf.conveniados', [
+      $pdf = PDF::loadView('pdf.conveniado', [
           'parcelas'    => $parcelas,
           'conveniado'  => $conveniado,
       ])->setPaper('a4', 'landscape');
-      return $pdf->download("conveniados.pdf");
+      return $pdf->download($conveniado->nome_fantasia . "conveniado.pdf");
+
+    }
+    
+    public function associadoPdf(Request $request, $associado_id)
+    {
+
+      // $this->authorize('associado.owner', $conveniado_id);
+
+      $associado = Associado::where('id',$associado_id)->first();
+
+      $vendas = $associado->vendas;
+ 
+      $pdf = PDF::loadView('pdf.associado', [
+          'vendas'    => $vendas,
+          'associado'  => $associado,
+      ])->setPaper('a4', 'landscape');
+      return $pdf->download($associado->name . ".pdf");
 
     }
 

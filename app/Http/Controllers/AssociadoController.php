@@ -82,4 +82,5 @@ class AssociadoController extends Controller
 
         return redirect ('/associados');
     }
+
 }
