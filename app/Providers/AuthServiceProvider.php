@@ -34,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
 
         });
 
-        // conveniado
+        // conveniados
         Gate::define('conveniado', function ($user, $venda = null) {
 
             if(Gate::allows('admin')) return true;
@@ -50,13 +50,26 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-        // conveniado
+        // conveniado owner 
         Gate::define('conveniado.owner', function ($user, $conveniado_id) {
 
             if(Gate::allows('admin')) return true;
+
             $conveniado = $user->conveniado();
             if($conveniado) {
                 if($user->conveniado()->id == $conveniado_id) return true;
+            }           
+            return false;
+        });
+
+        // associado owner
+        Gate::define('associado.owner', function ($user, $associado_id) {
+
+            if(Gate::allows('admin')) return true;
+
+            $associado = $user->associado();
+            if($associado) {
+                if($user->associado()->id == $associado_id) return true;
             }           
             return false;
         });

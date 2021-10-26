@@ -86,6 +86,7 @@ class VendaController extends Controller
     public function destroy(Venda $venda)
     {
         $this->authorize('admin');
+
         $venda->delete();
         return redirect ('/vendas');
     }

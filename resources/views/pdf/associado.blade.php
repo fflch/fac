@@ -43,12 +43,12 @@
      <tbody>
   </table>
   <br>
-  <h3>Vendas cadastradas</h3>
+  <h3>Histórico de compras</h3>
   <table width="100%" border="1px">
     <thead>
       <tr>
         <th>Data da venda</th>
-        <th>Quantidade de parcelas</th>
+        <th width="20%" >Quantidade de parcelas</th>
         <th>Valor</th>
         <th>Descrição</th>
       </tr>

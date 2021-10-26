@@ -7,10 +7,14 @@
 
 <div class="card">
 
-    <div class="card-header">
+    <div class="card-header" style="display:flex;">
         @can('admin')
             <a href="/vendas"><i class="fas fa-chevron-circle-left"></a></i>
-            <a href="/vendas/{{$venda->id}}/edit"><i class="far fa-edit"></a></i>
+            <form method="POST" action="/vendas/{{ $venda->id }}">
+              @csrf
+              @method('delete')
+              <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?');" style="background-color: transparent;border: none;"><i class="far fa-trash-alt" color="#007bff"></i></button>
+            </form>
         @endcan
     </div>
 

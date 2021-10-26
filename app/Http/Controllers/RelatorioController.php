@@ -18,9 +18,8 @@ class RelatorioController extends Controller
     {
 
         $this->authorize('conveniado.owner', $conveniado_id);
-	
-	$conveniado = Conveniado::where('id',$conveniado_id)->first();
-
+        
+        $conveniado = Conveniado::where('id',$conveniado_id)->first();
         $parcelas = self::query($request, $conveniado_id);
 
         return view ('relatorios.conveniados',[
@@ -36,9 +35,7 @@ class RelatorioController extends Controller
       $this->authorize('conveniado.owner', $conveniado_id);
 
       $conveniado = Conveniado::where('id',$conveniado_id)->first();
-
       $parcelas = self::query($request, $conveniado_id);
-
       $pdf = PDF::loadView('pdf.conveniado', [
           'parcelas'    => $parcelas,
           'conveniado'  => $conveniado,
@@ -50,12 +47,10 @@ class RelatorioController extends Controller
     public function associadoPdf(Request $request, $associado_id)
     {
 
-      // $this->authorize('associado.owner', $conveniado_id);
+      // $this->authorize('associado.owner', $associado_id);
 
       $associado = Associado::where('id',$associado_id)->first();
-
       $vendas = $associado->vendas;
- 
       $pdf = PDF::loadView('pdf.associado', [
           'vendas'    => $vendas,
           'associado'  => $associado,

@@ -50,7 +50,7 @@
                 <!-- Relacionamento entre Venda e Associado. Lista as empresas que o associado fez compra.
                 Clicando você vai para o id da venda -->
 
-                <h4>Compras Feitas</h4>
+                <h4>Histórico de compras</h4>
                 <ul>
                 @foreach ($associado->vendas as $venda)
                     <li>
