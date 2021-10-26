@@ -40,7 +40,7 @@ class VendaController extends Controller
         }
 
         if ($conveniado) $vendas = $vendas->where('conveniado_id', $conveniado->id)->paginate(10);
-        else $vendas = $vendas->paginate(10);
+        else $vendas = $vendas->orderBy('data_venda', 'desc')->paginate(10);
 
         return view ('vendas.index',[
             'vendas' => $vendas

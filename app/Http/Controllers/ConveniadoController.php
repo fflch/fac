@@ -19,8 +19,8 @@ class ConveniadoController extends Controller
             $conveniados = Conveniado::where('nome_fantasia','LIKE',"%{$request->search}%")
                          ->orWhere('razao_social','LIKE',"%{$request->search}%")
                          ->orWhere('cnpj','LIKE',"%{$request->search}%")->paginate(5);
-        }else{
-            $conveniados = Conveniado::paginate(10);
+        } else{
+            $conveniados = Conveniado::orderBy('nome_fantasia', 'asc')->paginate(10);
         }
         return view ('conveniados.index', [
             'conveniados' => $conveniados,

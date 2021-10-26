@@ -29,12 +29,24 @@ class VendaRequest extends FormRequest
         $conveniado = Auth::user()->conveniado();
 
         return [
-            'conveniado_id' => isset($conveniado) ? 'nullable' : 'required',
-            'associado_id' => 'required',
-            'data_venda' => 'required',
+            'conveniado_id'       => isset($conveniado) ? 'nullable' : 'required',
+            'associado_id'        => 'required',
+            'data_venda'          => 'required',
             'quantidade_parcelas' => 'required|integer',
-            'valor' => 'required|numeric|min:0',
-            'descricao' => 'nullable',
+            'valor'               => 'required|numeric|gt:0',
+            'descricao'           => 'nullable',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'data_venda.required'           => 'Insira a data da venda.',
+            'quantidade_parcelas.required'  => 'Insira a quantidade de parcelas.',
+            'quantidade_parcelas.integer'   => 'A quantidade de parcelas deve ser um número inteiro.',
+            'valor.required'                => 'Insira o valor.',
+            'valor.numeric'                 => 'O valor deve ser numérico.',
+            'valor.gt'                      => 'O valor deve ser maior que 0.',
         ];
     }
 
