@@ -40,9 +40,10 @@ class IndexController extends Controller
 	    
 	    if ($array_date) {
 	   	 $parcelas = ParcelaVenda::whereBetween('datavencto',$array_date)->orderBy('datavencto', 'desc')->paginate(10);
-	
+
 	    } else $parcelas = NULL;
         
+
         return view ('index-admin', [
             'parcelas'  => $parcelas,
             ]);

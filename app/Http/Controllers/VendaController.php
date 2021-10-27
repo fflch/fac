@@ -9,6 +9,7 @@ use App\Models\ParcelaVenda;
 use App\Http\Requests\VendaRequest;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class VendaController extends Controller
 {
@@ -86,8 +87,15 @@ class VendaController extends Controller
     public function destroy(Venda $venda)
     {
         $this->authorize('admin');
+         
+        // DB::transaction(function($venda) {
 
-        $venda->delete();
+            $venda->parcelas()->delete();
+            $venda->delete();
+
+        //});
+
+
         return redirect ('/vendas');
     }
 }

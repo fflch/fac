@@ -50,7 +50,7 @@ class RelatorioController extends Controller
       // $this->authorize('associado.owner', $associado_id);
 
       $associado = Associado::where('id',$associado_id)->first();
-      $vendas = $associado->vendas;
+      $vendas = $associado->vendas()->orderBy('data_venda')->get();
       $pdf = PDF::loadView('pdf.associado', [
           'vendas'    => $vendas,
           'associado'  => $associado,
@@ -74,7 +74,7 @@ class RelatorioController extends Controller
         ->where('conveniado_id', $conveniado_id)
         ->whereBetween('datavencto', [$start_date, $end_date])->get();
 
-        $parcelas = ParcelaVenda::whereIn('id', $parcelas->pluck('id'))->get();
+        $parcelas = ParcelaVenda::whereIn('id', $parcelas->pluck('id'))->orderBy('datavencto')->get();
 
         
         } else {
