@@ -47,7 +47,7 @@
   <table width="100%" border="1px">
     <thead>
       <tr>
-        <th>Data da venda</th>
+        <th>Data da compra</th>
         <th width="20%" >Quantidade de parcelas</th>
         <th>Valor</th>
         <th>Descrição</th>
@@ -65,5 +65,5 @@
     @endforeach
   </table>
   <br>
-  <h3>Total das vendas: R$ {{ number_format($vendas->sum('valor_raw'), 2, ',', '') }}</h3>
+  <h3>Total das compras: R$ {{ number_format($vendas->sum('valor_raw'), 2, ',', '') }}</h3>
 @endsection
