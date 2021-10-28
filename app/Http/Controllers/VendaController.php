@@ -9,6 +9,7 @@ use App\Models\ParcelaVenda;
 use App\Http\Requests\VendaRequest;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class VendaController extends Controller
 {
@@ -40,7 +41,7 @@ class VendaController extends Controller
         }
 
         if ($conveniado) $vendas = $vendas->where('conveniado_id', $conveniado->id)->paginate(10);
-        else $vendas = $vendas->paginate(10);
+        else $vendas = $vendas->orderBy('data_venda', 'desc')->paginate(10);
 
         return view ('vendas.index',[
             'vendas' => $vendas
@@ -86,7 +87,15 @@ class VendaController extends Controller
     public function destroy(Venda $venda)
     {
         $this->authorize('admin');
-        $venda->delete();
+         
+        // DB::transaction(function($venda) {
+
+            $venda->parcelas()->delete();
+            $venda->delete();
+
+        //});
+
+
         return redirect ('/vendas');
     }
 }

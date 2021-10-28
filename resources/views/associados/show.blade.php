@@ -15,7 +15,7 @@
             <div class="col-sm">
                 <h4>Dados Principais</h4>
 
-                <a href="/relatorios/associados/{{ $associado->id }}">Gerar Relatório </a>
+                <a href="/relatorios/associados/pdf/{{ $associado->id }}">Gerar Relatório </a>
                 <br>
                 <br>
                 Unidade: {{ $associado->unidade }}<br>
@@ -50,7 +50,7 @@
                 <!-- Relacionamento entre Venda e Associado. Lista as empresas que o associado fez compra.
                 Clicando você vai para o id da venda -->
 
-                <h4>Compras Feitas</h4>
+                <h4>Histórico de compras</h4>
                 <ul>
                 @foreach ($associado->vendas as $venda)
                     <li>

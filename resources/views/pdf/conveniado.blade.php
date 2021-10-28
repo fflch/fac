@@ -77,9 +77,9 @@
     </thead>
     <tbody>
         <tr>
-          <td>R$ {{ str_replace('.',',', $parcelas->sum('valor_raw')) }}</td>
-          <td>R$ {{ str_replace('.',',', $parcelas->sum('comissao')) }}</td>
-          <td>R$ {{ str_replace('.',',', ($parcelas->sum('valor_raw') - $parcelas->sum('comissao'))) }}</td>
+          <td>R$ {{ number_format($parcelas->sum('valor_raw'), 2, ',', '') }}</td>
+          <td>R$ {{ number_format($parcelas->sum('comissao'), 2, ',', '') }}</td>
+          <td>R$ {{ number_format($parcelas->sum('valor_raw') - $parcelas->sum('comissao'), 2, ',', '') }}</td>
         </tr>
      <tbody>
   </table>

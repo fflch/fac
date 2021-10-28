@@ -9,7 +9,7 @@
               <div class="col-sm form-group col-sm-6">
                 <div class="form-group">
                   <label><b>Conveniado: </b></label>
-                      <select class="form-control" name="conveniado_id">
+                      <select class="conveniados_select" name="conveniado_id">
                           @foreach(\App\Models\Conveniado::all() as $conveniado)
                             <option value="{{ $conveniado->id }}" @if(old('conveniado_id')== $conveniado->id) {{'selected'}}
                                 @else {{($venda->conveniado_id === $conveniado->id ) ? 'selected' : ''}} @endif>
@@ -24,7 +24,7 @@
             <div class="col-sm form-group col-sm-6">
               <div class="form-group">
                 <label><b>Associado: </b></label>
-                  <select class="form-control" name="associado_id">
+                  <select class="associados_select" name="associado_id">
                     @foreach(\App\Models\Associado::all() as $associado)
                       <option value="{{ $associado->id }}" @if(old('associado_id')== $associado->id) {{'selected'}}
                           @else {{($venda->associado_id === $associado->id ) ? 'selected' : ''}} @endif>

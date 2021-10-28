@@ -18,9 +18,8 @@ class RelatorioController extends Controller
     {
 
         $this->authorize('conveniado.owner', $conveniado_id);
-	
-	$conveniado = Conveniado::where('id',$conveniado_id)->first();
-
+        
+        $conveniado = Conveniado::where('id',$conveniado_id)->first();
         $parcelas = self::query($request, $conveniado_id);
 
         return view ('relatorios.conveniados',[
@@ -30,20 +29,33 @@ class RelatorioController extends Controller
 
     }
 
-    public function pdf(Request $request, $conveniado_id)
+    public function conveniadoPdf(Request $request, $conveniado_id)
     {
 
       $this->authorize('conveniado.owner', $conveniado_id);
 
       $conveniado = Conveniado::where('id',$conveniado_id)->first();
-
       $parcelas = self::query($request, $conveniado_id);
-
-      $pdf = PDF::loadView('pdf.conveniados', [
+      $pdf = PDF::loadView('pdf.conveniado', [
           'parcelas'    => $parcelas,
           'conveniado'  => $conveniado,
       ])->setPaper('a4', 'landscape');
-      return $pdf->download("conveniados.pdf");
+      return $pdf->download($conveniado->nome_fantasia . "conveniado.pdf");
+
+    }
+    
+    public function associadoPdf(Request $request, $associado_id)
+    {
+
+      // $this->authorize('associado.owner', $associado_id);
+
+      $associado = Associado::where('id',$associado_id)->first();
+      $vendas = $associado->vendas()->orderBy('data_venda')->get();
+      $pdf = PDF::loadView('pdf.associado', [
+          'vendas'    => $vendas,
+          'associado'  => $associado,
+      ])->setPaper('a4', 'landscape');
+      return $pdf->download($associado->name . ".pdf");
 
     }
 
@@ -62,7 +74,7 @@ class RelatorioController extends Controller
         ->where('conveniado_id', $conveniado_id)
         ->whereBetween('datavencto', [$start_date, $end_date])->get();
 
-        $parcelas = ParcelaVenda::whereIn('id', $parcelas->pluck('id'))->get();
+        $parcelas = ParcelaVenda::whereIn('id', $parcelas->pluck('id'))->orderBy('datavencto')->get();
 
         
         } else {

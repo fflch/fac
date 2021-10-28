@@ -16,7 +16,7 @@
 
                 <div class="card-header">
 
-                    <a href="/relatorios/associados?start_date={{ request()->start_date }}
+                    <a href="/relatorios/parcelas/pdf?start_date={{ request()->start_date }}
                     &end_date={{ request()->end_date }}">
                         
                         <i class="fas fa-file-pdf"></i> Exportar Relatório PDF

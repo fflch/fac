@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Conveniado;
+use App\Models\Associado;
 
 class User extends Authenticatable
 {
@@ -42,5 +43,10 @@ class User extends Authenticatable
     public function conveniado()
     {   
         return Conveniado::where('user_id',$this->id)->first();
+    }
+
+    public function associado()
+    {   
+        return Associado::where('user_id',$this->id)->first();
     }
 }

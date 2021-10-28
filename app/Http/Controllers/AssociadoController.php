@@ -16,7 +16,7 @@ class AssociadoController extends Controller
             $associados = Associado::where('name','LIKE',"%{$request->search}%")
                          ->orWhere('numero_usp','LIKE',"%{$request->search}%")->paginate(5);
         }else {
-            $associados = Associado::paginate(10);
+            $associados = Associado::orderBy('name','asc')->paginate(10);
         }
         return view ('associados.index',[
             'associados' => $associados
@@ -82,4 +82,5 @@ class AssociadoController extends Controller
 
         return redirect ('/associados');
     }
+
 }
