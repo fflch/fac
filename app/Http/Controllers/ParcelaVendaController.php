@@ -42,6 +42,10 @@ class ParcelaVendaController extends Controller
 
         $parcelaVenda->status = 'Baixado';
         $parcelaVenda->update();
+        $associado = $parcelaVenda->venda->associado;
+        $associado->limite += (float)$parcelaVenda->valor;
+        $associado->update();
+
         request()->session()->flash('alert-success', 'Parcela baixada com sucesso.');
         return redirect("/vendas/$parcelaVenda->venda_id");
     }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\Venda;
 use App\Models\ParcelaVenda;
+use App\Models\Associado;
 use App\Http\Requests\VendaRequest;
 use Carbon\Carbon;
 use Auth;
@@ -54,7 +55,7 @@ class VendaController extends Controller
 
         // verifica se o usuário é um conveniado
         $conveniado = Auth::user()->conveniado();
-
+        
         return view ('vendas.create',[
             'venda' => new Venda,
             'objeto'  => isset($conveniado) ? $conveniado : FALSE,
@@ -66,8 +67,23 @@ class VendaController extends Controller
         $this->authorize('conveniado');
 
         $validated = $request->validated();
-        $venda = Venda::create($validated);
-        return redirect("/vendas/$venda->id");
+
+        // verificar se o associado possui saldo para realizar a compra
+        $associado = Associado::where('id', $validated['associado_id'])->first();
+
+        if ($validated['valor'] <= $associado->limite) {
+
+            $venda = Venda::create($validated);
+            $associado->limite = $associado->limite - $validated['valor'];
+            $associado->update();
+            return redirect("/vendas/{$venda->id}");
+
+        } else {
+
+            request()->session()->flash('alert-danger','Valor da compra superior ao limite de R$ ' . $associado->limite . ' disponível para '. $associado->name);
+            return redirect('/vendas/create');
+
+        } 
     }
 
     public function show(Venda $venda)

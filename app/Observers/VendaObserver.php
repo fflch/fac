@@ -54,7 +54,7 @@ class VendaObserver
           $parcela_venda->save();
       }
 
-      # somando valores quebrados na última parcela
+      // somando valores quebrados na última parcela
       $sobra = $venda->valor_raw - ($parcela_venda->valor_raw * (float)$venda->quantidade_parcelas);
       $parcela_venda->valor = $parcela_venda->valor_raw + $sobra;
       $parcela_venda->save();

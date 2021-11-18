@@ -66,4 +66,5 @@
   </table>
   <br>
   <h3>Total das compras: R$ {{ number_format($vendas->sum('valor_raw'), 2, ',', '') }}</h3>
+  <h3>Saldo disponível: R$ {{ number_format($associado->limite, 2, ',', '') }}</h3>
 @endsection
