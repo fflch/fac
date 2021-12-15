@@ -10,13 +10,13 @@
         <div class="card-body">
             <form method="GET" action="/redirectToProvider">
                 @csrf
-                <div class="form-check">
+                <div class="form-check form-check-inline">
                     <input class="form-check-input" name="loginType" type="radio" value="senhaUnica" id="flexCheckSenhaUnica">
                     <label class="form-check-label" for="flexCheckSenhaUnica">
                         Senha Única USP
                     </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check form-check-inline" style="margin-bottom: 2%;">
                     <input class="form-check-input" name="loginType" type="radio" value="conveniado" id="flexCheckConveniado">
                     <label class="form-check-label" for="flexCheckConveniado">
                         Conveniado

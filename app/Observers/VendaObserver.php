@@ -37,6 +37,7 @@ class VendaObserver
             }
 
             $venda->comissao = $comissao;
+            $venda->save();
         }
 
         // Lanças as parcelas

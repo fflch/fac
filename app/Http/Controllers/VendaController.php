@@ -67,23 +67,8 @@ class VendaController extends Controller
         $this->authorize('conveniado');
 
         $validated = $request->validated();
-
-        // verificar se o associado possui saldo para realizar a compra
-        $associado = Associado::where('id', $validated['associado_id'])->first();
-
-        if ($validated['valor'] <= $associado->limite) {
-
-            $venda = Venda::create($validated);
-            $associado->limite = $associado->limite - $validated['valor'];
-            $associado->update();
-            return redirect("/vendas/{$venda->id}");
-
-        } else {
-
-            request()->session()->flash('alert-danger','Valor da compra superior ao limite de R$ ' . $associado->limite . ' disponível para '. $associado->name);
-            return redirect('/vendas/create');
-
-        } 
+        $venda = Venda::create($validated);
+        return redirect("/vendas/{$venda->id}");
     }
 
     public function show(Venda $venda)

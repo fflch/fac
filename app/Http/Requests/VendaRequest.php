@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Auth;
+use App\Rules\SaldoDisponivel;
 
 class VendaRequest extends FormRequest
 {
@@ -33,7 +34,7 @@ class VendaRequest extends FormRequest
             'associado_id'        => 'required',
             'data_venda'          => 'required',
             'quantidade_parcelas' => 'required|integer',
-            'valor'               => 'required|numeric|gt:0',
+            'valor'               => ['required', 'numeric', 'gt:0', new SaldoDisponivel],
             'descricao'           => 'nullable',
         ];
     }
