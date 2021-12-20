@@ -26,8 +26,8 @@
             <div class="col-sm">
                 <h4>Dados da Venda</h4>
 
-                Conveniado: {{ $venda->conveniado->nome_fantasia }} <br>
-                Associado: {{ $venda->associado->name }}<br>
+                Conveniado: <a href="/conveniados/{{ $venda->conveniado->id }}"> {{ $venda->conveniado->nome_fantasia }}</a> <br>
+                Associado: <a href="/associados/{{ $venda->associado->id }}">{{ $venda->associado->name }}</a><br>
                 Data da Venda: {{ $venda->data_venda }}<br>
                 Quantidade de Parcelas: {{ $venda->quantidade_parcelas }}<br>
                 Valor: {{ $venda->valor }}<br>

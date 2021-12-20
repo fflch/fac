@@ -45,7 +45,8 @@
 
                 <h4>Crédito FAC</h4>
 
-                Limite: {{ $associado->limite }}<br><br>
+                Limite: R$ {{ number_format($associado->limite, 2, ',', '') }}<br>
+                Saldo disponível: R$ {{ number_format($associado->saldo(), 2, ',', '') }}<br><br>
 
                 <!-- Relacionamento entre Venda e Associado. Lista as empresas que o associado fez compra.
                 Clicando você vai para o id da venda -->

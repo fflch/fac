@@ -42,6 +42,7 @@ class ParcelaVendaController extends Controller
 
         $parcelaVenda->status = 'Baixado';
         $parcelaVenda->update();
+
         request()->session()->flash('alert-success', 'Parcela baixada com sucesso.');
         return redirect("/vendas/$parcelaVenda->venda_id");
     }

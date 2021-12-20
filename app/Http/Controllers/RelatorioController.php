@@ -50,7 +50,7 @@ class RelatorioController extends Controller
       // $this->authorize('associado.owner', $associado_id);
 
       $associado = Associado::where('id',$associado_id)->first();
-      $vendas = $associado->vendas()->orderBy('data_venda')->get();
+      $vendas = $associado->vendas()->orderBy('data_venda', 'DESC')->get();
       $pdf = PDF::loadView('pdf.associado', [
           'vendas'    => $vendas,
           'associado'  => $associado,

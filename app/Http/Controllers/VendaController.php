@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\Venda;
 use App\Models\ParcelaVenda;
+use App\Models\Associado;
 use App\Http\Requests\VendaRequest;
 use Carbon\Carbon;
 use Auth;
@@ -54,7 +55,7 @@ class VendaController extends Controller
 
         // verifica se o usuário é um conveniado
         $conveniado = Auth::user()->conveniado();
-
+        
         return view ('vendas.create',[
             'venda' => new Venda,
             'objeto'  => isset($conveniado) ? $conveniado : FALSE,
@@ -67,7 +68,7 @@ class VendaController extends Controller
 
         $validated = $request->validated();
         $venda = Venda::create($validated);
-        return redirect("/vendas/$venda->id");
+        return redirect("/vendas/{$venda->id}");
     }
 
     public function show(Venda $venda)

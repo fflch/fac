@@ -52,6 +52,7 @@
         <th>Associado</th>
         <th>Valor</th>
         <th>Parcela</th>
+        <th>Status</th>
       </tr>
     </thead>
     @foreach ($parcelas as $parcela)
@@ -61,6 +62,7 @@
             <td> {{ $parcela->venda->associado->name }}</td>
             <td id="valor">R$ {{ $parcela->valor }}</td>
             <td> {{ $parcela->numero }} de {{ $parcela->venda->quantidade_parcelas }}</td>
+            <td> {{ $parcela->status }}</td>
           </tr>
       </tbody>
     @endforeach
