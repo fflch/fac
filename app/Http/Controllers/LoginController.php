@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
+
     public function loginType()
     {
         return view('auth.ModoDeLogin');
@@ -24,22 +25,6 @@ class LoginController extends Controller
             return Socialite::driver('senhaunica')->redirect();
         };
         return view('auth.loginForm');
-    }
-
-    public function handleProviderCallback()
-    {
-        $userSenhaUnica  = Socialite::driver('senhaunica')->user();
-        $user = User::where('codpes',$userSenhaUnica->codpes)->first();
-
-        if (is_null($user)) $user = new User;
-
-        // bind do dados retornados
-        $user->codpes = $userSenhaUnica->codpes;
-        $user->email = $userSenhaUnica->email;
-        $user->name = $userSenhaUnica->nompes;
-        $user->save();
-        Auth::login($user, true);
-        return redirect('/');
     }
 
     public function localLogin(Request $request){
@@ -56,9 +41,4 @@ class LoginController extends Controller
 
     }
 
-    public function logout()
-    {
-        auth()->logout();
-        return redirect('/');
-    }
 }

@@ -26,19 +26,19 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // admin 
-        Gate::define('admin', function ($user) {
-
-            $admins = explode(',', trim(config('fac.admins')));
-            return ( in_array($user->codpes, $admins) and $user->codpes );
-
-        });
+#        // admin
+#        Gate::define('admin', function ($user) {
+#
+#            $admins = explode(',', trim(config('fac.admins')));
+#            return ( in_array($user->codpes, $admins) and $user->codpes );
+#
+#        });
 
         // conveniados
         Gate::define('conveniado', function ($user, $venda = null) {
 
             if(Gate::allows('admin')) return true;
-            
+
             if($venda == null){
                 if($user->conveniado()) return true;
             } else {
@@ -50,7 +50,7 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-        // conveniado owner 
+        // conveniado owner
         Gate::define('conveniado.owner', function ($user, $conveniado_id) {
 
             if(Gate::allows('admin')) return true;
@@ -58,7 +58,7 @@ class AuthServiceProvider extends ServiceProvider
             $conveniado = $user->conveniado();
             if($conveniado) {
                 if($user->conveniado()->id == $conveniado_id) return true;
-            }           
+            }
             return false;
         });
 
@@ -70,7 +70,7 @@ class AuthServiceProvider extends ServiceProvider
             $associado = $user->associado();
             if($associado) {
                 if($user->associado()->id == $associado_id) return true;
-            }           
+            }
             return false;
         });
     }

@@ -8,10 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Conveniado;
 use App\Models\Associado;
+use \Spatie\Permission\Traits\HasRoles;
+use \Uspdev\SenhaunicaSocialite\Traits\HasSenhaunica;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles, HasSenhaunica;
 
     /**
      * The attributes that are mass assignable.
@@ -41,12 +43,12 @@ class User extends Authenticatable
     ];
 
     public function conveniado()
-    {   
+    {
         return Conveniado::where('user_id',$this->id)->first();
     }
 
     public function associado()
-    {   
+    {
         return Associado::where('user_id',$this->id)->first();
     }
 }
