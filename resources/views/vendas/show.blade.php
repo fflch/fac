@@ -37,7 +37,7 @@
 
             </div>
         </div>
-
+        
         <ul class="list-group">
         @foreach($venda->parcelas as $parcela)
             <li class="list-group-item" style="display: flex; justify-content: space-between;">

@@ -1,5 +1,3 @@
-@inject('replicado','App\Utils\ReplicadoUtils')
-
 <div class="card">
 <div class="card-header"><h4><b>Cadastro de Associado</b></h4></div>
 <hr>
@@ -17,14 +15,6 @@
             <div class="col-sm form-group">
                 <label for="unidade" class="required"><b>Unidade: </b></label>
                     <input type="text" class="form-control" id="unidade" name="unidade" value="{{old('unidade',$associado->unidade)}}">
-                    <!--
-                        Teste de como pegar o replicado
-                        <select class="form-control" name="unidade">
-                        @foreach($replicado::unidades() as $unidade)
-                          <option value="{$replicado->codund}">{{$unidade}}</option>
-                        @endforeach
-                    </select>
-                    -->
             </div>
 
             <div class="col-sm form-group">
@@ -194,6 +184,22 @@
                     <label for="banco" class="required"><b>Limite: </b></label>
                     <input type="text" class="form-control" id="limite" name="limite" value="{{ $associado->limite ? (old('limite') ? old('limite') : $associado->limite) : '200' }}">
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="card">
+    <div class="card-header"><b> Nova senha </b></div>
+    <div class="card-body">
+        <div class="col-sm form-group">
+            <div class="form-group">
+                <label for="password" class="required"><b>Senha: </b></label>
+                <br>
+                <small>Deixe este campo em branco para não mudar a senha.</small>
+                <input type="password" class="form-control" id="password" name="password">
             </div>
         </div>
     </div>
