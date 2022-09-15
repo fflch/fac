@@ -191,22 +191,6 @@
 
 <hr>
 
-<div class="card">
-    <div class="card-header"><b> Nova senha </b></div>
-    <div class="card-body">
-        <div class="col-sm form-group">
-            <div class="form-group">
-                <label for="password" class="required"><b>Senha: </b></label>
-                <br>
-                <small>Deixe este campo em branco para não mudar a senha.</small>
-                <input type="password" class="form-control" id="password" name="password">
-            </div>
-        </div>
-    </div>
-</div>
-
-<hr>
-
 <div class="form-group">
     <button type="submit" class="btn btn-success">Enviar</button>
 </div>
