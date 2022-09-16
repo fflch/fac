@@ -61,7 +61,7 @@ class AuthServiceProvider extends ServiceProvider
             }
             return false;
         });
-
+        
         // associado owner
         Gate::define('associado.owner', function ($user, $associado_id) {
 

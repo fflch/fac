@@ -1,5 +1,3 @@
-@inject('replicado','App\Utils\ReplicadoUtils')
-
 <div class="card">
 <div class="card-header"><h4><b>Cadastro de Associado</b></h4></div>
 <hr>
@@ -17,14 +15,6 @@
             <div class="col-sm form-group">
                 <label for="unidade" class="required"><b>Unidade: </b></label>
                     <input type="text" class="form-control" id="unidade" name="unidade" value="{{old('unidade',$associado->unidade)}}">
-                    <!--
-                        Teste de como pegar o replicado
-                        <select class="form-control" name="unidade">
-                        @foreach($replicado::unidades() as $unidade)
-                          <option value="{$replicado->codund}">{{$unidade}}</option>
-                        @endforeach
-                    </select>
-                    -->
             </div>
 
             <div class="col-sm form-group">

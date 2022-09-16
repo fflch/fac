@@ -26,6 +26,7 @@ class SaldoDisponivel implements Rule
      */
     public function passes($attribute, $value)
     {
+
         $associado = self::associado(request()->get('associado_id'));
         $saldo = $associado->saldo();
         
