@@ -53,6 +53,14 @@
                 @endcan
             </li>
         @endforeach
+        <br>
+            @if( $parcela->status != "Baixado")
+                <form method="POST" action="parcelaVenda/baixarEmMassa">
+                @csrf
+                @method('patch')
+                    <button class="btn btn-success" onclick="return confirm('Tem certeza que deseja baixar todas as parcelas?');">Baixar todas as parcelas</button>
+                 </form>
+            @endif
         </ul>
     </div>
 </div>

@@ -7,7 +7,7 @@ use App\Models\ParcelaVenda;
 
 class ParcelaVendaController extends Controller
 {
-
+  /* pq essa function?
     public function baixarEmLote(Request $request)
     {
       $this->authorize('admin');
@@ -25,6 +25,7 @@ class ParcelaVendaController extends Controller
         }
       }
     }
+    */
 
     public function update(ParcelaVenda $parcelaVenda)
     {
@@ -45,5 +46,22 @@ class ParcelaVendaController extends Controller
 
         request()->session()->flash('alert-success', 'Parcela baixada com sucesso.');
         return redirect("/vendas/$parcelaVenda->venda_id");
+    }
+
+    public function baixar_parcelas_em_massa()
+    {
+        $this->authorize('admin');
+
+        $parcelas = ParcelaVenda::where('status', 'A Vencer')->get();
+
+        foreach($parcelas as $parcela){
+          $parcela->fill([
+            'status' => 'Baixado'
+          ]);
+
+          $parcela->save();
+
+        }
+        return back();
     }
 }
