@@ -55,7 +55,7 @@
         @endforeach
         <br>
             @if( $parcela->status != "Baixado")
-                <form method="POST" action="parcelaVenda/baixarEmMassa">
+                <form method="POST" action="parcelaVenda/{{ $parcela->id }}">
                 @csrf
                 @method('patch')
                     <button class="btn btn-success" onclick="return confirm('Tem certeza que deseja baixar todas as parcelas?');">Baixar todas as parcelas</button>
