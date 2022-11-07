@@ -34,9 +34,9 @@ class ParcelaVendaController extends Controller
     {
         $this->authorize('admin');
 
-        $parcelas = ParcelaVenda::where('status', 'A Vencer')
-                                ->where('venda_id', $parcela->venda_id)
-                                ->update(['status' => 'Baixado']);
+        ParcelaVenda::where('status', 'A Vencer')
+                      ->where('venda_id', $parcela->venda_id)
+                      ->update(['status' => 'Baixado']);
         
         return back();
     }
