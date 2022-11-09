@@ -27,7 +27,7 @@ Route::resource('/conveniados', ConveniadoController::class);
 Route::resource('/vendas', VendaController::class);
 
 // Atualização do status da parcela
-Route::get('/parcelaVenda/baixarEmLote', [ParcelaVendaController::class, 'baixarEmLote']);
+Route::patch('parcelaVenda/{parcela}', [ParcelaVendaController::class, 'baixarParcelasEmMassa']);
 Route::patch('parcelaVenda/{parcelaVenda}', [ParcelaVendaController::class, 'update']);
 
 // Relatórios

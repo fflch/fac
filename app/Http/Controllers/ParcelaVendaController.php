@@ -4,27 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ParcelaVenda;
+use App\Models\Venda;
 
 class ParcelaVendaController extends Controller
 {
-
-    public function baixarEmLote(Request $request)
-    {
-      $this->authorize('admin');
-
-      if ($request->parcelas_id) {
-        $parcelas_id = $request->parcelas_id;
-        $parcelas = new ParcelaVenda;
-        foreach ($parcelas_id as $id) {
-          $parcelas = ParcelaVenda::where('id', $id);
-        }
-        $parcelas = $parcelas->get();
-
-        foreach ($parcelas as $parcela) {
-          dd($parcela->valor);
-        }
-      }
-    }
 
     public function update(ParcelaVenda $parcelaVenda)
     {
@@ -45,5 +28,16 @@ class ParcelaVendaController extends Controller
 
         request()->session()->flash('alert-success', 'Parcela baixada com sucesso.');
         return redirect("/vendas/$parcelaVenda->venda_id");
+    }
+
+    public function baixarParcelasEmMassa(ParcelaVenda $parcela)
+    {
+        $this->authorize('admin');
+
+        ParcelaVenda::where('status', 'A Vencer')
+                      ->where('venda_id', $parcela->venda_id)
+                      ->update(['status' => 'Baixado']);
+
+        return back();
     }
 }

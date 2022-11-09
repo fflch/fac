@@ -37,7 +37,7 @@
 
             </div>
         </div>
-        
+
         <ul class="list-group">
         @foreach($venda->parcelas as $parcela)
             <li class="list-group-item" style="display: flex; justify-content: space-between;">
@@ -53,6 +53,14 @@
                 @endcan
             </li>
         @endforeach
+        <br>
+            @if( $parcela->status != "Baixado")
+                <form method="POST" action="parcelaVenda/{{ $parcela->id }}">
+                @csrf
+                @method('patch')
+                    <button class="btn btn-success mt-3" onclick="return confirm('Tem certeza que deseja baixar todas as parcelas?');">Baixar todas as parcelas</button>
+                 </form>
+            @endif
         </ul>
     </div>
 </div>
